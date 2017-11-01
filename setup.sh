@@ -3,7 +3,7 @@
 echo -n -e "
 1) Apache Web Server
 2) Apache Tomcat
-3) Apache Tomcat
+3) MariaDB
 4) Application Stack (WEB + APP + DB)
 5) Exit 
 
@@ -31,18 +31,17 @@ if [ "$EL" != "el7" ]; then
 	exit 1
 fi
 
+## Check SELINUX and FIREWALL enabled or not.
 SESTATUS=$(sestatus|head -1 |awk '{print $NF}')
 if [ "$SESTATUS" = 'enabled' ]; then 
 	hint "SELINUX and FIREWALL enabled on Server.. Proceeding to disable them and it will  reboot the server"
 	curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/init.sh | bash
 fi
 
-
-
-## Check SELINUX and FIREWALL enabled or not.
-
 ### Install ansible
+yum install ansible -y &>/dev/null 
 
 ### Run Playbook
+ansible-playbook playbooks/${option}.yml
 
 ## One more line
