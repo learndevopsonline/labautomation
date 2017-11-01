@@ -31,7 +31,7 @@ if [ "$EL" != "el7" ]; then
 	exit 1
 fi
 
-SESTATUS=$(sestatus|awk '{print $NF}')
+SESTATUS=$(sestatus|head -1 |awk '{print $NF}')
 if [ "$SESTATUS" = 'enabled' ]; then 
 	hint "SELINUX and FIREWALL enabled on Server.. Proceeding to disable them and it will  reboot the server"
 	curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/init.sh | bash
