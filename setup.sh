@@ -15,6 +15,10 @@ if [ $option -lt 1 -o $option -gt 5 ]; then
   exit 1
 fi
 
+if [ $option = 5 ]; then 
+	exit 
+fi
+
 ## Importing required source files.
 curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh >/tmp/common-functions.sh
 source /tmp/common-functions.sh
