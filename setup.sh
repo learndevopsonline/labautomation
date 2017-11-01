@@ -17,7 +17,7 @@ fi
 
 ## Importing required source files.
 curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh >/tmp/common-functions.sh
-source /tmp/common-functions
+source /tmp/common-functions.sh
 ## Supported OS's
 # CentOS 7
 if [ ! -f /etc/centos-release ]; then 
