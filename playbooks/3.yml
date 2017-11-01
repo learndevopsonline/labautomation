@@ -1,0 +1,9 @@
+- name: Install mariaDB
+ yum_repository:
+    name: MariaDB
+    baseurl: "http://yum.mariadb.org/10.2.9/centos6-amd64"
+    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck: yes
+
+- name: Start mariDB
+  service: name=mariadb state=started enabled=yes
