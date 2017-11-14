@@ -24,12 +24,12 @@ echo -n -e "
 9) Docker
 10) Kuburnetes Master 
 11) Kuburnetes Node
-E) Exit 
+${R}E) Exit ${N}
 
 Select an Option > "
 read option
 
-if [ $option -lt 1 -o $option -gt 5 ]; then 
+if [ $option -lt 1 -o $option -gt 11 ]; then 
   echo "Invalid Option. Try Again " 
   exit 1
 fi
