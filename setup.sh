@@ -1,5 +1,17 @@
 #!/bin/bash
 
+curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" >/tmp/common-functions.sh
+#source /root/scripts/common-functions.sh
+source /tmp/common-functions.sh
+## Checking Root User or not.
+CheckRoot
+
+## Checking SELINUX Enabled or not.
+CheckSELinux
+
+## Checking Firewall on the Server.
+CheckFirewall
+
 echo -n -e "
 1) Apache Web Server
 2) Apache Tomcat
