@@ -29,14 +29,23 @@ ${R}E) Exit ${N}
 Select an Option > "
 read option
 
-if [ $option -lt 1 -o $option -gt 11 ]; then 
-  echo "Invalid Option. Try Again " 
-  exit 1
+C=$(echo $option | cut -c 1)
+[ "$C" -eq 1 ] &>/dev/null
+STAT=$?
+if [ $STAT -eq 2 ]
+	if [ "$option" = E ]; then 
+		exit
+	else
+		error "Invalid Option. Try Again " 
+		exit 1
+	fi
+else
+	if [ $option -lt 1 -o $option -gt 11 ]; then 
+	  error "Invalid Option. Try Again " 
+	  exit 1
+	fi
 fi
 
-if [ $option = 5 ]; then 
-	exit 
-fi
 
 ## Importing required source files.
 curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh >/tmp/common-functions.sh
