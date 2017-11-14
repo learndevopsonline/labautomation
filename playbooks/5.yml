@@ -1,11 +1,16 @@
-- name: Download Maven3
-  get_url: dest=/opt/maven3.tar.gz url=http://apache.proserve.nl/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
+# Install GitLab and its dependencies.
 
-- name: Unpack Maven3
-  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
- 
-- name: Create Maven3 directory link
-  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
+- name: Install GitLab dependencies.
+  package: name={{ item }} state=installed
+  with_items:
+    - openssh-server
+    - postfix
+    - curl
+    - openssl
+
+- name: Install GitLab repository
+  command: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
   
-- name: Set mvn link
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
+
+- name: Install GitLab
+  package: name=gitlab-ee state=installed

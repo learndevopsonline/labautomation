@@ -1,27 +1,11 @@
-- name: Download jenkins 
- command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
- 
-- name: Import Jenkins CI key
-  key: http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
- 
-state: present
- 
-- name: Install Jenkins
-  package:
-  name: jenkins
-  state: latest
+- name: Download Maven3
+  get_url: dest=/opt/maven3.tar.gz url=http://apache.proserve.nl/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
 
+- name: Unpack Maven3
+  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
  
-- name: Allow port 8080
- 
-shell: iptables -I INPUT -p tcp --dport 8080 -m state --state NEW,ESTABLISHED -j ACCEPT
- 
-- name: Start the server
- 
-service:
- 
-- name: jenkins
-  state: started
- 
-- wait_for:
-  port: 8080
+- name: Create Maven3 directory link
+  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
+  
+- name: Set mvn link
+  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1

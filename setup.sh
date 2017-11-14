@@ -4,11 +4,15 @@ echo -n -e "
 1) Apache Web Server
 2) Apache Tomcat
 3) MariaDB
-4) Gitlab
-5) Maven
-6) Jenkins
-7) Application Stack (WEB + APP + DB)
-8) Exit 
+4) Application Stack (WEB + APP + DB)
+5) Gitlab
+6) Maven
+7) Jenkins
+8) Ansible Tower
+9) Docker
+10) Kuburnetes Master 
+11) Kuburnetes Node
+E) Exit 
 
 Select an Option > "
 read option
