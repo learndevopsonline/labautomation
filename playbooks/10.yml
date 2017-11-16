@@ -36,8 +36,12 @@
       lineinfile:
         path: /etc/kubernetes/config
         regexp: '^KUBE_MASTER'
-        line: KUBE_MASTER="--master=http://kube-master:8080"
+        line: KUBE_MASTER="--master=http://{{MASTER}}:8080"
 
+    - name: Update etcd config
+      replace:
+        regexp: "localhost"
+        replace: '0.0.0.0'
 
 
 
