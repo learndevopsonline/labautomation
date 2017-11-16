@@ -1,5 +1,5 @@
 - name: Install and configure Kuburnetes Master Node
-  hosts: local
+  hosts: all
   become: yes
   tasks:
     - debug:
