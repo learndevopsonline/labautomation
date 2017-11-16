@@ -1,0 +1,80 @@
+- name: Install and configure Kuburnetes Master Node
+  hosts: all
+  become: yes
+  vars:
+    MASTER: kube-master
+  tasks:
+    - debug:
+        msg: |
+          Note: This automation works only if you set the hostname of the servers as kube-master for master node, Otherwise it is going to fail
+
+    - wait_for: timeout=3
+
+    - name: Create Kuburnetes Yum repo file
+      blockinfile:
+        path: /etc/yum.repos.d/kuburnetes.repo
+        create: yes
+        block: |
+          [kuburnetes]
+          name=virt7-docker-common-release
+          baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+          gpgcheck=0
+          enabled=1
+      tags: [ 'master' , 'node' ]
+      
+    - name: Install required packages
+      yum:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+        enablerepo: kuburnetes
+      with_items:
+        - etcd
+        - flannel
+        - kubernetes
+      tags: [ 'master' , 'node' ]
+
+    - name: Update Kuburnetes config 
+      lineinfile:
+        path: /etc/kubernetes/config
+        regexp: '^KUBE_MASTER'
+        line: KUBE_MASTER="--master=http://{{MASTER}}:8080"
+      tags: [ 'master' , 'node' ]
+
+    - name: Update etcd config
+      replace:
+        path: /etc/etcd/etcd.conf
+        regexp: "localhost"
+        replace: '0.0.0.0'
+      tags: [ 'master' ]
+
+    - name: Update apiserver config 
+      template:
+        src: files/apiserver.j2
+        dest: /etc/kubernetes/apiserver 
+      tags: [ 'master' ]
+
+    - name: Update flanneld config
+      template:
+        src: files/flanneld.j2
+        dest: /etc/sysconfig/flanneld
+      tags: [ 'master' , 'node' ]
+
+    - name: Start etcd service
+      service: 
+        name: etcd
+        state: started
+      tags: [ 'master' ]
+
+    - name: Create etcd repos
+      shell: 'etcdctl mkdir /kube-centos/network && etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
+      ignore_errors: yes
+      tags: [ 'master' ]
+
+    - name: Restart all services on Master
+      service:
+        name: "{{item}}"
+        state: restarted
+        enabled: yes
+      with_items: [ 'etcd' , 'kube-apiserver' , 'kube-controller-manager' , 'kube-scheduler' , 'flanneld' ]
+      tags: [ 'master' ]
