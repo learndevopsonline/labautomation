@@ -10,7 +10,7 @@ CheckRoot
 CheckSELinux
 
 ## Checking Firewall on the Server.
-CheckFirewall
+CheckFirewall &>/dev/null
 
 ## Supported OS's
 # CentOS 7

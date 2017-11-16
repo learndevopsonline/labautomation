@@ -4,7 +4,7 @@
   tasks:
   	- name: Create Kuburnetes Yum repo file
   	  blockinfile:
-  	  	path: /etc/yum.repos.d/virt7-docker-common-release.repo
+  	  	path: /etc/yum.repos.d/kuburnetes.repo
   	  	block: |
   	  		[virt7-docker-common-release]
 			name=virt7-docker-common-release
