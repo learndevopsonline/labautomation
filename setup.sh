@@ -40,8 +40,8 @@ echo -n -e "
 ${R}E) Exit ${N}
 
 Select an Option > "
-#read option
-option=10
+read option
+#option=11
 C=$(echo $option | cut -c 1)
 [ "$C" -eq 1 ] &>/dev/null
 STAT=$?
