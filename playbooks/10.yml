@@ -21,4 +21,4 @@
         enablerepo: kuburnetes
       with_items:
         - etcd
-        
+        - flannel
