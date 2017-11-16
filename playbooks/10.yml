@@ -7,7 +7,7 @@
         path: /etc/yum.repos.d/kuburnetes.repo
         create: yes
         block: |
-          [virt7-docker-common-release]
+          [kuburnetes]
           name=virt7-docker-common-release
           baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
           gpgcheck=0
@@ -18,7 +18,6 @@
         name: "{{item}}"
         state: latest
         update_cache: yes
+        enablerepo: kuburnetes
       with_items:
-        - kuburnetes
-        - etcd
-        - flannel
+        - java
