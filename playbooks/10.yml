@@ -2,5 +2,11 @@
   hosts: all
   become: yes
   tasks:
-    - debug:
-        msg: "He;llo"
+    - name: Create Kuburnetes Yum repo file
+      blockinfile:
+        path: /etc/yum.repos.d/kuburnetes.repo
+        block: |
+          [virt7-docker-common-release]
+          name=virt7-docker-common-release
+          baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+          gpgcheck=0
