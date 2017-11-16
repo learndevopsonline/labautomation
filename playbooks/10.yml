@@ -62,8 +62,14 @@
     - name: Create etcd repos
       shell: 'etcdctl mkdir /kube-centos/network && etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
 
+    - name: Restart all services
+      service:
+        name: "{{item}}"
+        state: restarted
+        enabled: yes
+      with_items: [ 'etcd' , 'kube-apiserver' , 'kube-controller-manager' , 'kube-scheduler' , 'flanneld' ]
 
-
+    #
 
 
 
