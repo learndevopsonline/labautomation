@@ -20,4 +20,5 @@
         update_cache: yes
         enablerepo: kuburnetes
       with_items:
-        - java
+        - etcd
+        
