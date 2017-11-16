@@ -62,7 +62,7 @@
     - name: Configure kublet on node 
       template:
         src: files/kublet.j2
-        dest: /etc/kubernetes/kublet
+        dest: /etc/kubernetes/kubelet
       tags: [ 'node' ]
 
     - name: Restart all services on node
