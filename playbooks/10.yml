@@ -3,7 +3,12 @@
   become: yes
   tasks:
     - debug:
-        msg: "Hello \n Hello"
+        msg: |
+          Note: This automation works only if you set the hostname of the servers as kube-master 
+          for master node, Otherwise it is going to fail
+
+    - wait_for: timeout=10
+    
     - name: Create Kuburnetes Yum repo file
       blockinfile:
         path: /etc/yum.repos.d/kuburnetes.repo
