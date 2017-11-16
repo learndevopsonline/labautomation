@@ -49,7 +49,11 @@
         src: files/apiserver.j2
         dest: /etc/kubernetes/apiserver 
 
-    
+    - name: Update flanneld config
+      template:
+        src: files/flanneld.j2
+        dest: /etc/sysconfig/flanneld
+
 
 
 
