@@ -2,20 +2,5 @@
   hosts: local
   become: yes
   tasks:
-    - name: Create Kuburnetes Yum repo file
-  	  blockinfile:
-        path: /etc/yum.repos.d/kuburnetes.repo
-        block: |
-          [virt7-docker-common-release]
-          name=virt7-docker-common-release
-          baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
-          gpgcheck=0
-
-    - name: Install required packages
-	    yum:
-        name: "{{item}}"
-        state: latest
-      with_items:
-        - kuburnetes
-        - etcd
-        - flannel
+    - debug:
+        msg: "He;llo"
