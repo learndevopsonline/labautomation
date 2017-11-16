@@ -8,7 +8,7 @@
         msg: |
           Note: This automation works only if you set the hostname of the servers as kube-master for master node, Otherwise it is going to fail
 
-    - wait_for: timeout=30
+    - wait_for: timeout=3
 
     - name: Create Kuburnetes Yum repo file
       blockinfile:
@@ -40,6 +40,7 @@
 
     - name: Update etcd config
       replace:
+        path: /etc/etcd/etcd.conf
         regexp: "localhost"
         replace: '0.0.0.0'
 
