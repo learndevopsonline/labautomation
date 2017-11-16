@@ -1,14 +1,15 @@
 - name: Install and configure Kuburnetes Master Node
   hosts: all
   become: yes
+  vars:
+    MASTER: kube-master
   tasks:
     - debug:
         msg: |
-          Note: This automation works only if you set the hostname of the servers as kube-master 
-          for master node, Otherwise it is going to fail
+          Note: This automation works only if you set the hostname of the servers as kube-master for master node, Otherwise it is going to fail
 
-    - wait_for: timeout=10
-    
+    - wait_for: timeout=30
+
     - name: Create Kuburnetes Yum repo file
       blockinfile:
         path: /etc/yum.repos.d/kuburnetes.repo
@@ -31,5 +32,19 @@
         - flannel
         - kubernetes
 
-    #- name: Update Kuburnetes config 
-    #  block
+    - name: Update Kuburnetes config 
+      lineinfile:
+        path: /etc/kubernetes/config
+        regexp: '^KUBE_MASTER'
+        line: KUBE_MASTER="--master=http://kube-master:8080"
+
+
+
+
+
+
+
+
+
+
+
