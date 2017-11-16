@@ -2,6 +2,8 @@
   hosts: all
   become: yes
   tasks:
+    - debug:
+        msg: "Hello \n Hello"
     - name: Create Kuburnetes Yum repo file
       blockinfile:
         path: /etc/yum.repos.d/kuburnetes.repo
@@ -23,3 +25,6 @@
         - etcd
         - flannel
         - kubernetes
+
+    #- name: Update Kuburnetes config 
+    #  block
