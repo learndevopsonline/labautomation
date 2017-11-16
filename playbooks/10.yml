@@ -46,7 +46,7 @@
 
     - name: Update apiserver config 
       blockinfile:
-        paths: /etc/kubernetes/apiserver
+        path: /etc/kubernetes/apiserver
         block: |
           KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
           KUBE_API_PORT="--port=8080"
