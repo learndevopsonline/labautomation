@@ -12,11 +12,12 @@
           baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
           gpgcheck=0
           enabled=1
-          
+
     - name: Install required packages
       yum:
         name: "{{item}}"
         state: latest
+        update_cache: yes
       with_items:
         - kuburnetes
         - etcd
