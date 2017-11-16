@@ -11,6 +11,8 @@
           name=virt7-docker-common-release
           baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
           gpgcheck=0
+          enabled=1
+          
     - name: Install required packages
       yum:
         name: "{{item}}"
