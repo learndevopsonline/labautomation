@@ -60,10 +60,12 @@ else
 fi
 
 ### Install ansible
-yum install ansible -y &>/dev/null 
+if [ ! -x `which ansible` ]; then 
+	yum install ansible -y &>/dev/null 
+fi
 
 ### Run Playbook
-if [ -x `which ansible-playbook` ]; then 
+if [ ! -x `which ansible-playbook` ]; then 
 	error "Unable to find ansible-playbook command .. Seems ansible installation didn't went will. Try to install and try again"
 	exit 1
 fi
