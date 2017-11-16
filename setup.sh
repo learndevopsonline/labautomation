@@ -63,6 +63,13 @@ fi
 yum install ansible -y &>/dev/null 
 
 ### Run Playbook
+if [ -x `which ansible-playbook` ]; then 
+	error "Unable to find ansible-playbook command .. Seems ansible installation didn't went will. Try to install and try again"
+	exit 1
+fi
+if [ ! -f "playbooks/${option}.yml" ]; then  
+	info "This tool automation is still pending. Sorry "
+	exit 
+fi
 ansible-playbook playbooks/${option}.yml
-
 ## One more line
