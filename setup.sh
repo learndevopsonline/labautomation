@@ -25,6 +25,9 @@ if [ "$EL" != "el7" ]; then
 	exit 1
 fi
 
+option=$1
+if [ -n "$option" ]; then 
+
 echo -n -e "
 1) Apache Web Server
 2) Apache Tomcat
@@ -41,6 +44,7 @@ ${R}E) Exit ${N}
 
 Select an Option > "
 read option
+fi
 #option=11
 C=$(echo $option | cut -c 1)
 [ "$C" -eq 1 ] &>/dev/null
