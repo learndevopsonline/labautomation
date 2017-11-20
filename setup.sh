@@ -26,7 +26,7 @@ if [ "$EL" != "el7" ]; then
 fi
 
 option=$1
-if [ -n "$option" ]; then 
+if [ -z "$option" ]; then 
 
 echo -n -e "
 1) Apache Web Server
