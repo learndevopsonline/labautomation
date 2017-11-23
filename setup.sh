@@ -65,7 +65,7 @@ fi
 
 ### Install ansible
 if [ ! -x /bin/ansible ]; then 
-	yum install ansible -y &>/dev/null 
+	yum install ansible git -y &>/dev/null 
 fi
 
 ### Run Playbook
@@ -77,5 +77,8 @@ if [ ! -f "playbooks/${option}.yml" ]; then
 	info "This tool automation is still pending. Sorry "
 	exit 
 fi
+cd /tmp
+git clone https://github.com/linuxautomations/labautomation.git
+cd labautomation
 ansible-playbook playbooks/${option}.yml
 ## One more line
