@@ -73,12 +73,14 @@ if [ ! -x /bin/ansible-playbook ]; then
 	error "Unable to find ansible-playbook command .. Seems ansible installation didn't went will. Try to install and try again"
 	exit 1
 fi
-if [ ! -f "playbooks/${option}.yml" ]; then  
-	info "This tool automation is still pending. Sorry "
-	exit 
-fi
+
 cd /tmp
 git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
 ansible-playbook playbooks/${option}.yml
 ## One more line
+
+if [ ! -f "playbooks/${option}.yml" ]; then  
+	info "This tool automation is still pending. Sorry "
+	exit 
+fi
