@@ -38,19 +38,8 @@ else
 	fi
 fi
 
-### Install ansible
-if [ ! -x /bin/ansible ]; then 
-	yum install ansible git -y &>/dev/null 
-fi
-
-### Run Playbook
-if [ ! -x /bin/ansible-playbook ]; then 
-	error "Unable to find ansible-playbook command .. Seems ansible installation didn't went will. Try to install and try again"
-	exit 1
-fi
-
 cd /tmp
-git clone https://github.com/linuxautomations/labautomation.git
+#git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
 ansible-playbook playbooks/${option}.yml
 ## One more line
