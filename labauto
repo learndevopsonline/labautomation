@@ -1,0 +1,43 @@
+#!/bin/bash
+
+curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" >/tmp/common-functions.sh
+#source /root/scripts/common-functions.sh
+source /tmp/common-functions.sh
+## Checking Root User or not.
+CheckRoot
+
+## Checking SELINUX Enabled or not.
+CheckSELinux
+
+## Checking Firewall on the Server.
+CheckFirewall &>/dev/null
+
+## Supported OS's
+# CentOS 7
+if [ ! -f /etc/centos-release ]; then
+	error "Curently this setup works only for CentOS Operating System"
+	exit 1
+fi
+
+EL=$(rpm -q basesystem | sed -e 's/\./ /g' |xargs -n1 | grep el)
+if [ "$EL" != "el7" ]; then
+	error "Currently this setup works only for CentOS-7 OS"
+	exit 1
+fi
+
+### Install ansible
+if [ ! -x /bin/ansible ]; then
+	yum install ansible git -y &>/dev/null
+fi
+
+### Run Playbook
+if [ ! -x /bin/ansible-playbook ]; then
+	error "Unable to find ansible-playbook command .. Seems ansible installation didn't went will. Try to install and try again"
+	exit 1
+fi
+
+cd /tmp
+rm -rf labautomation
+git clone https://github.com/linuxautomations/labautomation.git &>/dev/null
+
+sh /tmp/labautomation/setup.sh
