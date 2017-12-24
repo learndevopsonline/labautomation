@@ -15,7 +15,9 @@
         name: Docker-REPO
         description: Docker-REPO
         baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
-
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        
     - name: Install Docker Engine
       yum:
         name: docker-ce
