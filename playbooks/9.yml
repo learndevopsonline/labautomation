@@ -13,10 +13,10 @@
     - name: Configuring Docker repo
       yum_repository:
         name: Docker-REPO
+        description: Docker-REPO
         baseurl: https://download.docker.com/linux/centos/docker-ce.repo
 
     - name: Install Docker Engine
       yum:
         name: docker-ce
         state: installed
-        
