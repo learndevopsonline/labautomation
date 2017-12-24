@@ -1,0 +1,22 @@
+- name: Install Docker Engine
+  hosts: localhost
+  tasks:
+    - name: Installing yum packages
+      yum:
+        name: "{{item}}"
+        state: installed
+      with_items:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+
+    - name: Configuring Docker repo
+      yum_repository:
+        name: Docker-REPO
+        baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: Install Docker Engine
+      yum:
+        name: docker-ce
+        state: installed
+        
