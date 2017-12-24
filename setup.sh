@@ -38,9 +38,14 @@ else
 	fi
 fi
 
+
 cd /tmp
 #git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
+if [ ! -f playbooks/${option}.yml ]; then
+	error "This functionality is not yet completed"
+	exit 1
+fi
 ansible-playbook playbooks/${option}.yml
 ## One more line
 
