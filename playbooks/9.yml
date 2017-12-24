@@ -14,7 +14,7 @@
       yum_repository:
         name: Docker-REPO
         description: Docker-REPO
-        baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
 
     - name: Install Docker Engine
       yum:
