@@ -1,11 +1,22 @@
-- name: Download Maven3
-  get_url: dest=/opt/maven3.tar.gz url=http://apache.proserve.nl/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz
+- name: Install maven tool
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get latest version of maven
+      shell: curl http://maven.apache.org/download.cgi | grep http | grep bin.tar.gz | awk -F '[=",">]' '{print $4}' | grep ^http
+      register: out
 
-- name: Unpack Maven3
-  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
+    - name: Download Maven3
+      unarchive: 
+        dest: /opt
+        url: "{{out.stdout}}"
+        remote_src: true
+
+#- name: Unpack Maven3
+#  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
  
-- name: Create Maven3 directory link
-  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
+#- name: Create Maven3 directory link
+#  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
   
-- name: Set mvn link
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
+#- name: Set mvn link
+#  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
