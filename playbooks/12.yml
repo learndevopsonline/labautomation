@@ -2,12 +2,12 @@
   hosts: all
   become: yes
   tasks:
-  	- name: Get latest version of kubectl
-  	  shell: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
-  	  register: out
+    - name: Get latest version of kubectl
+      shell: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+      register: out
 
-  	- name: Download the kubectl tool 
-  	  get_url: 
-  	  	url: https://storage.googleapis.com/kubernetes-release/release/{{out.stdout}}/bin/linux/amd64/kubectl
-  	  	dest: /bin/kubectl
-  	  	mode: 755
+    - name: Download the kubectl tool 
+      get_url: 
+        url: "https://storage.googleapis.com/kubernetes-release/release/{{out.stdout}}/bin/linux/amd64/kubectl"
+        dest: /bin/kubectl
+        mode: 755
