@@ -12,11 +12,15 @@
         src: "{{out.stdout}}"
         remote_src: true
 
-#- name: Unpack Maven3
-#  action: command creates=/opt/maven chdir=/opt tar zxvf /opt/maven3.tar.gz
- 
-#- name: Create Maven3 directory link
-#  file: path=/opt/maven src=/opt/apache-maven-3.0.4 state=link
+    - name: Maven Directory 
+      shell: echo "{{out.stdout}}" | awk -F / '{print $NF}' | sed -e 's/.tar.gz//'
+      register: out
+
+    - name: Create Maven3 directory link
+      file: 
+        path: /bin/mvn 
+        src: /opt/{{out.stdout}}/bin/mvn 
+        state: link
   
 #- name: Set mvn link
 #  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1
