@@ -20,6 +20,7 @@ echo -n -e "
 9) Docker
 10) Kuburnetes Master 
 11) Kuburnetes Node
+13) Kubectl
 ${R}E) Exit ${N}
 
 Select an Option > "
