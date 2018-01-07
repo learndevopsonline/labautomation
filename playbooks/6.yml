@@ -9,7 +9,7 @@
     - name: Download Maven3
       unarchive: 
         dest: /opt
-        url: "{{out.stdout}}"
+        src: "{{out.stdout}}"
         remote_src: true
 
 #- name: Unpack Maven3
