@@ -13,7 +13,7 @@
         remote_src: true
 
     - name: Maven Directory 
-      shell: echo "{{out.stdout}}" | awk -F / '{print $NF}' | sed -e 's/.tar.gz//'
+      shell: echo "{{out.stdout}}" | awk -F / '{print $NF}' | sed -e 's/.tar.gz//' -e 's/-bin//g'
       register: out
 
     - name: Create Maven3 directory link
