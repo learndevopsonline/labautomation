@@ -20,7 +20,7 @@ echo -n -e "
 9) Docker
 10) Kuburnetes Master 
 11) Kuburnetes Node
-13) Kubectl
+12) Kubectl
 ${R}E) Exit ${N}
 
 Select an Option > "
@@ -38,7 +38,7 @@ if [ $STAT -eq 2 ]; then
 		exit 1
 	fi
 else
-	if [ $option -lt 1 -o $option -gt 11 ]; then 
+	if [ $option -lt 1 -o $option -gt 12 ]; then 
 	  error "Invalid Option. Try Again " 
 	  exit 1
 	fi
