@@ -21,6 +21,7 @@ echo -n -e "
 10) Kuburnetes Master 
 11) Kuburnetes Node
 12) Kubectl
+13) Zabbix Server
 ${R}E) Exit ${N}
 
 Select an Option > "
@@ -38,7 +39,7 @@ if [ $STAT -eq 2 ]; then
 		exit 1
 	fi
 else
-	if [ $option -lt 1 -o $option -gt 12 ]; then 
+	if [ $option -lt 1 -o $option -gt 13 ]; then 
 	  error "Invalid Option. Try Again " 
 	  exit 1
 	fi
