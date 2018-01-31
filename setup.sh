@@ -50,8 +50,11 @@ cd /tmp
 #git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
 if [ ! -f playbooks/${option}.yml ]; then
-	error "This functionality is not yet completed"
-	exit 1
+	if [ ! -f playbooks/${option}.sh ]; then 
+		error "This functionality is not yet completed"
+		exit 1
+	fi 
+	sh playbooks/${option}.sh 
 fi
 ansible-playbook playbooks/${option}.yml
 ## One more line
