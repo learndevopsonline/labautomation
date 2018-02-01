@@ -49,5 +49,5 @@ else:
     Stat(100)
 
 cur = db.cursor()
-cur.execute('create database if not exists zabbix')
-cur.execute('grant all privileges on zabbix.* to "zabbix"@"localhost" identified by "zabbix")
+cur.execute('create database if not exists zabbix;')
+cur.execute('grant all privileges on zabbix.* to "zabbix"@"localhost" identified by "zabbix"')
