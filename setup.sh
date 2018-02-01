@@ -53,15 +53,12 @@ if [ ! -f playbooks/${option}.yml ]; then
 	if [ ! -f playbooks/${option}.sh ]; then 
 		error "This functionality is not yet completed"
 		exit 1
-	fi 
-	sh playbooks/${option}.sh 
+	else 
+		sh playbooks/${option}.sh 
+	fi
+else
+	ansible-playbook playbooks/${option}.yml
 fi
-ansible-playbook playbooks/${option}.yml
+
 ## One more line
-
-if [ ! -f "playbooks/${option}.yml" ]; then  
-	info "This tool automation is still pending. Sorry "
-	exit 
-fi
-
 ##
