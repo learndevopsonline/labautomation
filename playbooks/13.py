@@ -51,3 +51,5 @@ else:
 cur = db.cursor()
 cur.execute('create database if not exists zabbix;')
 cur.execute('grant all privileges on zabbix.* to "zabbix"@"localhost" identified by "zabbix"')
+out.system('zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -pzabbix zabbix')
+
