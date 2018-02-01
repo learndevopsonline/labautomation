@@ -7,7 +7,7 @@ from termcolor import colored
 ### Functions
 def Stat(stat):
     if stat == 100:
-        print colored('SUCCESS', 'cyan')
+        print colored('SKIPPING', 'cyan')
     elif stat == 0:
         print colored('SUCCESS', 'green')
     else:
@@ -27,4 +27,12 @@ else:
     Stat(100)
 
 Print('Installing Zabbix Server')
+out=os.system('rpm -q zabbix-server-mysql &>/dev/null')
+if out != 0:
+    out=os.system('yum install zabbix-server-mysql -y &>/dev/null')
+    Stat(out)
+else:
+    Stat(100)
+
+
 
