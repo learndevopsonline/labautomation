@@ -48,6 +48,6 @@ if out != 0:
 else:
     Stat(100)
 
-#cur = db.cursor()
-db.execute('show databases;')
+cur = db.cursor()
+cur = db.execute('show databases;')
 # db.execute('create database if not exists zabbix')
