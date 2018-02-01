@@ -7,11 +7,11 @@ import MySQLdb
 
 db = MySQLdb.connect(host="localhost",
                         user='root', 
-                        password='') 
+                        passwd='') 
 
 ### Functions
 def Stat(stat):
-    if stat == 100:
+    if stat == 100: 
         print colored('SKIPPING', 'cyan')
     elif stat == 0:
         print colored('SUCCESS', 'green')
