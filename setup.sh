@@ -49,7 +49,7 @@ fi
 cd /tmp
 #git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
-if [ -f playbooks/${}.yml ]; then 
+if [ -f playbooks/${option}.yml ]; then 
 	ansible-playbook playbooks/${option}.yml
 fi
 
