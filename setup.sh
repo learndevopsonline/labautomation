@@ -60,7 +60,7 @@ fi
 if [ -f playbooks/${option}.py ]; then 
 	yum install python2-pip -y &>/dev/null 
 	#pip install
-	python ${option}.py 
+	python playbooks/${option}.py 
 else
 	echo "Sorry this in not completed"
 	exit 1
