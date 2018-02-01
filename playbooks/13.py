@@ -36,7 +36,7 @@ else:
     Stat(100)
 
 Print('Installing MariaDB Server')
-out=os.system('rpm -q mariadb-server &>/dev/null')
+out=os.system('rpm -q mariadb-server mariadb-devel gcc python-devel &>/dev/null')
 if out != 0:
     out=os.system('yum install mariadb-server -y &>/dev/null')
     Stat(out)
