@@ -23,7 +23,7 @@ out=os.system("rpm -qa | grep -w zabbix-release &>/dev/null")
 if out != 0:
     out=os.system("rpm -ivh "+ REPO_URL + " &>/dev/null")
     Stat(out)
-else 
+else:
     Stat(100)
 
 Print('Installing Zabbix Server')
