@@ -34,5 +34,13 @@ if out != 0:
 else:
     Stat(100)
 
+Print('Installing MariaDB Server')
+out=os.system('rpm -q mariadb-server &>/dev/null')
+if out != 0:
+    out=os.system('yum install mariadb-server -y &>/dev/null')
+    Stat(out)
+    os.system('systemctl enable mariadb &>/dev/null && systemctl start mariadb')
+else:
+    Stat(100)
 
 
