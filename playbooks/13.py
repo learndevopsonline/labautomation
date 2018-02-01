@@ -49,5 +49,6 @@ else:
     Stat(100)
 
 cur = db.cursor()
-cur.execute('show databases;')
+a=cur.execute('show databases;')
+print a
 # db.execute('create database if not exists zabbix')
