@@ -49,15 +49,21 @@ fi
 cd /tmp
 #git clone https://github.com/linuxautomations/labautomation.git
 cd labautomation
-if [ ! -f playbooks/${option}.yml ]; then
-	if [ ! -f playbooks/${option}.sh ]; then 
-		error "This functionality is not yet completed"
-		exit 1
-	else 
-		sh playbooks/${option}.sh 
-	fi
-else
+if [ -f playbooks/${}.yml ]; then 
 	ansible-playbook playbooks/${option}.yml
+fi
+
+if [ -f playbooks/${option}.sh ]; then 
+	sh playbooks/${option}.sh
+fi 
+
+if [ -f playbooks/${option}.py ]; then 
+	yum install python2-pip -y &>/dev/null 
+	#pip install
+	python ${option}.py 
+else
+	echo "Sorry this in not completed"
+	exit 1
 fi
 
 ## One more line
