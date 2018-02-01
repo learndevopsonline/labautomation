@@ -7,7 +7,11 @@
             "label": "Git",
             "type": "shell",
             "command": "git add . ; git commit -m Code;git push origin master",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
