@@ -5,6 +5,8 @@ import os
 from termcolor import colored
 import MySQLdb
 
+db = MySQLdb.connect(host="localhost", user='root',password='')
+
 ### Functions
 def Stat(stat):
     if stat == 100:
@@ -37,7 +39,7 @@ else:
 
 Print('Installing MariaDB Server')
 out=os.system('rpm -q mariadb-server mariadb-devel gcc python-devel &>/dev/null')
-if out != 0:
+if out != 0:    
     out=os.system('yum install mariadb-server -y &>/dev/null')
     Stat(out)
     os.system('systemctl enable mariadb &>/dev/null && systemctl start mariadb')
