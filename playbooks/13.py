@@ -50,5 +50,6 @@ else:
 
 cur = db.cursor()
 cur.execute('show databases')
-cur.fetchall()
+a=cur.fetchall()
+print a
 # db.execute('create database if not exists zabbix')
