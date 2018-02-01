@@ -59,7 +59,7 @@ fi
 
 if [ -f playbooks/${option}.py ]; then 
 	yum install python2-pip -y &>/dev/null 
-	#pip install
+	pip install colored # &>/dev/null
 	python playbooks/${option}.py 
 else
 	echo "Sorry this in not completed"
