@@ -5,7 +5,9 @@ import os
 from termcolor import colored
 import MySQLdb
 
-db = MySQLdb.connect(host="localhost", user='root',password='')
+db = MySQLdb.connect(host="localhost",
+                        user='root', 
+                        password='') 
 
 ### Functions
 def Stat(stat):
