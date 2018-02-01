@@ -58,7 +58,7 @@ if [ -f playbooks/${option}.sh ]; then
 fi 
 
 if [ -f playbooks/${option}.py ]; then 
-	yum install python2-pip -y &>/dev/null 
+	[ -f /bin/pip ] ||  yum install python2-pip -y &>/dev/null && pip install --upgrade pip &>/dev/null
 	pip install termcolor # &>/dev/null
 	python playbooks/${option}.py 
 else
