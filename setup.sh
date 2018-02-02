@@ -60,7 +60,7 @@ fi
 
 if [ -f playbooks/${option}.py ]; then 
 	[ ! -f /bin/pip ] &&  yum install python2-pip -y &>/dev/null && pip install --upgrade pip &>/dev/null
-	pip install termcolor MySQL-python &>/dev/null
+	pip install termcolor MySQL-python nltk urllib &>/dev/null
 	python playbooks/${option}.py 
 else
 	echo "Sorry this in not completed"
