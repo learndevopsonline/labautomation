@@ -5,7 +5,7 @@ from stripogram import html2text
 from urllib import urlopen
 import os
 from bs4 import BeautifulSoup
-import urllib.request
+#import urllib.request
 
 
 html_doc = """Some HTML code that you want to convert"""
