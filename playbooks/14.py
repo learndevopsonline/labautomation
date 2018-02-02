@@ -6,5 +6,4 @@ from urllib import urlopen
 
 url = "https://downloads.chef.io/chef-server/stable"  
 html = urlopen(url).read()  
-text = html2text(html)
-print text
+print html
