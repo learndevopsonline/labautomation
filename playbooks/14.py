@@ -2,8 +2,9 @@
 
 import nltk   
 from urllib import urlopen
-
-url = "https://downloads.chef.io/chef-server/stable"    
 from stripogram import html2text
-html2text("https://downloads.chef.io/chef-server/stable")
-#print text
+
+url = "https://downloads.chef.io/chef-server/stable"  
+html = urllib.urlopen(url).read()  
+text = html2text(html)
+print text
