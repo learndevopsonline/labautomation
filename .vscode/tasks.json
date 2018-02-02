@@ -5,7 +5,7 @@
     "tasks": [
         {
             "label": "Git",
-            "type": "shell",
+            "type": "bash",
             "command": "git add . ; git commit -m Code;git push origin master",
             "problemMatcher": [],
             "group": {
