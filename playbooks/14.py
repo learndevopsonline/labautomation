@@ -7,6 +7,14 @@ import os
 from bs4 import BeautifulSoup
 import urllib.request
 
+
+html_doc = """Some HTML code that you want to convert"""
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html_doc)
+print(soup.get_text())
+
+
+
 os.system('exit')
 
 
