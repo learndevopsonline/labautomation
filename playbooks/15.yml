@@ -1,0 +1,16 @@
+- name: Install Docker Compose tool
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get the latest version of the Docker-Compose
+      shell: curl -s https://github.com/docker/compose/tags.atom | grep title | grep -v compose | head -1 | awk -F '[<,>]' '{print $3}'
+      register: out
+
+    - set_fact:
+        VERSION: "{{out.stdout}}"
+    
+    - name: Download the Docker-Compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/{{VERSION}}/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 0755

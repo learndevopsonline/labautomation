@@ -22,6 +22,7 @@ echo -n -e "
 12) Kubectl
 13) Zabbix Server
 14) Chef Server
+15) Docker-Compose
 ${R}E) Exit ${N}
 
 Select an Option > "
@@ -39,7 +40,7 @@ if [ $STAT -eq 2 ]; then
 		exit 1
 	fi
 else
-	if [ $option -lt 1 -o $option -gt 14 ]; then 
+	if [ $option -lt 1 -o $option -gt 15 ]; then 
 	  error "Invalid Option. Try Again " 
 	  exit 1
 	fi
