@@ -68,5 +68,5 @@ for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/la
    RNO=$(( ( RANDOM % 6 )  + 1 ))
    zone=${ZONES[$RNO]}
    gcloud compute instances create $servername --zone=$zone --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB &>/dev/null
-   gcloud compute instances stop $servername --quiet --zone=$zone &>/dev/null
+   gcloud compute instances stop $servername --quiet --zone=$zone --async &>/dev/null
 done
