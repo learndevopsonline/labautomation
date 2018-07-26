@@ -9,6 +9,7 @@ CheckOS 7
 
 which gcloud &>/dev/null
 Stat $? "Checking Google Cloud CLI"
+yum install dos2unix -y &>/dev/null
 
 HNAME=$(hostname)
 gcloud compute instances list 2>/dev/null| grep $HNAME &>/dev/null
@@ -62,10 +63,10 @@ if [ $? -ne 0 ]; then
 fi
 
 ZONES=(us-east4-c us-central1-c us-west1-b europe-west1-b asia-east1-b asia-northeast1-b)
-for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist | xargs ` ; do 
+for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist | dos2unix ` ; do 
    echo -e "Creating Server .. $servername"
    RNO=$(( ( RANDOM % 6 )  + 1 ))
    echo $servername
-   gcloud compute instances create $servername --zone=${ZONES[$RNO]} --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB #&>/dev/null
+   gcloud compute instances create $servername --zone=${ZONES[$RNO]} --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB &>/dev/null
    gcloud compute instances stop $servername --quiet &>/dev/null
 done
