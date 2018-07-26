@@ -62,7 +62,7 @@ if [ $? -ne 0 ]; then
 fi
 
 ZONES=(us-east4-c us-central1-c us-west1-b europe-west1-b asia-east1-b asia-northeast1-b)
-for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist` ; do 
+for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist | xargs ` ; do 
    echo -e "Creating Server .. $servername"
    RNO=$(( ( RANDOM % 6 )  + 1 ))
    echo $servername
