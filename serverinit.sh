@@ -65,6 +65,6 @@ ZONES=(us-east4-c us-central1-c us-west1-b europe-west1-b asia-east1-b asia-nort
 for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist` ; do 
    echo -e "Creating Server .. $servername"
    RNO=$(( ( RANDOM % 6 )  + 1 ))
-   gcloud compute instances create $servername --zone=${ZONES[$RNO]} --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB &>/dev/null
+   gcloud compute instances create $servername --zone=${ZONES[$RNO]} --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB #&>/dev/null
    gcloud compute instances stop $servername --quiet &>/dev/null
 done
