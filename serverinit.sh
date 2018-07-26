@@ -41,7 +41,9 @@ while true ; do
 a=1
 for i in \| \/ \- \\ \| \/ \- \\ ; do 
     [ $a -gt 8 ] && break
-    (echo -n > /dev/tcp/instance-2/22 ) &>/dev/null
+    (echo -n > /dev/tcp/imaging/22 ) &>/dev/null
+    echo $?
+    exit
     [ $? -eq 0 ] && A=0 && break 
 	echo -en "Waiting for SSH Connection .. $i \r"
 	sleep 0.25
