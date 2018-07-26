@@ -28,7 +28,7 @@ IMAGE=$(gcloud compute images list | grep centos-7 | awk '{print $1}')
 info "Checking Pre-requisites"
 gcloud compute instances list 2>/dev/null | grep imaging &>/dev/null
 if [ $? -eq 0 ]; then 
-    gcloud compute instances delete imaging &>/dev/null 
+    gcloud compute instances delete imaging --quiet &>/dev/null 
     sleep 60
 fi
 
