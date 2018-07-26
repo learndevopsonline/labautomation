@@ -49,5 +49,17 @@ for i in \| \/ \- \\ \| \/ \- \\ ; do
 done
 done
 
+gcloud compute instances stop imaging --quiet &>/dev/null
+gcloud compute images create mycentos7 --source-disk=imaging --source-disk-zone us-east1-b &>/dev/null
+Stat $? "Creating CentOS 7 Image"
 
+gcloud compute instances delete imaging --quiet --zone $zone &>/dev/null 
+sleep 60
 
+ZONES=(us-east4-c us-central1-c us-west1-b europe-west1-b asia-east1-b asia-northeast1-b)
+for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist` ; do 
+   echo -e "Creating Server .. $servername"
+   RNO=$(( ( RANDOM % 6 )  + 1 ))
+   gcloud compute instances create $servername --zone=${ZONES[$RNO]} --machine-type=n1-standard-1 --image=mycentos7 --image-project=$PROJECT --boot-disk-size=10GB &>/dev/null
+   gcloud compute instances stop $servername --quiet &>/dev/null
+done
