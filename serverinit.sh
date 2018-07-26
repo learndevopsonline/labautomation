@@ -42,14 +42,11 @@ a=1
 for i in \| \/ \- \\ \| \/ \- \\ ; do 
     [ $a -gt 8 ] && break
     (echo -n > /dev/tcp/imaging/22 ) &>/dev/null
-    echo $?
-    exit
-    [ $? -eq 0 ] && A=0 && break 
+    [ $? -eq 0 ] && A=0 && break 2
 	echo -en "Waiting for SSH Connection .. $i \r"
 	sleep 0.25
     a=$(($a+1))
 done
-[ -n "$A" ] && break
 done
 
 
