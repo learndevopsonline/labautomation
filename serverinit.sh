@@ -4,3 +4,5 @@ curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/common
 source /tmp/common-functions.sh
 
 CheckRoot
+
+CheckOS 7
