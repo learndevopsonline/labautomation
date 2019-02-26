@@ -1,0 +1,10 @@
+#!/bin/bash
+
+USERNAME=centos
+groupadd docker
+usermod -a -G docker $USERNAME 
+yum install docker -y 
+sed -e '/ExecStart/ c ExecStart=/usr/bin/dockerd-current -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock \\' /lib/systemd/system/docker.service
+systemctl enable docker
+systemctl start docker 
+sudo su - centos 
