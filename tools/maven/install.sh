@@ -6,3 +6,5 @@ curl -s https://archive.apache.org/dist/maven/maven-3/${VERSION}/binaries/apache
 unzip /tmp/apache-maven-${VERSION}-bin.zip
 mv apache-maven-${VERSION} maven
 ln -s /opt/maven/bin/mvn /bin/mvn
+
+#
