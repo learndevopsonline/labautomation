@@ -5,7 +5,7 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi 
 
-yum install java-1.8.0-openjdk-devel -y
+yum install java-1.8.0-openjdk-devel maven -y
 
 VERSION=$(curl -s https://maven.apache.org/download.cgi  | grep Downloading |awk '{print $NF}' |awk -F '<' '{print $1}')
 cd /opt
