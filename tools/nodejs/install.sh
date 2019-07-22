@@ -15,4 +15,4 @@ curl -s -o /tmp/$FILENAME $URL
 cd /opt
 tar -xf /tmp/$FILENAME
 mv $FOLDER_NAME nodejs
-export PATH=$PATH:/opt/nodejs/bin >>/etc/profile
+echo 'export PATH=$PATH:/opt/nodejs/bin' >>/etc/profile
