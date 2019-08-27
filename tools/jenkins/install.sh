@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-if [ $(id -u) -eq 0 ]; then 
+if [ $(id -u) -ne 0 ]; then 
     echo -e "You should perform this as root user"
     exit 1
 fi 
