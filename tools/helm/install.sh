@@ -5,4 +5,4 @@ if [ $(id -u) -ne 0  ]; then
   exit 1
 fi
 
-curl -sLO https://git.io/get_helm.sh | bash 
+curl -sL https://git.io/get_helm.sh | bash 
