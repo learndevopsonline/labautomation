@@ -20,4 +20,4 @@ rm -rf sonarqube
 curl -s -o $FILENAME $URL 
 unzip $FILENAME 
 rm -f $FILENAME
-
+mv $FOLDERNAME 
