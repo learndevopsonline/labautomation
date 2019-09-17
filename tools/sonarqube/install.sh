@@ -5,6 +5,7 @@ if [ $(id -u) -ne 0 ]; then
   exit 1 
 fi 
 
+
 URL=$(curl -s https://www.sonarqube.org/downloads/ | grep 'Community Edition' | head -1  | xargs -n 1  | grep ^href | awk -F = '{print $2}')
 FILENAME=$(echo $URL | awk -F / '{print $NF}')
 FOLDERNAME=$(echo $FILENAME | sed -e 's/.zip//g')
