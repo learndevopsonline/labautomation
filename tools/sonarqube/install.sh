@@ -16,4 +16,6 @@ cd /home/sonar
 pkill java 
 rm -rf sonarqube 
 curl -s -o $FILENAME $URL 
+unzip $FILENAME 
+
 
