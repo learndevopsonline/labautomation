@@ -24,4 +24,4 @@ rm -f $FILENAME
 mv $FOLDERNAME sonarqube
 
 chown sonar:sonar sonarqube -R 
-
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/sonarqube/sonar.service >
