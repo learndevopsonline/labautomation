@@ -22,3 +22,5 @@ unzip $FILENAME
 rm -f $FILENAME
 mv $FOLDERNAME sonarqube
 
+chown sonar:sonar sonarqube -R 
+
