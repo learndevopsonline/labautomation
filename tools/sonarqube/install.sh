@@ -11,4 +11,5 @@ if [ $? -ne 0]; then
   useradd sonar 
 fi 
 
+cd /home/sonar 
 
