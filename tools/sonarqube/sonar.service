@@ -4,7 +4,7 @@ After=network.target network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=nohup /home/sonar/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStart=/bin/nohup /home/sonar/sonarqube/bin/linux-x86-64/sonar.sh start
 ExecStop=nohup /home/sonar/sonarqube/bin/linux-x86-64/sonar.sh stop
 ExecReload=nohup /home/sonar/sonarqube/bin/linux-x86-64/sonar.sh restart
 Type=forking
