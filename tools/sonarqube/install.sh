@@ -26,4 +26,5 @@ mv $FOLDERNAME sonarqube
 chown sonar:sonar sonarqube -R 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/sonarqube/sonar.service >/etc/systemd/system/sonarqube.service 
 systemctl daemon-reload 
-systemctl enable 
+systemctl enable sonarqube 
+
