@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-if [ $(id -u) -eq 0 ]; then 
+if [ $(id -u) -ne 0 ]; then 
   echo "You should be a root user to perform this command"
   exit 1 
 fi 
