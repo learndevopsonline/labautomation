@@ -27,4 +27,5 @@ chown sonar:sonar sonarqube -R
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/sonarqube/sonar.service >/etc/systemd/system/sonarqube.service 
 systemctl daemon-reload 
 systemctl enable sonarqube 
-sed -i -e '/^RUN_AS_USER/ d' -e '/#RUN_AS_USER/ RUN_AS_USER=sonar' 
+sed -i -e '/^RUN_AS_USER/ d' -e '/#RUN_AS_USER/ RUN_AS_USER=sonar' /home/sonar/sonarqube/bin/linux-x86-64/sonar.sh
+systemctl start sonarqube
