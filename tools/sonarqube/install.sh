@@ -10,7 +10,7 @@ FILENAME=$(echo $URL | awk -F / '{print $NF}')
 FOLDERNAME=$(echo $FILENAME | sed -e 's/.zip//g')
 
 id sonar &>/dev/null 
-if [ $? -ne 0]; then 
+if [ $? -ne 0 ]; then 
   useradd sonar 
 fi 
 
