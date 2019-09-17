@@ -16,3 +16,4 @@ cd /home/sonar
 pkill java 
 rm -rf sonarqube 
 
+
