@@ -6,6 +6,7 @@ if [ $(id -u) -eq 0 ]; then
 fi 
 
 URL=$(curl -s https://www.sonarqube.org/downloads/ | grep 'Community Edition' | head -1  | xargs -n 1  | grep ^href | awk -F = '{print $2}')
+FILENAME=$(echo )
 id sonar &>/dev/null 
 if [ $? -ne 0]; then 
   useradd sonar 
@@ -15,4 +16,3 @@ cd /home/sonar
 pkill java 
 rm -rf sonarqube 
 
-curl -
