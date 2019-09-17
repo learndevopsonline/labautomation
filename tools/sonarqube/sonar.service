@@ -7,7 +7,6 @@ Wants=network-online.target
 ExecStart=/home/sonar/sonarqube/bin/linux-x86-64/sonar.sh start
 ExecStop=/home/sonar/sonarqube/bin/linux-x86-64/sonar.sh stop
 ExecReload=/home/sonar/sonarqube/bin/linux-x86-64/sonar.sh restart
-PIDFile=/home/sonar/sonarqube/bin/linux-x86-64/./SonarQube.pid
 Type=forking
 User=sonar
 
