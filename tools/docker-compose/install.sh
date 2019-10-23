@@ -6,3 +6,6 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version &>/dev/null 
 if [ $? -eq 127 -o $? -eq 126 ]; then 
   echo -e "\e[31m Installation Failed"
+  exit 1
+else 
+  
