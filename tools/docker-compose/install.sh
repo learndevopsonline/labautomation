@@ -4,3 +4,4 @@ VERSION=$(curl -s https://github.com/docker/compose/tags | grep tar.gz | grep -v
 curl -s -L "https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version &>/dev/null 
+if [ $? -eq]
