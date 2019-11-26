@@ -7,7 +7,7 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi 
 
-URL=$(curl -s https://nodejs.org/en/download/ | grep tar | grep linux-x64 | sed -e 's/"/\n/g' | grep ^https)
+URL=$(curl -s https://nodejs.org/en/download/ | xargs -n1 | grep linux-x64.tar | sed -e 's|=| |g' -e 's|>| |g'| xargs -n1 | grep ^http)
 FILENAME=$(echo $URL | awk -F / '{print $NF}')
 FOLDER_NAME=$(echo $FILENAME |sed -e 's/.tar.xz//')
 
