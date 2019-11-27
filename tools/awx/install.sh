@@ -27,9 +27,13 @@ Stat $?
 
 echo "Install NodeJS"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
+Stat $?
 
 echo "Install Ansible"
 yum install ansible -y &>>$LOG 
+Stat $?
 
 echo -e "Install python modules"
 pip3 install docker docker-compose &>>$LOG 
+Stat $?
+
