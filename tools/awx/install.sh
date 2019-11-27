@@ -18,7 +18,8 @@ yum install python36 python36-devel -y &>>$LOG
 Stat $?
 
 echo "Install Docker"
-echo ""
+echo "Install DOcker-Compose"
+echo "NodeJS"
 
 echo -e "Install python modules"
 pip install docker-
