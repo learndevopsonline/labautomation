@@ -19,6 +19,7 @@ Stat $?
 
 echo "Install Docker"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-docker-ce.sh | bash 
+
 echo "Install DOcker-Compose"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
 echo "NodeJS"
