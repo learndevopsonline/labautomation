@@ -18,7 +18,7 @@ yum install python36 python36-devel -y &>>$LOG
 Stat $?
 
 echo "Install Docker"
-
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-docker-ce.sh | bash 
 echo "Install DOcker-Compose"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
 echo "NodeJS"
