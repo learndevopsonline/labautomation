@@ -37,3 +37,4 @@ echo -e "Install python modules"
 pip3 install docker docker-compose &>>$LOG 
 Stat $?
 
+echo "Cloning AWX Repo"
