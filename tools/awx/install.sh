@@ -20,7 +20,7 @@ Stat $?
 echo "Install Docker"
 echo "Install DOcker-Compose"
 echo "NodeJS"
-echo ""
+echo "Install Ansible"
 
 echo -e "Install python modules"
 pip install docker-
