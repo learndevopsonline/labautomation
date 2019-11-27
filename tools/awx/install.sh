@@ -16,3 +16,5 @@ rm -f $LOG
 echo -e "Installing Python 3" 
 yum install python36 python36-devel -y &>>$LOG 
 Stat $?
+
+echo -e ""
