@@ -20,7 +20,7 @@ Stat $?
 echo "Install Docker"
 echo "Install DOcker-Compose"
 echo "NodeJS"
-
+curl -s 
 echo "Install Ansible"
 yum install ansible -y &>>$LOG 
 
