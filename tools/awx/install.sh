@@ -19,8 +19,9 @@ Stat $?
 
 echo "Install Docker"
 echo "Install DOcker-Compose"
+
 echo "NodeJS"
-curl -s 
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
 echo "Install Ansible"
 yum install ansible -y &>>$LOG 
 
