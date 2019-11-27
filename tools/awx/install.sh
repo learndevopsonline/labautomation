@@ -38,4 +38,5 @@ pip3 install docker docker-compose &>>$LOG
 Stat $?
 
 echo "Cloning AWX Repo"
-git clone 
+git clone https://github.com/ansible/awx.git
+cd awx/installer 
