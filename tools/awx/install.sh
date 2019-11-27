@@ -18,8 +18,9 @@ yum install python36 python36-devel -y &>>$LOG
 Stat $?
 
 echo "Install Docker"
+
 echo "Install DOcker-Compose"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
 echo "NodeJS"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
 echo "Install Ansible"
