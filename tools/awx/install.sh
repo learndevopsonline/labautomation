@@ -40,4 +40,4 @@ Stat $?
 echo "Cloning AWX Repo"
 git clone https://github.com/ansible/awx.git
 cd awx/installer 
-sed -i -e 's'
+sed -i -e '1s/python'
