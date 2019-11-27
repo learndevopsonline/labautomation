@@ -22,8 +22,10 @@ curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/
 
 echo "Install DOcker-Compose"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
-echo "NodeJS"
+
+echo "Install NodeJS"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
+
 echo "Install Ansible"
 yum install ansible -y &>>$LOG 
 
