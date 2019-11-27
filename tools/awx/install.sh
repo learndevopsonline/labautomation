@@ -19,9 +19,11 @@ Stat $?
 
 echo "Install Docker"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-docker-ce.sh | bash 
+Stat $?
 
 echo "Install DOcker-Compose"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
+Stat $?
 
 echo "Install NodeJS"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
@@ -30,4 +32,4 @@ echo "Install Ansible"
 yum install ansible -y &>>$LOG 
 
 echo -e "Install python modules"
-pip3 install docker-
+pip3 install docker docker-compose &>>$LOG 
