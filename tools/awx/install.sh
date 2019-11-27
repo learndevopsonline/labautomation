@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+Stat() {
+  if [ $1 -eq 0 ]; then
+}
 
 echo "Note: This script is made to run on Centos 7 OS.. Cannot gaurantee on other OS's"
 sleep 5
