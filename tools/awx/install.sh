@@ -5,3 +5,4 @@ sleep 5
 
 LOG=/tmp/awx.log 
 
+echo -e "Installing Python 3" 
