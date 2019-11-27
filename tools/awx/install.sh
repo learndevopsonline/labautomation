@@ -30,4 +30,4 @@ echo "Install Ansible"
 yum install ansible -y &>>$LOG 
 
 echo -e "Install python modules"
-pip install docker-
+pip3 install docker-
