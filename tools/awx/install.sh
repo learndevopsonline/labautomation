@@ -2,7 +2,9 @@
 
 Stat() {
   if [ $1 -ne 0 ]; then
-    echo -e "\e[31m Installation Failed.. Refer Log file $LOG "
+    echo -e "\e[31m Installation Failed.. Refer Log file $LOG .."
+    exit 1
+  fi 
 }
 
 echo "Note: This script is made to run on Centos 7 OS.. Cannot gaurantee on other OS's"
