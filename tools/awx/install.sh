@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-echo ""
+echo "Note: This script is "
