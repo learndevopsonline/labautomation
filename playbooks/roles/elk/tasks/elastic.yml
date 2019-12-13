@@ -8,3 +8,4 @@
     path: /etc/elasticsearch/elasticsearch.yml 
     regex: "network.host"
     line: "network.host: 0.0.0.0"
+  
