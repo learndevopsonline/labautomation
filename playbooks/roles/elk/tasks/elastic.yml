@@ -11,6 +11,7 @@
   
 - name: Change discovery.seed_hosts 
   lineinfile:
-    path: 
+    path: /etc/elasticsearch/elasticsearch.yml 
     regex: "discovery.seed_hosts"
     line: "discovery.seed_hosts: [\"0.0.0.0\"]"
+
