@@ -1,3 +1,4 @@
-- name:  name
+- name: Checking the CPU Count 
+  
 - name: Cpu Should be grater than one
   
