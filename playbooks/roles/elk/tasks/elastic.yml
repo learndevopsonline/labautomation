@@ -7,4 +7,4 @@
   lineinfile:
     path: /etc/elasticsearch/elasticsearch.yml 
     regex: "network.host"
-    
+    line: network.host
