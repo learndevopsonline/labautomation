@@ -6,4 +6,5 @@
 - name: Change the network host IP 
   lineinfile:
     path: /etc/elasticsearch/elasticsearch.yml 
+    regex: "network.host"
     
