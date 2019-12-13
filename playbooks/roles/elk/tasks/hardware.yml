@@ -1,6 +1,6 @@
 - name: Cpu Should be grater than one
   shell: "false" 
-  when: ansible_processor|length <= 2
+  when: ansible_processor|length <= 3
 
 - name: 
   debug:
