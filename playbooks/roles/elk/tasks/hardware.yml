@@ -1,8 +1,8 @@
-- name: Checking the CPU Count 
+- name: Cpu Should be grater than one
   shell: "false" 
   when: ansible_processor|length <= 2
 
-- name: Cpu Should be grater than one
+- name: 
   debug:
     msg: Helo
   
