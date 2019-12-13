@@ -1,1 +1,2 @@
-- name: Setup ELK 
+- name: Setup ELK all three components on Server 
+  
