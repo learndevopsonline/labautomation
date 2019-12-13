@@ -11,3 +11,6 @@
   
 - name: Change discovery.seed_hosts 
   lineinfile:
+    path: 
+    regex: "discovery.seed_hosts"
+    
