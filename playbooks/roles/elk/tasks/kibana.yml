@@ -7,4 +7,4 @@
   lineinfile:
     path: /etc/kibana/kibana.yml 
     regex: "server.host: \"localhost\""
-    
+    line: 
