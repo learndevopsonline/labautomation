@@ -3,4 +3,5 @@
   when: facter_processorcount <= 2
 
 - name: Check Memnory is greather than 3GB 
-  
+  shell: "false"
+  when: 
