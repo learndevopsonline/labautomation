@@ -1,5 +1,5 @@
 - name: Checking the CPU Count 
   shell: false 
-  
+  when
 - name: Cpu Should be grater than one
   
