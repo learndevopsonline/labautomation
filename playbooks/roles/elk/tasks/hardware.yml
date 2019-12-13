@@ -1,5 +1,5 @@
 - name: Checking the CPU Count 
   shell: false 
-  when: "{{ansible_processor | length"
+  when: "{{ansible_processor | length }}" -lt 
 - name: Cpu Should be grater than one
   
