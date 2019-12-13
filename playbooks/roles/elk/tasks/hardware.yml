@@ -6,4 +6,6 @@
   shell: "false"
   when: ansible_memtotal_mb <= 3500 
 
-- name: Disk should be more than 10GB
+- name: Disk should be more than 10GB 
+  shell: true 
+  ## Just 
