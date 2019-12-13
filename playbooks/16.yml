@@ -1,3 +1,6 @@
 - name: Setup ELK all three components on Server 
   hosts: localhost
-  tasks
+  tasks:
+    - name: print
+      debug:
+        
