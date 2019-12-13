@@ -1,6 +1,6 @@
 - name: Setup ELK all three components on Server 
   hosts: localhost
-  tasks:
-    - name: print
-      debug:
-        msg: Hello
+  gather_facts: yes
+  become: yes
+  roles:
+    - elk
