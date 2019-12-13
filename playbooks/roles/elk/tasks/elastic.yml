@@ -15,4 +15,7 @@
     regex: "discovery.seed_hosts"
     line: "discovery.seed_hosts: [\"0.0.0.0\"]"
 
-- name: 
+- name: Start elasticsearch 
+  service:
+    name: elasticsearch 
+    state: 
