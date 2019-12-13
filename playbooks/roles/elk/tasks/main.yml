@@ -5,4 +5,5 @@
   include: logstash.yml
 
 - name: Install ElasticSearch 
-  include: elastic
+  include: elastic.yml 
+
