@@ -7,5 +7,5 @@
   when: ansible_memtotal_mb <= 3500 
 
 - name: Disk should be more than 10GB 
-  shell: true 
-  ## Just enabled everything 
+  shell: "true" 
+  ## Just enabled and no check performing
