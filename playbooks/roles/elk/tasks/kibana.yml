@@ -3,4 +3,6 @@
     name: https://artifacts.elastic.co/downloads/kibana/kibana-{{VERSION}}-x86_64.rpm 
     state: installed 
 
-- name: Update 
+- name: Update network info in Kibana 
+  shell: "true"
+
