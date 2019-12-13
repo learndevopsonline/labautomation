@@ -6,5 +6,5 @@
 - name: Update network info in Kibana 
   lineinfile:
     path: /etc/kibana/kibana.yml 
-    
+    regex: "server.host: "localhost""\
 
