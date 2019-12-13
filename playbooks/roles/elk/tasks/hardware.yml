@@ -1,10 +1,10 @@
 - name: Cpu Should be greater than one
   shell: "false" 
-  when: facter_processorcount <= 2
+  when: facter_processorcount < 2
 
 - name: Check Memnory is less than 3GB 
   shell: "false"
-  when: ansible_memtotal_mb <= 3500 
+  when: ansible_memtotal_mb < 3500 
 
 - name: Disk should be more than 10GB 
   shell: "true" 
