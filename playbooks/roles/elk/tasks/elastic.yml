@@ -18,4 +18,4 @@
 - name: Start elasticsearch 
   service:
     name: elasticsearch 
-    state: 
+    state: started 
