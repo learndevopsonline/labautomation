@@ -1,6 +1,6 @@
 - name: 
   debug:
-    msg: Helo = {{ansible_processor|length}}
+    msg: Helo = {{facter_processorcount}}
   
 
 - name: Cpu Should be greater than one
