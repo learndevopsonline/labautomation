@@ -1,4 +1,5 @@
-- name: 
+- name: Install Java 
+  
 - name: Install Logstash 
   package:
     name: https://artifacts.elastic.co/downloads/logstash/logstash-{{VERSION}}.rpm
