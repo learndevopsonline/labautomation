@@ -10,4 +10,4 @@
     line: "network.host: 0.0.0.0"
   
 - name: Change discovery.seed_hosts 
-  
+  lineinfile:
