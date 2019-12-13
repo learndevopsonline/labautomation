@@ -42,7 +42,7 @@ if [ $STAT -eq 2 ]; then
 		exit 1
 	fi
 else
-	if [ $option -lt 1 -o $option -gt 15 ]; then 
+	if [ $option -lt 1 -o $option -gt 16 ]; then 
 	  error "Invalid Option. Try Again " 
 	  exit 1
 	fi
