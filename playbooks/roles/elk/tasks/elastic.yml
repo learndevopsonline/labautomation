@@ -3,3 +3,5 @@
     name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{VERSION}}-x86_64.rpm
     state: installed 
 
+- name: Change the network host IP 
+  
