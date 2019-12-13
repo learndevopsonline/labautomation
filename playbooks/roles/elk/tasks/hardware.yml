@@ -1,2 +1,3 @@
-- debug:
-    name
+- name: h
+  debug:
+    msg: 
