@@ -8,3 +8,7 @@
     path: /etc/kibana/kibana.yml 
     regex: "server.host: \"localhost\""
     line: "server.host: \"0.0.0.0\""
+
+- name: Start kibana service 
+  service:
+    
