@@ -1,4 +1,5 @@
 - name: Install Logstash 
   package:
-    name: https://artifacts.elastic.co/downloads/logstash/logstash-7.5.0.rpm
+    name: https://artifacts.elastic.co/downloads/logstash/logstash-{{VERSION}}.rpm
     state: installed 
+
