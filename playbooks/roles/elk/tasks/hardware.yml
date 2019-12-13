@@ -1,8 +1,8 @@
 - name: 
   debug:
-    msg: Helo
+    msg: Helo = {{ansible_processor|length}}
   
-  
+
 - name: Cpu Should be greater than one
   shell: "false" 
   when: ansible_processor|length <= 3
