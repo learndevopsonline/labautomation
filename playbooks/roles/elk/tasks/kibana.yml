@@ -1,7 +1,7 @@
 - name: Install Kibana 
   package:
     name: https://artifacts.elastic.co/downloads/kibana/kibana-{{VERSION}}-x86_64.rpm 
-    state: installed 
+    state: present 
 
 - name: Update network info in Kibana 
   lineinfile:
