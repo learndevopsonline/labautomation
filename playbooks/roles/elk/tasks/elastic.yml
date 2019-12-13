@@ -1,7 +1,7 @@
 - name: Install Elastic Search 
   package:
     name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{{VERSION}}-x86_64.rpm
-    state: installed 
+    state: present 
 
 - name: Change the network host IP 
   lineinfile:
