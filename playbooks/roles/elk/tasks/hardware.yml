@@ -8,4 +8,4 @@
 
 - name: Disk should be more than 10GB 
   shell: true 
-  ## Just 
+  ## Just enabled everything
