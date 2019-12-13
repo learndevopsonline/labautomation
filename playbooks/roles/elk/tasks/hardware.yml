@@ -1,9 +1,4 @@
-- name: 
-  debug:
-    msg: Helo = {{facter_processorcount}}
-  
-
 - name: Cpu Should be greater than one
   shell: "false" 
-  when: ansible_processor|length <= 3
+  when: facter_processorcount <= 3
 
