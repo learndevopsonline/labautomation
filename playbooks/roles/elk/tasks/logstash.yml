@@ -3,6 +3,7 @@
     name: https://artifacts.elastic.co/downloads/logstash/logstash-{{VERSION}}.rpm
     state: installed 
 
+
 - name: Start Logstash 
   service:
     name: logstash 
