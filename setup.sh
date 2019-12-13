@@ -23,6 +23,8 @@ echo -n -e "
 13) Zabbix Server
 14) Chef Server
 15) Docker-Compose
+16) ELK
+
 ${R}E) Exit ${N}
 
 Select an Option > "
