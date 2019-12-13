@@ -7,3 +7,5 @@
 - name: Install ElasticSearch 
   include: elastic.yml 
 
+- name: Install Kibana 
+  include: kibana.yml
