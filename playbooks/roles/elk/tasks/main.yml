@@ -4,4 +4,5 @@
 - name: Install Logstash 
   include: logstash.yml
 
-- name: Install 
+- name: Install ElasticSearch 
+  include: elastic
