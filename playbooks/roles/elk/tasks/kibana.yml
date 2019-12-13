@@ -4,5 +4,7 @@
     state: installed 
 
 - name: Update network info in Kibana 
-  shell: "true"
+  lineinfile:
+    path: /etc/kibana/kibana.yml 
+    
 
