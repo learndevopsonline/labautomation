@@ -5,3 +5,5 @@
 
 - name: Start Logstash 
   service:
+    name: logstash 
+    enabled: yes 
