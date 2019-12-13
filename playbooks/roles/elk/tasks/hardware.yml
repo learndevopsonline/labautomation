@@ -3,5 +3,6 @@
   when: "{{ ansible_processor | length }}" <  2
 
 - name: Cpu Should be grater than one
-  debug
+  debug:
+    msg: Helo
   
