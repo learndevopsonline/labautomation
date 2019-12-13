@@ -1,8 +1,9 @@
-- name: Cpu Should be greater than one
-  shell: "false" 
-  when: ansible_processor|length <= 3
-
 - name: 
   debug:
     msg: Helo
   
+  
+- name: Cpu Should be greater than one
+  shell: "false" 
+  when: ansible_processor|length <= 3
+
