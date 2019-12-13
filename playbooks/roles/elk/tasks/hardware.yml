@@ -1,4 +1,4 @@
-- name: Cpu Should be grater than one
+- name: Cpu Should be greater than one
   shell: "false" 
   when: ansible_processor|length <= 3
 
