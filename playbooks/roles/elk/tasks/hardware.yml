@@ -2,4 +2,5 @@
   shell: "false" 
   when: facter_processorcount <= 2
 
-- name: 
+- name: Check Memnory is greather than 3GB 
+  
