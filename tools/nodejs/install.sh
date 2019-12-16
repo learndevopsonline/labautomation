@@ -17,3 +17,4 @@ tar -xf /tmp/$FILENAME
 mv $FOLDER_NAME nodejs
 ln -s /opt/nodejs/bin/node /bin/node 
 ln -s /opt/nodejs/bin/npm /bin/npm 
+ln -s /opt/nodejs/bin/npm /bin/npm 
