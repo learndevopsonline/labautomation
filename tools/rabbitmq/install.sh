@@ -12,5 +12,5 @@ yum install rabbitmq-server -y
 systemctl enable rabbitmq-server 
 systemctl start rabbitmq-server 
 
-
+Stat 0 "Starting "
 sleep 60
