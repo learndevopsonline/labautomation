@@ -22,7 +22,7 @@ curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/
 Stat $?
 
 echo "Install DOcker-Compose"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash &>>$LOG
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash -x  #&>>$LOG
 Stat $?
 
 echo "Install NodeJS"
