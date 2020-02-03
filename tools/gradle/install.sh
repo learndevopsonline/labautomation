@@ -6,3 +6,4 @@ if [ $(id -u) -ne 0 ]; then
 fi 
 
 yum install java-1.8.0-openjdk-devel unzip  -y
+
