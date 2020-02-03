@@ -7,6 +7,7 @@ fi
 
 yum install java-1.8.0-openjdk-devel unzip  -y
 
+rm -rf /opt/gradle 
 DOWNLOAD_URL=$(curl -s https://gradle.org/releases/  | grep bin.zip | head -1 |xargs -n1 | grep ^href | awk -F = '{print $2}')
 DIR_NAME=$(echo $DOWNLOAD_URL | sed -e 's/-bin.zip//')
 cd /opt 
