@@ -12,3 +12,4 @@ DIR_NAME=$(echo $DOWNLOAD_URL | sed -e 's/-bin.zip//')
 cd /opt 
 curl -o /opt/gradle.zip $DOWNLOAD_URL 
 unzip gradle.zip 
+mv $DIR_NAME gradle 
