@@ -14,3 +14,4 @@ cd /opt
 curl -o /opt/gradle.zip $DOWNLOAD_URL 
 unzip gradle.zip 
 mv $DIR_NAME gradle 
+ln -s /opt/gradle/bin/gradle /bin/gradle
