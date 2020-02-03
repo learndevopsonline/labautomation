@@ -11,4 +11,4 @@ DOWNLOAD_URL=$(curl -s https://gradle.org/releases/  | grep bin.zip | head -1 |x
 DIR_NAME=$(echo $DOWNLOAD_URL | sed -e 's/-bin.zip//')
 cd /opt 
 curl -o /opt/gradle.zip $DOWNLOAD_URL 
-unzip 
+unzip gradle.zip 
