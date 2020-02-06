@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-echo -e ""
+echo -e "\e[32m Installing Docker \e[0m"
