@@ -6,5 +6,7 @@ yum install mysql-community-client-5.7.28-1.el7.x86_64.rpm mysql-community-commo
 if [ $? -eq 0 ]; then 
   rm -f mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar *.rpm 
 else 
-  echo -e "\e["
+  echo -e "\e[31m Installation FAILED\e[0m"
+  exit 1
 fi 
+
