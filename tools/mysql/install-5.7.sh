@@ -11,4 +11,4 @@ else
 fi 
 
 systemctl start mysqld
-echo ""
+echo "\n\e[33m Following is the root password "
