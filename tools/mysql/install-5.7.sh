@@ -14,5 +14,5 @@ systemctl start mysqld
 echo "\n\e[33m Following is the root password :: "
 cat /var/log/mysqld.log | grep password | tail -1 | awk '{print $NF}'
 
-
+echo uninstall plugin validate_password; >/tmp/
 mysql_secure_installation
