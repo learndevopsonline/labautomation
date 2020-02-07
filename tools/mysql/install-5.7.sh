@@ -5,4 +5,6 @@ tar -xf mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar
 yum install mysql-community-client-5.7.28-1.el7.x86_64.rpm mysql-community-common-5.7.28-1.el7.x86_64.rpm mysql-community-libs-5.7.28-1.el7.x86_64.rpm mysql-community-server-5.7.28-1.el7.x86_64.rpm -y 
 if [ $? -eq 0 ]; then 
   rm -f mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar *.rpm 
-  
+else 
+  echo -e "\e["
+fi 
