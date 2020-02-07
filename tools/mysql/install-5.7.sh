@@ -14,5 +14,5 @@ systemctl start mysqld
 echo "\n\e[33m Following is the root password :: "
 cat /var/log/mysqld.log | grep password | tail -1 | awk '{print $NF}'
 
-echo -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass@1';uninstall plugin validate_password;" >/tmp/remove-plugin.sql 
+echo -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass@1';\nuninstall plugin validate_password;\nALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass@1';" >/tmp/remove-plugin.sql 
 mysql --connect-expired-password -uroot -p </tmp/remove-plugin.sql 
