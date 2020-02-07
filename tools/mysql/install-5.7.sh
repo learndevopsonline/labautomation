@@ -15,4 +15,4 @@ echo "\n\e[33m Following is the root password :: "
 cat /var/log/mysqld.log | grep password | tail -1 | awk '{print $NF}'
 
 echo uninstall plugin validate_password; >/tmp/remove-plugin.sql 
-
+mysql -uroot -p </tmp/remove-plugin.sql 
