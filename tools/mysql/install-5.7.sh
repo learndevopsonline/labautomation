@@ -10,3 +10,5 @@ else
   exit 1
 fi 
 
+systemctl start mysqld
+echo ""
