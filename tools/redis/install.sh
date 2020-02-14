@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 yum install epel-release yum-utils
-yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y
 yum-config-manager --enable remi
 yum install redis -y
 
