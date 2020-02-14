@@ -13,4 +13,4 @@ systemctl enable rabbitmq-server
 systemctl start rabbitmq-server 
 
 Stat 0 "Starting RabbitMQ Service"
-sleep 60
+#sleep 60
