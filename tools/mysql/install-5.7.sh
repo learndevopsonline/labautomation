@@ -23,3 +23,6 @@ cat /var/log/mysqld.log | grep password | tail -1 | awk '{print $NF}'
 
 echo -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass@1';\nuninstall plugin validate_password;\nALTER USER 'root'@'localhost' IDENTIFIED BY 'password';" >/tmp/remove-plugin.sql 
 mysql --connect-expired-password -uroot -p </tmp/remove-plugin.sql 
+if [ $? -eq 0 ]; then 
+  echo -e "MySQL password is successfully reset and the password of user 'root' now is 'password'"
+fi
