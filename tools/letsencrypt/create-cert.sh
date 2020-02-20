@@ -8,4 +8,4 @@ fi
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
 cd certbot 
-sh 
+./letsencrypt-auto 
