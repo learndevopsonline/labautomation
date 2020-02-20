@@ -7,6 +7,8 @@ fi
 
 DOMAIN_EMAIL=$(echo $CERT_NAME | awk -F . '{print "admin@"$2"."$3}')
 
+if 
+
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
 cd certbot 
