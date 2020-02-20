@@ -10,7 +10,7 @@ DOMAIN_EMAIL=$(echo $CERT_NAME | awk -F . '{print "admin@"$2"."$3}')
 if [ "$(curl ifconfig.co)" != "$(host $CERT_NAME | awk '{print $NF}')" ]; then 
   echo "DNS Entry is not matching the current server. Check again"
   echo DNS_ENTRY = $(host $CERT_NAME)
-  echo 
+  echo SERVER_IP = $(curl ifconfig.co)
 fi 
 
 cd /tmp
