@@ -7,7 +7,10 @@ fi
 
 DOMAIN_EMAIL=$(echo $CERT_NAME | awk -F . '{print "admin@"$2"."$3}')
 
-if [ "$(curl ifconfig.co)" != "$(host $CERT_NAME | awk '{print $NF}')" ]
+if [ "$(curl ifconfig.co)" != "$(host $CERT_NAME | awk '{print $NF}')" ]; then 
+  echo "DNS Entry is not matching the current server. Check again"
+  
+fi 
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
