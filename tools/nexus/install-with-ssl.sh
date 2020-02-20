@@ -9,4 +9,5 @@ curl -s https://raw.githubusercontent.com/linuxautomations/nexus/master/install.
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/letsencrypt/create-cert.sh | bash 
 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nexus/nexus.conf >/etc/nginx/conf.d/nexus.conf 
-sed -i -e "s/DOMAIN_NAME/${CERT_NAME}/" 
+sed -i -e "s/DOMAIN_NAME/${CERT_NAME}/" /etc/nginx/conf.d/nexus.conf 
+systemctl restart nginx 
