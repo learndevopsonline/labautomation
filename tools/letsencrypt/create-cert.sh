@@ -5,7 +5,7 @@ if [ -z "$CERT_NAME" ]; then
   exit 1
 fi 
 
-DOMAIN_NAME=$(echo $)
+DOMAIN_NAME=$(echo $CERT_NAME | awk -F . '{print }')
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
