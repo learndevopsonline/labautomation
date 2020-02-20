@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-if [ -z "CERT_" ]
+if [ -z "CERT_NAME" ]
