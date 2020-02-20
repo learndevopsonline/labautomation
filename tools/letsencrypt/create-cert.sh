@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-sh /tmp/smaple.sh
+if [ -z "CERT_" ]
