@@ -20,4 +20,5 @@ cd certbot
 ./letsencrypt-auto --help &>>/tmp/cert.log 
 ./letsencrypt-auto certonly --nginx -n --agree-tos -m $DOMAIN_EMAIL -d $CERT_NAME
 
-cp /etc/letsencrypt/live/$CERT_NAME/fullchain.pem /etc/nginx/server
+cp /etc/letsencrypt/live/$CERT_NAME/fullchain.pem /etc/nginx/server.crt 
+cp /etc/letsencrypt/live/$CERT_NAME/fullchain.pem /etc/nginx/server.crt 
