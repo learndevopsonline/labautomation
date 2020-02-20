@@ -14,7 +14,7 @@ if [ "$(curl ifconfig.co)" != "$(host $CERT_NAME | awk '{print $NF}')" ]; then
   exit 2
 fi 
 
-yum install nginx -y &>
+yum install nginx -y &>/
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
