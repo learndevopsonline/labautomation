@@ -1,5 +1,5 @@
 #!/bin/bash 
 
 if [ -z "CERT_NAME" ]; then 
-  echo ""
+  echo "Certificate Name is missing, export CERT_NAME and run again"
 fi 
