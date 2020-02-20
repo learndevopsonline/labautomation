@@ -11,6 +11,7 @@ if [ "$(curl ifconfig.co)" != "$(host $CERT_NAME | awk '{print $NF}')" ]; then
   echo "DNS Entry is not matching the current server. Check again"
   echo DNS_ENTRY = $(host $CERT_NAME)
   echo SERVER_IP = $(curl ifconfig.co)
+  exit 2
 fi 
 
 cd /tmp
