@@ -19,3 +19,5 @@ git clone https://github.com/certbot/certbot.git
 cd certbot 
 ./letsencrypt-auto --help &>>/tmp/cert.log 
 ./letsencrypt-auto certonly --nginx -n --agree-tos -m $DOMAIN_EMAIL -d $CERT_NAME
+
+cd /etc/letsencrypt/live/nexus.devopsb44.xyz/
