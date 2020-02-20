@@ -7,7 +7,7 @@ fi
 
 DOMAIN_EMAIL=$(echo $CERT_NAME | awk -F . '{print "admin@"$2"."$3}')
 
-if [ "$(curl ifconfig.co)"  ]
+if [ "$(curl ifconfig.co)" != "$(host )" ]
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
