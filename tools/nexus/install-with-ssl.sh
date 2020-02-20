@@ -8,4 +8,5 @@ fi
 curl -s https://raw.githubusercontent.com/linuxautomations/nexus/master/install.sh | sudo bash 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/letsencrypt/create-cert.sh | bash 
 
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nexus/nexus.conf >/etc/nginx/conf.d/nginx
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nexus/nexus.conf >/etc/nginx/conf.d/nexus.conf 
+sed -i -e "s
