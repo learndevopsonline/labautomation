@@ -5,6 +5,8 @@ if [ -z "$CERT_NAME" ]; then
   exit 1
 fi 
 
+
+
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
 cd certbot 
