@@ -5,7 +5,7 @@ if [ -z "$CERT_NAME" ]; then
   exit 1
 fi 
 
-
+DOMAIN_NAME=$(echo $)
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
