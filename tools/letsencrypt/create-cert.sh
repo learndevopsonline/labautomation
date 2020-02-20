@@ -16,7 +16,10 @@ fi
 
 yum install nginx -y &>/dev/null 
 systemctl enable nginx && systemctl start nginx 
-if [ $? -ne 0 ]
+if [ $? -ne 0 ]; then 
+  echo "Install Nginx Failure "
+  exit 1
+fi 
 
 cd /tmp
 git clone https://github.com/certbot/certbot.git 
