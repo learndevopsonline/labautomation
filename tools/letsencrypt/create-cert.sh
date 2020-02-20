@@ -11,4 +11,4 @@ cd /tmp
 git clone https://github.com/certbot/certbot.git 
 cd certbot 
 ./letsencrypt-auto --help &>>/tmp/cert.log 
-./letsencrypt-auto certonly --nginx -n --agree-tos -m  -d 
+./letsencrypt-auto certonly --nginx -n --agree-tos -m $DOMAIN_EMAIL -d $CERT_NAME
