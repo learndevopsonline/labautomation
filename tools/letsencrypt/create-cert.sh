@@ -6,4 +6,5 @@ if [ -z "$CERT_NAME" ]; then
 fi 
 
 cd /tmp
-git clone https://github.com
+git clone https://github.com/certbot/certbot.git 
+cd certbot 
