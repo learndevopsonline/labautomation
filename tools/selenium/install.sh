@@ -6,4 +6,4 @@ chmod +x /usr/local/bin/docker-compose
 
 
 mkdir -p /root/selenium
-
+curl -s >
