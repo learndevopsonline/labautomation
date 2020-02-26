@@ -7,4 +7,4 @@ chmod +x /usr/local/bin/docker-compose
 
 mkdir -p /root/selenium
 curl -s >/root/selenium/docker-compose.yml
-cd 
+cd root/selenium/ && docker-compose up -d
