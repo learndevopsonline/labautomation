@@ -7,4 +7,4 @@ chmod +x /usr/local/bin/docker-compose
 
 mkdir -p /root/selenium
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/selenium/docker-compose.yml >/root/selenium/docker-compose.yml
-cd root/selenium/ && docker-compose up -d
+cd /root/selenium/ && docker-compose up -d
