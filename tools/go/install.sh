@@ -4,4 +4,5 @@ GO_VERSION=$(curl -L -s https://golang.org/dl/   | grep toggleVisible | head -1 
 GO_URL="ttps://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz"
 
 cd /opt 
+[ -d ]
 curl -s $GO_URL | tar -xz  
