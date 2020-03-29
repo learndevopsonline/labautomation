@@ -12,3 +12,4 @@ ln -s /opt/go/bin/gofmt /bin/gofmt
 # Go Dep 
 export GOBIN=/opt/go/bin
 curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+ln -s /opt/go/bin/dep /bin/dep 
