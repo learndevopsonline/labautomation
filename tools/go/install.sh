@@ -6,4 +6,4 @@ GO_URL="ttps://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz"
 cd /opt 
 [ -d /opt/go ] && rm -rf /opt/go
 curl -s $GO_URL | tar -xz  
-ln -s /opt/go/bin/go 
+ln -s /opt/go/bin/go /opt
