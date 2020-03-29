@@ -8,3 +8,6 @@ cd /opt
 curl -s $GO_URL | tar -xz  
 ln -s /opt/go/bin/go /bin/go 
 ln -s /opt/go/bin/gofmt /bin/gofmt 
+
+# Go Dep 
+curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
