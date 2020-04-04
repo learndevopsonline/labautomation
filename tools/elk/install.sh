@@ -46,8 +46,8 @@ if [ "$SKIP" != "TRUE" ]; then
   STAT $? 
 fi 
 
-
-sed -i -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http.port: 9200" -e "/cluster.initial_master_nodes/ c cluster.initial_master_nodes: \[\"localhost\"\]" /etc/elasticsearch/elasticsearch.yml
+IPADDR=$(hostname -i)
+sed -i -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http.port: 9200" -e "/cluster.initial_master_nodes/ c cluster.initial_master_nodes: \[\"${IPADDR}\"\]" /etc/elasticsearch/elasticsearch.yml
 
 echo 'input {
   beats {
