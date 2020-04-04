@@ -40,14 +40,14 @@ if [ "$SKIP" != "TRUE" ]; then
   Print "Installing Java"
   yum install java -y &>/dev/null 
   STAT $?
-  
+
   Print "Installing Logstash"
   yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
   STAT $? 
 fi 
 
 
-sed -i -e sed -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http.port: 9200" -e "/cluster.initial_master_nodes/ c cluster.initial_master_nodes: \[\"localhost\"\]" /etc/elasticsearch/elasticsearch.yml
+sed -i -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http.port: 9200" -e "/cluster.initial_master_nodes/ c cluster.initial_master_nodes: \[\"localhost\"\]" /etc/elasticsearch/elasticsearch.yml
 
 echo 'input {
   beats {
