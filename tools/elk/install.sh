@@ -21,7 +21,7 @@ Print() {
   echo -e "${Y}${1}${N}"
 }
 
-if [ ""]
+if [ "$SKIP" == "TRUE" ]
 ## Install html2text 
 Print "Installing Html2text"
 
