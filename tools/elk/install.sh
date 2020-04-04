@@ -25,4 +25,5 @@ Print "Installing Elasicsearch"
 yum install https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}-x86_64.rpm &>/dev/null 
 STAT $? 
 
+Print "Installing Kibana"
 
