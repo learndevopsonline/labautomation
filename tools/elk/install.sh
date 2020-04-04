@@ -48,4 +48,4 @@ sed -i -e sed -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http
 yum install nginx -y &>/dev/null 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/elk/http-proxy.conf >/etc/nginx/nginx.conf 
 
-
+systemctl enable 
