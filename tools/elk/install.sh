@@ -21,4 +21,4 @@ yum install https://li.nux.ro/download/nux/dextop/el7/x86_64/html2text-1.3.2a-14
 STAT $?
 VERSION=$(curl -s -L https://www.elastic.co/downloads/elasticsearch  | html2text  | grep Version -A 1 | tail -1)
 
-Print ""
+Print "Installing Elasicsearch"
