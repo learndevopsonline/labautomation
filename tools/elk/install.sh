@@ -51,4 +51,7 @@ curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/
 systemctl enable nginx 
 systemctl enable elasticsearch 
 systemctl enable kibana 
-systemc
+systemctl enable logstash 
+
+systemctl start nginx 
+systemctl 
