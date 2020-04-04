@@ -5,7 +5,9 @@ N="\e[0m"
 
 STAT() {
   if [ $1 -ne 0 ]; then 
-    echo "\e[31mFAILED\"
+    echo "\e[31mFAILED\e[0m"
+    exit 1
+  fi 
 }
 
 ## Install html2text 
@@ -13,4 +15,4 @@ STAT() {
 echo -e "${Y}Installing Html2text${N}"
 yum install https://li.nux.ro/download/nux/dextop/el7/x86_64/html2text-1.3.2a-14.el7.nux.x86_64.rpm -y  &>/dev/null
 STAT $?
-VERSION=
+VERSION=$()
