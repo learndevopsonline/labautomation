@@ -74,5 +74,8 @@ Print "Starting nginx"
 systemctl start nginx 
 Print "Starting elasticsearch"
 systemctl start elasticsearch 
+Print "Starting kibana"
 systemctl start kibana 
+Print "Starting Logstash"
+
 
