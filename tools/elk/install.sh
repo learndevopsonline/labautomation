@@ -21,7 +21,7 @@ Print() {
   echo -e "${Y}${1}${N}"
 }
 
-if [ "$SKIP" == "TRUE" ]; then 
+if [ "$SKIP" != "TRUE" ]; then 
   ## Install html2text 
   Print "Installing Html2text"
 
@@ -41,4 +41,5 @@ if [ "$SKIP" == "TRUE" ]; then
   yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
   STAT $? 
 fi 
+
 
