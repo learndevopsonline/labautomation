@@ -22,3 +22,4 @@ STAT $?
 VERSION=$(curl -s -L https://www.elastic.co/downloads/elasticsearch  | html2text  | grep Version -A 1 | tail -1)
 
 Print "Installing Elasicsearch"
+yum install https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}-x86_64.rpm
