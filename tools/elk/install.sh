@@ -1,7 +1,10 @@
 #!/bin/bash 
 
 rpm -qa | grep elasticsearch &>/dev/null 
-
+if [ $? -eq 0 ]; then 
+  echo "Already Installed"
+  exit 0 
+fi
 
 Y="\e[33m"
 N="\e[0m"
