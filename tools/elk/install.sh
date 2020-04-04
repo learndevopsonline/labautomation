@@ -31,4 +31,5 @@ STAT $?
 
 Print "Installing Logstash"
 yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
+STAT $? 
 
