@@ -1,5 +1,6 @@
 #!/bin/bash 
 
+rpm -qa | grep elasticsearch &>/dev/null 
 
 
 Y="\e[33m"
