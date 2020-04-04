@@ -1,5 +1,7 @@
 #!/bin/bash
 
+###
+
 if [ $(id -u) -ne 0 ]; then 
   echo "You should run as root user"
   exit 1
