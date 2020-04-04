@@ -26,4 +26,4 @@ yum install https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$
 STAT $? 
 
 Print "Installing Kibana"
-
+yum install https://artifacts.elastic.co/downloads/kibana/kibana-7.6.2-x86_64.rpm 
