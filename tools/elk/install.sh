@@ -70,6 +70,7 @@ systemctl enable elasticsearch
 systemctl enable kibana 
 systemctl enable logstash 
 
+
 systemctl start nginx 
 systemctl start elasticsearch 
 systemctl start kibana 
