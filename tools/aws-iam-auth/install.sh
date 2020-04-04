@@ -1,6 +1,6 @@
 #!/bin/bash
 
-###
+### aws-iam-auth
 
 if [ $(id -u) -ne 0 ]; then 
   echo "You should run as root user"
