@@ -77,5 +77,5 @@ systemctl start elasticsearch
 Print "Starting kibana"
 systemctl start kibana 
 Print "Starting Logstash"
-
+systemctl start logstash  
 
