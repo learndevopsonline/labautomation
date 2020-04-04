@@ -21,6 +21,7 @@ Print() {
   echo -e "${Y}${1}${N}"
 }
 
+if [ ""]
 ## Install html2text 
 Print "Installing Html2text"
 
