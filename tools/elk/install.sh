@@ -37,6 +37,8 @@ if [ "$SKIP" != "TRUE" ]; then
   yum install https://artifacts.elastic.co/downloads/kibana/kibana-${VERSION}-x86_64.rpm -y &>/dev/null
   STAT $? 
 
+  Print "Installing Java"
+  yum install java -y &>/dev/null
   Print "Installing Logstash"
   yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
   STAT $? 
