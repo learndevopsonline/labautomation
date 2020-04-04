@@ -30,4 +30,5 @@ yum install https://artifacts.elastic.co/downloads/kibana/kibana-${VERSION}-x86_
 STAT $? 
 
 Print "Installing Logstash"
-yum install https://artifacts.elastic.co/downloads/logstash/logstash-${}.rpm
+yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
+
