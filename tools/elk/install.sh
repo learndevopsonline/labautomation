@@ -38,7 +38,9 @@ if [ "$SKIP" != "TRUE" ]; then
   STAT $? 
 
   Print "Installing Java"
-  yum install java -y &>/dev/null
+  yum install java -y &>/dev/null 
+  STAT $?
+  
   Print "Installing Logstash"
   yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
   STAT $? 
