@@ -10,6 +10,10 @@ STAT() {
   fi 
 }
 
+Print() {
+  echo -e "${Y}${1}${N}"
+}
+
 ## Install html2text 
 
 
