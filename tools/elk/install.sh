@@ -3,6 +3,9 @@
 Y="\e[33m"
 N="\e[0m"
 
+STAT() {
+  
+}
 
 ## Install html2text 
 
