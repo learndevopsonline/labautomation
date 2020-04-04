@@ -44,3 +44,5 @@ fi
 
 
 sed -i -e sed -e "/network.host/ c network.host: 0.0.0.0" -e "/http.port/ c http.port: 9200" -e "/cluster.initial_master_nodes/ c cluster.initial_master_nodes: \[\"localhost\"\]" /etc/elasticsearch/elasticsearch.yml
+
+yum install nginx -y &>/dev/null 
