@@ -4,7 +4,8 @@ Y="\e[33m"
 N="\e[0m"
 
 STAT() {
-  
+  if [ $1 -ne 0 ]; then 
+    echo "\e[31mFAILED\"
 }
 
 ## Install html2text 
