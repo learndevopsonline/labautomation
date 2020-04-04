@@ -55,4 +55,5 @@ systemctl enable logstash
 
 systemctl start nginx 
 systemctl start elasticsearch 
-systemctl 
+systemctl start kbana 
+
