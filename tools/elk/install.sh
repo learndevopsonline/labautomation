@@ -3,6 +3,7 @@
 rpm -qa | grep elasticsearch &>/dev/null 
 if [ $? -eq 0 ]; then 
   echo "Already Installed"
+  SKIP=TRUE
   #exit 0 
 fi
 
