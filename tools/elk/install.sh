@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-Y=
+Y="\e[33m"
 ## Install html2text 
 
 echo -e "${Y}Installing Html2text"
