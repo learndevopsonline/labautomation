@@ -70,7 +70,7 @@ systemctl enable elasticsearch
 systemctl enable kibana 
 systemctl enable logstash 
 
-
+Print "Starting "
 systemctl start nginx 
 systemctl start elasticsearch 
 systemctl start kibana 
