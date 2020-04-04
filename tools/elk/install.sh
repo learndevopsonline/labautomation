@@ -56,7 +56,7 @@ output {
     hosts => ["http://localhost:9200"]
     index => "%{[@metadata][beat]}-%{[@metadata][version]}" 
   }
-}' >/etc/logstash/conf.d/
+}' >/etc/logstash/conf.d/basic.conf
 
 yum install nginx -y &>/dev/null 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/elk/http-proxy.conf >/etc/nginx/nginx.conf 
