@@ -37,6 +37,9 @@ echo -e "Install python modules"
 pip3 install docker docker-compose &>>$LOG 
 Stat $?
 
+docker pull ansible/awx_task:11.1.0
+docker tag  ansible/awx_task:11.1.0 ansible/awx_task:11.2.0
+
 echo "Cloning AWX Repo"
 git clone https://github.com/ansible/awx.git
 cd awx/installer 
