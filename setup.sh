@@ -5,7 +5,7 @@ curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/commo
 source /tmp/common-functions.sh
 
 if [ ! -d /tmp/labauto  ]; then 
-	git clone https://github.com/linuxautomations/labautomation.git /tmp/labauto 
+	git clone https://github.com/linuxautomations/labautomation.git /tmp/labauto &>/dev/null
 else 
 	cd /tmp/labauto 
 	git pull &>/dev/null
