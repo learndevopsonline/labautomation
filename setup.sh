@@ -26,7 +26,7 @@ select tool in `ls -1 /tmp/labauto/tools`; do
 			;;
 		*) 
 			echo -e "\e[31m Found Multiple Scripts, Choose One.. "
-			select script in `ls -1 /tmp/labauto/tools/$tool/*.sh`; do 
+			select script in `ls -1 /tmp/labauto/tools/$tool/*.sh | awk -F / '{print $NF}'`; do 
 				echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
 				sh /tmp/labauto/tools/$tool/$script 
 				break 
