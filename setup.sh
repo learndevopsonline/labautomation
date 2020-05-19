@@ -14,5 +14,6 @@ fi
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool> "
 select tool in `ls -1 /tmp/labauto/tools`; do 
-	ls /tmp/labauto/tools/$tool 
+	SCRIPT_NO=$(ls /tmp/labauto/tools/$tool |wc -l)
+	echo $SCRIPT_NO
 done
