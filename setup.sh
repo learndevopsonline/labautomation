@@ -11,7 +11,7 @@ else
 	git pull &>/dev/null
 fi 
 
-echo "${RB}>>>>> Select a TOOL to Install${N}"
+echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool> "
 select tool in `ls -1 /tmp/labauto/tools`; do 
 	echo Hai
