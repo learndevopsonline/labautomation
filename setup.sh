@@ -14,6 +14,24 @@ fi
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool> "
 select tool in `ls -1 /tmp/labauto/tools`; do 
-	SCRIPT_NO=$(ls /tmp/labauto/tools/$tool |wc -l)
-	echo $SCRIPT_NO
+	SCRIPT_NO=$(ls /tmp/labauto/tools/$tool/*.sh |wc -l)
+	case $SCRIPT_NO in 
+		1) 
+			echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
+			sh /tmp/labauto/tools/$tool/install.sh
+			;;
+		0) 
+			echo -e "No Install Script Found"
+			exit 1
+			;;
+		*) 
+			echo -e "\e[31m Found Multiple Scripts, Choose One.. "
+			select script in `ls -1 /tmp/labauto/tools/$tool/*.sh`; do 
+				echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
+				sh /tmp/labauto/tools/$tool/$script 
+				break 
+			done
+			;; 
+		esac 
+		break 
 done
