@@ -15,6 +15,6 @@ curl -s -o /tmp/$FILENAME $URL
 cd /opt
 tar -xf /tmp/$FILENAME
 mv $FOLDER_NAME nodejs
-ln -s /opt/nodejs/bin/node /bin/node 
-ln -s /opt/nodejs/bin/npm /bin/npm 
-ln -s /opt/nodejs/bin/npx /bin/npx
+ln -s /opt/nodejs/bin/node /bin/node || true
+ln -s /opt/nodejs/bin/npm /bin/npm  || true
+ln -s /opt/nodejs/bin/npx /bin/npx || true
