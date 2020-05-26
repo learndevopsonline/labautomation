@@ -17,6 +17,8 @@ echo -e "Installing Python 3"
 yum install python36 python36-devel -y &>>$LOG 
 Stat $?
 
+ln -s /usr/bin/python3 /usr/bin/python33 || true
+
 echo "Install Docker"
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-docker-ce.sh | bash  &>>$LOG
 Stat $?
