@@ -5,7 +5,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/opt/prometheus/bin/prometheus
+WorkingDirectory=/opt/prometheus
+ExecStart=/opt/prometheus/prometheus
 
 [Install]
 WantedBy=multi-user.target
