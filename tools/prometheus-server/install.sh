@@ -19,3 +19,7 @@ curl -s -L -O $URL
 tar -xf $FILENAME 
 rm -f $FILENAME 
 mv $DIRNAME prometheus 
+
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/prometheus-server/prometheus.service >/etc/systemd/system/prometheus.service
+systemctl enable prometheus
+systemctl start prometheus
