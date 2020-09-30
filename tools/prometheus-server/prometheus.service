@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/prometheus/bin/prometheus
+
+[Install]
+WantedBy=multi-user.target
