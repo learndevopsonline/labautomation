@@ -3,10 +3,9 @@
 USERNAME=$1
 PASSWORD=$2
 HOSTIP=$3
-ID=$4 
-KEY=$5
+KEY=$4
 
-STATUS=$(curl -u "$USERNAME:$PASSWORD" "http://${HOSTIP}:9000/api/qualitygates/project_status?analysesId=${ID}&projectKey=${KEY}" | jq  '.projectStatus.status' | xargs)
+STATUS=$(curl -u "$USERNAME:$PASSWORD" "http://${HOSTIP}:9000/api/qualitygates/project_status?projectKey=${KEY}" | jq  '.projectStatus.status' | xargs)
 if [ "$STATUS" == "OK" ]; then 
   exit 0
 else 
