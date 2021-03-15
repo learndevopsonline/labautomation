@@ -44,8 +44,10 @@ Stat $?
 
 echo "Cloning AWX Repo"
 git clone https://github.com/ansible/awx.git
-cd awx/installer 
-sed -i -e '1s/ python/ python3/g' inventory
+cd awx
+git checkout 17.1.0
+cd installer 
+sed -i -e '/^localhost/ c localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python3"' -e '/^admin_password/ c admin_password=password' -e '/^#\ admin_password/ c  admin_password=password' inventory
 ansible-playbook -i inventory install.yml
 if [ $? -eq 0 ]; then 
   echo "You can access the AWX using the following detials"
