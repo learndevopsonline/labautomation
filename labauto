@@ -38,6 +38,6 @@ fi
 
 cd /tmp
 rm -rf labautomation
-git clone https://github.com/linuxautomations/labautomation.git &>/dev/null
+git clone https://github.com/linuxautomations/labautomation.git /tmp/labauto &>/dev/null
 
 sh /tmp/labautomation/setup.sh $*
