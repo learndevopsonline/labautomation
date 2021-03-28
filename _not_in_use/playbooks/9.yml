@@ -1,0 +1,32 @@
+- name: Install Docker Engine
+  hosts: localhost
+  tasks:
+    - name: Installing yum packages
+      yum:
+        name: "{{item}}"
+        state: installed
+      with_items:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+
+    - name: Configuring Docker repo
+      yum_repository:
+        name: Docker-REPO
+        description: Docker-REPO
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+
+    - name: Install Docker Engine
+      yum:
+        name: docker-ce
+        state: installed
+
+    - name: Start Docker-Engine
+      service:
+        name: docker 
+        state: started
+        enabled: yes
+
+    

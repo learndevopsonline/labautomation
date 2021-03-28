@@ -1,0 +1,26 @@
+- name: Install maven tool
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get latest version of maven
+      shell: curl http://maven.apache.org/download.cgi | grep http | grep bin.tar.gz | awk -F '[=",">]' '{print $4}' | grep ^http
+      register: out
+
+    - name: Download Maven3
+      unarchive: 
+        dest: /opt
+        src: "{{out.stdout}}"
+        remote_src: true
+
+    - name: Maven Directory 
+      shell: echo "{{out.stdout}}" | awk -F / '{print $NF}' | sed -e 's/.tar.gz//' -e 's/-bin//g'
+      register: out
+
+    - name: Create Maven3 directory link
+      file: 
+        path: /bin/mvn 
+        src: /opt/{{out.stdout}}/bin/mvn 
+        state: link
+  
+#- name: Set mvn link
+#  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven/bin/mvn 1

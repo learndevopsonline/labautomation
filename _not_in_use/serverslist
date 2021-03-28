@@ -1,0 +1,16 @@
+workstation
+appserver
+webserver
+dbserver
+prdapp01
+prdapp02
+prddb01
+haproxy
+gitlab
+jenkins
+nexus
+sonarqube
+chefserver
+nagios
+dockernode
+elk

@@ -1,0 +1,89 @@
+- name: Install and configure Kuburnetes Master Node
+  hosts: all
+  become: yes
+  vars:
+    MASTER: kube-master
+  tasks:
+    - debug:
+        msg: |
+          Note: This automation works only if you set the hostname of the servers as kube-master for master node, Otherwise it is going to fail
+
+    - wait_for: timeout=3
+
+    - name: Create Kuburnetes Yum repo file
+      blockinfile:
+        path: /etc/yum.repos.d/kuburnetes.repo
+        create: yes
+        block: |
+          [kuburnetes]
+          name=virt7-docker-common-release
+          baseurl=http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/
+          gpgcheck=0
+          enabled=1
+      tags: [ 'master' , 'node' ]
+    - name: Install required packages
+      yum:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+        enablerepo: kuburnetes
+      with_items:
+        - etcd
+        - flannel
+        - kubernetes
+      tags: [ 'master' , 'node' ]
+
+    - name: Update Kuburnetes config 
+      lineinfile:
+        path: /etc/kubernetes/config
+        regexp: '^KUBE_MASTER'
+        line: KUBE_MASTER="--master=http://{{MASTER}}:8080"
+      tags: [ 'master' , 'node' ]
+
+    - name: Update etcd config
+      replace:
+        path: /etc/etcd/etcd.conf
+        regexp: "localhost"
+        replace: '0.0.0.0'
+      tags: [ 'master' ]
+
+    - name: Update apiserver config 
+      template:
+        src: files/apiserver.j2
+        dest: /etc/kubernetes/apiserver 
+      tags: [ 'master' ]
+
+    - name: Update flanneld config
+      template:
+        src: files/flanneld.j2
+        dest: /etc/sysconfig/flanneld
+      tags: [ 'master' , 'node' ]
+
+    - name: Configure kublet on node 
+      template:
+        src: files/kublet.j2
+        dest: /etc/kubernetes/kubelet
+      tags: [ 'node' ]
+
+    - name: Restart all services on node
+      service:
+        name: "{{item}}"
+        state: restarted
+        enabled: yes
+      with_items: [ 'kube-proxy', 'kubelet', 'flanneld', 'docker' ]
+      tags: [ 'node' ]
+
+    - name: Set cluster on node 
+      shell: kubectl config set-cluster default-cluster --server=http://{{MASTER}}:8080
+      tags: [ 'node' ]
+
+    - name: Set context on node 
+      shell: kubectl config set-context default-context --cluster=default-cluster --user=default-admin
+      tags: [ 'node' ]
+
+    - name: Set context to use on node 
+      shell: kubectl config use-context default-context
+      tags: [ 'node' ]
+
+
+

@@ -1,0 +1,16 @@
+# Install GitLab and its dependencies.
+
+- name: Install GitLab dependencies.
+  package: name={{ item }} state=installed
+  with_items:
+    - openssh-server
+    - postfix
+    - curl
+    - openssl
+
+- name: Install GitLab repository
+  command: curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+  
+
+- name: Install GitLab
+  package: name=gitlab-ee state=installed
