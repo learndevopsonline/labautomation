@@ -8,7 +8,7 @@ func main() {
   if err != nil {
     fmt.Println("Problem with Error")
   }
-  fmt.Println("Print Ip Address"+ resp)
+  fmt.Println(resp)
   defer resp.Body.Close()
 }
 
