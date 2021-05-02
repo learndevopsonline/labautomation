@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "http"
 
 func main() {
   resp, err := http.Get("ifconfig.co")
