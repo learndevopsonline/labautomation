@@ -32,11 +32,11 @@ if [ "$SKIP" != "TRUE" ]; then
   echo VERSION = ${VERSION}
 
   Print "Installing Elasicsearch"
-  yum install https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}-x86_64.rpm -y &>/dev/null 
+  yum install https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}-x86_64.rpm -y &>/tmp/lab.log
   STAT $? 
 
   Print "Installing Kibana"
-  yum install https://artifacts.elastic.co/downloads/kibana/kibana-${VERSION}-x86_64.rpm -y &>/dev/null
+  yum install https://artifacts.elastic.co/downloads/kibana/kibana-${VERSION}-x86_64.rpm -y &>>/tmp/lab.log
   STAT $? 
 
   Print "Installing Java"
@@ -44,7 +44,7 @@ if [ "$SKIP" != "TRUE" ]; then
   STAT $?
 
   Print "Installing Logstash"
-  yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.rpm -y &>/dev/nulll 
+  yum install https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}-x86_64.rpm -y &>>/tmp/lab.log
   STAT $? 
 fi 
 
