@@ -19,3 +19,4 @@ yum install docker-ce docker-ce-cli containerd.io -y
 systemctl enable docker
 systemctl start docker
 
+usermod -a -G docker ec2-user
