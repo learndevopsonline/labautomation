@@ -1,4 +1,5 @@
 #!/bin/bash
 
-curl -L -s get.docker.com | bash
+yum install -y yum-utils
+
 
