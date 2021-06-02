@@ -1,6 +1,5 @@
 #!/bin/bash
 
-yum install -y yum-utils
 echo '[docker-ce-stable]
 name=Docker CE Stable - $basearch
 baseurl=https://download.docker.com/linux/centos/$releasever/$basearch/stable
