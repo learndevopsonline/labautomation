@@ -1,4 +1,4 @@
 #!/bin/bash
 
-curl -s get.docker.com | bash
+curl -L -s get.docker.com | bash
 
