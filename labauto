@@ -25,8 +25,16 @@ if [ "$EL" != "el7" ]; then
 	exit 1
 fi
 
-cd /tmp
-rm -rf labautomation
-git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+if [ "$1" == "clean" ]; then
+  cd /tmp
+  rm -rf labautomation
+else
+  if [ -d /tmp/labautomation ]; then
+    cd /tmp/labautomation
+    git pull &>/dev/null
+  else
+    git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+  fi
+fi
 
 sh /tmp/labautomation/setup.sh $*
