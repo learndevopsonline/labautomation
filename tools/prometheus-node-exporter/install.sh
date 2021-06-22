@@ -7,6 +7,7 @@ fi
 
 if [ -d /opt/node_exporter ]; then 
   rm -rf /opt/node_exporter
+  exit 0
 fi 
 
 URL=$(curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http)
