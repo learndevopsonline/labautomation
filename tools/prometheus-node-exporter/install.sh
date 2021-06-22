@@ -7,6 +7,8 @@ fi
 
 if [ -d /opt/node_exporter ]; then 
   rm -rf /opt/node_exporter
+  systemctl enable node_exporter
+  systemctl start node_exporter
   exit 0
 fi 
 
