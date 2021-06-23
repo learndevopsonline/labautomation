@@ -13,3 +13,5 @@ if [ $? -ne 0 ]; then
 fi
 
 ## Call the load gen script
+
+read -p 'Enter Frontend IP Address: ' ip
