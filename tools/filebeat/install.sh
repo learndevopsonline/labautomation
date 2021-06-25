@@ -1,5 +1,19 @@
 #!/bin/bash
 
+Y="\e[33m"
+N="\e[0m"
+
+STAT() {
+  if [ $1 -ne 0 ]; then
+    echo "\e[31mFAILED\e[0m"
+    exit 1
+  fi
+}
+
+Print() {
+  echo -e "${Y}${1}${N}"
+}
+
 rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 
 echo '[elastic-7.x]
