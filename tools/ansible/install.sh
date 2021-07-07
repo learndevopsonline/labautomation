@@ -1,6 +1,5 @@
 #!/bin/bash 
 
-yum install ansible -y
-yum remove ansible -y 
-rm -rf /usr/lib/python2.7/site-packages/ansible*
-pip install ansible==3.4.0
+yum install python3-pip -y
+pip3 install pip --upgrade
+pip install ansible==4.1.0
