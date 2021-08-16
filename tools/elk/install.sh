@@ -18,7 +18,9 @@ yum install kibana  --enablerepo=elasticsearch -y
 systemctl enable kibana
 systemctl start kibana
 
-
+yum install logstash --enablerepo=elasticsearch -y
+systemctl enable logstash
+systemclt start logstash
 
 exit 0
 
