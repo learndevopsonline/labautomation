@@ -12,9 +12,9 @@ autorefresh=1
 type=rpm-md' > /etc/yum.repos.d/elastic.repo
 yum install --enablerepo=elasticsearch elasticsearch -y
 systemctl enable elasticsearch
-systemctl start elasticsearch --enablerepo=elasticsearch -y
+systemctl start elasticsearch  -y
 
-yum install kibana -y
+yum install kibana  --enablerepo=elasticsearch -y
 systemctl enable kibana
 systemctl start kibana
 
