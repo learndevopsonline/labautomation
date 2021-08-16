@@ -9,7 +9,8 @@ source /tmp/common-functions.sh
 if [ ! -d /tmp/labautomation  ]; then 
 	git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
 else 
-	cd /tmp/labautomation 
+	cd /tmp/labautomation
+	git stash &>/dev/null
 	git pull &>/dev/null
 fi 
 
