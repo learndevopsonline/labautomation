@@ -1,11 +1,21 @@
 #!/bin/bash 
 
-rpm -qa | grep elasticsearch &>/dev/null 
-if [ $? -eq 0 ]; then 
-  echo "Already Installed"
-  SKIP=TRUE
-  #exit 0 
-fi
+rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+echo '[elasticsearch]
+name=Elasticsearch repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/7.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=0
+autorefresh=1
+type=rpm-md' > /etc/yum.repos.d/elastic.repo
+yum install --enablerepo=elasticsearch elasticsearch -y
+systemctl enable elasticsearch
+systemctl start elasticsearch
+
+
+
 
 Y="\e[33m"
 N="\e[0m"
