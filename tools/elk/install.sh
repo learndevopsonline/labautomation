@@ -39,7 +39,7 @@ Stat $? "Install LogStash"
 
 systemctl enable logstash &>>/tmp/elastic.log
 systemctl  start logstash &>>/tmp/elastic.log
-Stat $? "Start Kibana"
+Stat $? "Start Logstash"
 
 
 echo 'input {
