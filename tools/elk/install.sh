@@ -37,11 +37,6 @@ Stat $? "Start Kibana"
 yum install logstash --enablerepo=elasticsearch -y &>>/tmp/elastic.log
 Stat $? "Install LogStash"
 
-systemctl enable logstash &>>/tmp/elastic.log
-systemctl  start logstash &>>/tmp/elastic.log
-Stat $? "Start Logstash"
-
-
 echo 'input {
   beats {
     port => 5044
@@ -55,8 +50,13 @@ output {
   }
 }' >/etc/logstash/conf.d/logstash.conf
 
+systemctl enable logstash &>>/tmp/elastic.log
+systemctl start logstash &>>/tmp/elastic.log
+Stat $? "Start Logstash"
+
 yum install nginx -y &>/dev/null
 Stat $? "Install Nginx"
+
 
 curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/elk/http-proxy.conf >/etc/nginx/nginx.conf
 systemctl enable nginx
