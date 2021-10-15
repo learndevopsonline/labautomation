@@ -20,5 +20,6 @@ for component in Catalogue Cart User Shipping Payment; do
     echo -e "Checking Configuration for $i - FOUND"
   else
     echo -e "Checking Configuration for $i - NOT FOUND"
+    continue 
   fi
 done
