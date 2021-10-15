@@ -17,8 +17,8 @@ fi
 for component in Catalogue Cart User Shipping Payment; do
   cat /etc/nginx/default.d/roboshop.conf | grep -i "$component" | grep localhost &>/dev/null
   if [ $? -eq 0 ]; then
-    echo -e "Checking Configuration for $component - NOT FOUND"
+    echo -e "Checking Configuration for $component - \e[1;31mNOT FOUND\e[0m"
     continue
   fi
-  echo -e "Checking Configuration for $component - FOUND"
+  echo -e "Checking Configuration for $component - \e[1;32mFOUND\e[0m"
 done
