@@ -40,4 +40,5 @@ for component in Catalogue Cart User Shipping Payment; do
     echo exiting ....
     exit 1
   fi
+  pwd
 done
