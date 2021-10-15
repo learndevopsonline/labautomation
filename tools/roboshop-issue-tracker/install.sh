@@ -21,4 +21,7 @@ for component in Catalogue Cart User Shipping Payment; do
     continue
   fi
   echo -e "Checking Configuration for $component - \e[1;32mFOUND\e[0m"
+  echo -e "Grabbing IP Address of $component"
+  IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+  echo -e "Found , $component IP, IP = $IP"
 done
