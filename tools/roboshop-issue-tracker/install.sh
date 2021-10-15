@@ -11,3 +11,14 @@ if [ "$ACTION" == "Y" ]; then
 else
   exit
 fi
+
+## Cases
+
+for component in Catalogue Cart User Shipping Payment; do
+  cat /etc/nginx/default.d/roboshop.conf | grep $i | grep localhost &>/dev/null
+  if [ $? -eq 0 ]; then
+    echo -e "Checking Configuration for $i - FOUND"
+  else
+    echo -e "Checking Configuration for $i - NOT FOUND"
+  fi
+done
