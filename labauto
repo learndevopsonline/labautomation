@@ -15,7 +15,7 @@ CheckFirewall &>/dev/null
 ## Supported OS's
 # CentOS 7
 if [ ! -f /etc/centos-release ]; then
-	error "Curently this setup works only for CentOS Operating System"
+	error "Currently this setup works only for CentOS Operating System"
 	exit 1
 fi
 
@@ -32,6 +32,10 @@ else
   if [ -d /tmp/labautomation ]; then
     cd /tmp/labautomation
     git pull &>/dev/null
+    if [ $? -ne 0 ]; then
+      rm -rf /tmp/lab*
+      git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+    fi
   else
     git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
   fi

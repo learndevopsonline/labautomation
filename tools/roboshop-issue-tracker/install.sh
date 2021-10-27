@@ -17,6 +17,18 @@ DLIM() {
 }
 
 ## Cases
+RHEAD() {
+  echo -e "\e[1m Following are the possible mistakes that you have done\e[0m"
+}
+R1() {
+  echo -e "  \e[1;35m->\e[0m Check whether the IP address of the $component"
+}
+R2() {
+  echo -e "  \e[1;35m->\e[0m Check whether the Server of the $component is Up and Running in AWS Portal"
+}
+R3() {
+  echo -e "  \e[1;35m->\e[0m Check whether the Server of the $component has opened all the ports or not"
+}
 
 for component in Catalogue Cart User Shipping Payment; do
   DLIM
@@ -37,6 +49,7 @@ for component in Catalogue Cart User Shipping Payment; do
     echo -e "Connection \e[1;32mSUCCESS\e[0m"
   else
     echo -e "Connection \e[1;31mFAILURE\e[0m"
+    RHEAD; R1; R2; R3
     echo exiting ....
     exit 1
   fi
