@@ -28,6 +28,8 @@ fi
 if [ "$1" == "clean" ]; then
   cd /tmp
   rm -rf labautomation
+  echo -e "\e[1;35m Cleanup Succeeded\e[0m"
+  exit 0
 else
   if [ -d /tmp/labautomation ]; then
     cd /tmp/labautomation
