@@ -5,7 +5,7 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi 
 
-yum install java-1.8.0-openjdk-devel unzip  -y
+yum install java-11-openjdk.x86_64 java-11-openjdk-devel.x86_64 -y
 
 VERSION=$(curl -s https://maven.apache.org/download.cgi  | grep Downloading |awk '{print $NF}' |awk -F '<' '{print $1}')
 cd /opt
