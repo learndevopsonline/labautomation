@@ -17,4 +17,11 @@ read -p 'Enter Frontend IP Address: ' ip
 read -p 'Enter Number of Clients: ' clients
 read -p 'Enter Howmuch time to run[10m|1hr]: ' time
 
-docker run -e "HOST=http://${ip}/" -e "NUM_CLIENTS=${clients}" -e "RUN_TIME=${time}" -e "ERROR=0" -e "SILENT=1" robotshop/rs-load
+nc -w 3 -z ip 443
+if [ $? -eq 0 ]; then
+  URL="https://${ip}/"
+else
+  URL="http://${ip}/"
+fi
+
+docker run -e "HOST=${URL}" -e "NUM_CLIENTS=${clients}" -e "RUN_TIME=${time}" -e "ERROR=0" -e "SILENT=1" robotshop/rs-load
