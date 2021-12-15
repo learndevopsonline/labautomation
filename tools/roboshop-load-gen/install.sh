@@ -17,7 +17,7 @@ read -p 'Enter Frontend IP Address: ' ip
 read -p 'Enter Number of Clients: ' clients
 read -p 'Enter Howmuch time to run[10m|1hr]: ' time
 
-nc -w 3 -z ip 443
+nc -w 3 -z ${ip} 443
 if [ $? -eq 0 ]; then
   URL="https://${ip}/"
 else
