@@ -15,5 +15,6 @@ https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Instances:
 
 ## 4. Take the Public IP address and connect with Putty.
 
-# Username / Password : root / DevOps321 
+# Username / Password : 
+#                       root / DevOps321 
 #                       centos / DevOps321
