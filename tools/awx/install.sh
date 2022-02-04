@@ -20,7 +20,7 @@ Stat $?
 ln -s /usr/bin/python3 /usr/bin/python33 || true
 
 echo "Install Docker"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-docker-ce.sh | bash  &>>$LOG
+curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-for-devops-trainings.sh | bash  &>>$LOG
 Stat $?
 
 echo "Install DOcker-Compose"
@@ -32,7 +32,8 @@ curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/
 Stat $?
 
 echo "Install Ansible"
-yum install ansible -y &>>$LOG 
+pip3 install pip --upgrade  &>>$LOG
+pip3 install ansible  &>>$LOG
 Stat $?
 
 echo -e "Install python modules"
