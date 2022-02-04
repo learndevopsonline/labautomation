@@ -1,0 +1,52 @@
+## COLORS
+N="\e[0m"
+GBP() {
+  GB="\e[32m"
+  echo -e "${GB}${1}${N}"
+}
+
+YBP() {
+  YB="\e[32m"
+  echo -e "${YB}${1}${N}"
+}
+
+BP() {
+  BP="\e[1m${1}\e[0m"
+}
+
+FIND_AMI() {
+  aws ec2 describe-images --filters "Name=name,Values=Centos-7-DevOps-Practice" --query 'Images[*].[ImageId]' --output text
+}
+
+CHOOSE_INSTANCE_TYPE() {
+  GBP "Choose Instance Type"
+  GBP "--------------------"
+  BP  "1. t2.micro"
+  YBP "2. t3.micro"
+  BP  "3. t3.small"
+  BP  "4. t3.medium"
+  BP  "5. other"
+  read -p "Select Instance> " instance
+  case $instance in
+    1|t2.micro) INSTANCE_TYPE="t2.micro";;
+    2|t3.micro) INSTANCE_TYPE="t3.micro";;
+    3|t3.small) INSTANCE_TYPE="t3.small";;
+    4|t3.medium) INSTANCE_TYPE="t3.medium";;
+    *)
+      echo "Feature not enabled yet!!"
+      exit
+      #echo "Enter your Instance Type: "
+      ;;
+  esac
+}
+
+ENTER_INSTANCE_NAME() {
+  read -p 'Enter Instance Name:' INSTANCE_NAME
+}
+
+CHOOSE_SG_ID() {
+  select sg in $(aws ec2 describe-security-groups  --query "SecurityGroups[*].[GroupName]" --output text); do
+    break
+  done
+  SG_ID=${sg}
+}
