@@ -19,7 +19,8 @@ fi
 
 echo -e "${Y}>>>>> Select a AWS Operation to Perform${N}"
 export PS3="Select Action> "
-select action in `ls -1 /tmp/labautomation/aws/*.sh | sed -e 's/.sh$//'`; do
+cd /tmp/labautomation/aws
+select action in `ls -1 *.sh | sed -e 's/.sh$//'`; do
 		echo -e "\e[1;33m★★★ Performing $action ★★★\e[0m"
 		sh /tmp/labautomation/aws/$action.sh
 		break
