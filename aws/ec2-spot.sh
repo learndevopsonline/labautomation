@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /tmp/labautomation/aws/common
+source /tmp/labautomation/aws/commons
 
 AMI=$(FIND_AMI)
 
