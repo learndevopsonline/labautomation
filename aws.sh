@@ -17,6 +17,8 @@ else
 	git pull &>/dev/null
 fi
 
+cp -r ~/.aws /root/.aws
+
 echo -e "${Y}>>>>> Select a AWS Operation to Perform${N}"
 export PS3="Select Action> "
 cd /tmp/labautomation/aws
