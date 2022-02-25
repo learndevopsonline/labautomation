@@ -41,7 +41,7 @@ CHOOSE_INSTANCE_TYPE() {
 }
 
 ENTER_INSTANCE_NAME() {
-  read -p 'Enter Instance Name:' INSTANCE_NAME
+  read -p 'Enter Instance Name: ' INSTANCE_NAME
 }
 
 CHOOSE_SG_ID() {
