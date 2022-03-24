@@ -94,26 +94,26 @@ curl -X 'DELETE' \
   -H 'accept: application/json'
 
 
-curl -X 'DELETE' \
+curl -f -v -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/maven-public' \
   -H 'accept: application/json'
 
-curl -X 'DELETE' \
+curl -f -v  -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/maven-releases' \
   -H 'accept: application/json'
 
-curl -X 'DELETE' \
+curl -f -v -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/maven-snapshots' \
   -H 'accept: application/json'
 
-curl -X 'DELETE' \
+curl -f -v -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/nuget-group' \
   -H 'accept: application/json'
 
-curl -X 'DELETE' \
+curl -f -v -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/nuget-hosted' \
   -H 'accept: application/json'
 
-curl -X 'DELETE' \
+curl -f -v -X 'DELETE' \
   'http://44.199.253.9:8081/service/rest/v1/repositories/nuget.org-proxy' \
   -H 'accept: application/json'
