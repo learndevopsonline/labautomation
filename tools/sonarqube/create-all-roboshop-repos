@@ -18,3 +18,75 @@ curl -v -f -u "${LOGIN}" -X 'POST' \
   }
 }'
 
+curl -v -f -u "${LOGIN}" -X 'POST' \
+  'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "catalogue",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  }
+}'
+
+curl -v -f -u "${LOGIN}" -X 'POST' \
+  'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "user",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  }
+}'
+
+curl -v -f -u "${LOGIN}" -X 'POST' \
+  'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "frontend",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  }
+}'
+
+curl -v -f -u "${LOGIN}" -X 'POST' \
+  'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "shipping",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  }
+}'
+
+curl -v -f -u "${LOGIN}" -X 'POST' \
+  'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "payment",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  }
+}'
+
+
+
