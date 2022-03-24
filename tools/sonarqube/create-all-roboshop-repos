@@ -4,7 +4,7 @@ if [ -z "$LOGIN" ]; then
   LOGIN="admin:admin123"
 fi
 
-curl -u "${LOGIN}" -X 'POST' \
+curl -v -f -u "${LOGIN}" -X 'POST' \
   'http://localhost:8081/service/rest/v1/repositories/raw/hosted' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
