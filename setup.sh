@@ -19,7 +19,7 @@ echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 bash /tmp/labautomation/devopsmenu
 echo -e "💡 \e[1m You can choose number or tool name\e[0m"
 read -p 'Select Tool> ' tool
-SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
+SCRIPT_NO=$(ls -1 /tmp/labautomation/tools | cat -n | grep -w $tool | awk '{print $NF}')
 echo $SCRIPT_NO
 if [ ! -f /tmp/labautomation/tools/$tool/install.sh ]; then
   echo -e "\e[1;31m No Install Script Found \e[0m"
