@@ -44,9 +44,11 @@ DLIM
 for component in cart catalogue user shipping payment ; do
   echo -n -e "Checking $component Config.. "
   OUT=$(grep $component /etc/nginx/default.d/roboshop.conf | xargs -n1 | grep ^http | awk -F '[:,/]' '{print $4}')
-  if [ "$OUT" == "localhost" ]; then
-    echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further\e[0m"
+  if [ "$OUT" != "localhost" ]; then
+    echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further for this component\e[0m"
     FINAL="$FINAL $component"
+  else
+    echo -e "\e[1;31m Config Not Found\e[0m - \e[1m Will Not Check Further for this component\e[0m"
   fi
   echo
 done
