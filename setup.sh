@@ -17,7 +17,7 @@ fi
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 
 bash /tmp/labautomation/devopsmenu
-echo -e "💡 \e[1m You can choose number or tool name\e[0m"
+echo -e "💡\e[1m You can choose number or tool name\e[0m"
 read -p 'Select Tool> ' tool
 TOOL_NAME_FROM_NUMBER=$(ls -1 /tmp/labautomation/tools | cat -n | grep -w $tool | awk '{print $NF}')
 
