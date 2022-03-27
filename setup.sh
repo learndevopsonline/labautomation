@@ -13,7 +13,7 @@ else
 	git stash &>/dev/null
 	git pull &>/dev/null
 fi 
-SELECT() {
+function SELECT() {
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool> "
 select tool in `ls -1 /tmp/labautomation/tools`; do
@@ -38,6 +38,6 @@ select tool in `ls -1 /tmp/labautomation/tools`; do
 		esac
 		break
 done
-} <(timeout 2s cat /dev/urandom)
+}< <(timeout 2s cat /dev/urandom)
 
 SELECT
