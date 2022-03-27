@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -e "\n\n\e[1;33m This script helps you to Check the Issues of RoboShop\e[0m"
-echo -e "\e[1m Note: This script is still under development and does not have all the cases ready yet\e[0m"
+echo -e "\e[1m Note: This script is still under development and does not have all the cases ready yet.\e[0m"
 
 echo -e "\nThis script runs only in FRONTEND, Hence if you are sure that you are \nrunning under frontend server then proceed.."
 read -p 'Proceed [Y|n]: ' action
@@ -19,9 +19,13 @@ DLIM() {
   echo -e "---------------------------------------------------------------------------------------------------------"
 }
 
+DLIM1() {
+  echo -e "_________________________________________________________________________________________________________"
+}
+
 ## Cases
 RHEAD() {
-  echo -e "\e[1m Following are the possible mistakes that you have done\e[0m"
+  echo -e "\n\e[1m Following are the possible mistakes that you have done\e[0m"
 }
 R1() {
   echo -e "  \e[1;35m->\e[0m Check whether the IP address of the $component"
