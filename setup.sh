@@ -1,10 +1,5 @@
 #!/bin/bash
 
-function SELECT() {
-select tool in `ls -1 /tmp/labautomation/tools`; do
-  break
-done
-}< <(timeout 2s cat /dev/urandom)
 SELECT
 
 echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/linuxautomations/labautomation/tree/master/tools\n"
