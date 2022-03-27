@@ -16,10 +16,8 @@ fi
 
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool (Choose Number / Name)> "
-echo `ls -1 /tmp/labautomation/tools`
-
-exit
 select tool in `ls -1 /tmp/labautomation/tools`; do
+  exit
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
 	case $SCRIPT_NO in 
 		1) 
