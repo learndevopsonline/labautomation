@@ -54,9 +54,8 @@ for component in cart catalogue user shipping payment ; do
   echo
   sleep 1
 done
-echo $FINAL
-exit
-for component in Catalogue Cart User Shipping Payment; do
+
+for component in ${FINAL}; do
   DLIM
   cat /etc/nginx/default.d/roboshop.conf | grep -i "$component" | grep localhost &>/dev/null
   if [ $? -eq 0 ]; then
