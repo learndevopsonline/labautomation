@@ -43,13 +43,13 @@ echo -e "\e[1m Checking Nginx Configuration\e[0m"
 DLIM1
 for component in cart catalogue user shipping payment ; do
   [ "$component" == "cart" -o "$component" == "user" ] && TAB="\t"
-  echo -n -e "Checking $component Config.. \t"
+  echo -n -e "Checking $component Config.. \t${TAB}"
   OUT=$(grep $component /etc/nginx/default.d/roboshop.conf | xargs -n1 | grep ^http | awk -F '[:,/]' '{print $4}')
   if [ "$OUT" != "localhost" ]; then
-    echo -e "\e[1;32m${TAB}Config Found\e[0m - \e[1m Will Check Further for this component\e[0m"
+    echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further for this component\e[0m"
     FINAL="$FINAL $component"
   else
-    echo -e "\e[1;31m${TAB}Config Not Found\e[0m - \e[1m Will Not Check Further for this component\e[0m"
+    echo -e "\e[1;31m Config Not Found\e[0m - \e[1m Will Not Check Further for this component\e[0m"
   fi
   echo
   sleep 1
