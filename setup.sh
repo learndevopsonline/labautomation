@@ -15,36 +15,26 @@ else
 fi 
 
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
-export PS3="Select Tool (Choose Number / Name)> "
-i=0;j=10
-for tool in `ls -1 /tmp/labautomation/tools`; do
-  ls -1 /tmp/labautomation/tools | sed -n -e "1,$j p"
-  break
+export PS3="Select Tool> "
+select tool in `ls -1 /tmp/labautomation/tools`; do
+	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
+	case $SCRIPT_NO in
+		1)
+			echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
+			sh /tmp/labautomation/tools/$tool/install.sh
+			;;
+		0)
+			echo -e "No Install Script Found"
+			exit 1
+			;;
+		*)
+			echo -e "\e[31m Found Multiple Scripts, Choose One.. "
+			select script in `ls -1 /tmp/labautomation/tools/$tool/*.sh | awk -F / '{print $NF}'`; do
+				echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
+				sh /tmp/labautomation/tools/$tool/$script
+				break
+			done
+			;;
+		esac
+		break
 done
-
-echo TOOL = $tool
-#  if [ ! -f /tmp/labautomation/tools/$tool/*.sh ]
-#
-#  echo Tool - $tool
-#  exit
-#	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
-#	case $SCRIPT_NO in
-#		1)
-#			echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
-#			sh /tmp/labautomation/tools/$tool/install.sh
-#			;;
-#		0)
-#			echo -e "No Install Script Found"
-#			exit 1
-#			;;
-#		*)
-#			echo -e "\e[31m Found Multiple Scripts, Choose One.. "
-#			select script in `ls -1 /tmp/labautomation/tools/$tool/*.sh | awk -F / '{print $NF}'`; do
-#				echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
-#				sh /tmp/labautomation/tools/$tool/$script
-#				break
-#			done
-#			;;
-#		esac
-#		break
-#done
