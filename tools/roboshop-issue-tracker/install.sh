@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(basedir)/functions
+
 echo -e "\n\n\e[1;33m This script helps you to Check the Issues of RoboShop\e[0m"
 echo -e "\e[1m Note: This script is still under development and does not have all the cases ready yet.\e[0m"
 
@@ -61,17 +63,5 @@ for component in ${FINAL}; do
   echo -e "Grabbing IP Address of $component"
   IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
   echo -e "\e[1mIP = ${IP}\e[0m"
-  exit
-  DLIM
-  echo -e "Connecting to $component and checking the status"
-  nc -w 5  -z $IP 22 &>/dev/null
-  if [ $? -eq 0 ]; then
-    echo -e "Connection \e[1;32mSUCCESS\e[0m"
-  else
-    echo -e "Connection \e[1;31mFAILURE\e[0m"
-    RHEAD; R1; R2; R3
-    echo exiting ....
-    exit 1
-  fi
-  pwd
+  CHECK_CONNECTION
 done
