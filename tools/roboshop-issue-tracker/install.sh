@@ -42,8 +42,8 @@ DLIM
 echo -e "\e[1m Checking Nginx Configuration\e[0m"
 DLIM1
 for component in cart catalogue user shipping payment ; do
-  [ "$component" == "cart" -o "$component" == "user" ] && COMPONENT="$component\t" || COMPONENT=$component
-  echo -n -e "Checking $COMPONENT Config.. \t"
+  [ "$component" == "cart" -o "$component" == "user" ] && TAB="\t"
+  echo -n -e "Checking $COMPONENT Config.. \t${TAB}"
   OUT=$(grep $component /etc/nginx/default.d/roboshop.conf | xargs -n1 | grep ^http | awk -F '[:,/]' '{print $4}')
   if [ "$OUT" != "localhost" ]; then
     echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further for this component\e[0m"
