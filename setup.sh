@@ -22,7 +22,7 @@ read -p 'Select Tool> ' tool
 TOOL_NAME_FROM_NUMBER=$(ls -1 /tmp/labautomation/tools | cat -n | grep -w $tool | awk '{print $NF}')
 
 if [ ! -f /tmp/labautomation/tools/$tool/install.sh -a -z "${TOOL_NAME_FROM_NUMBER}" ]; then
-  echo -e "\e[1;31m No Install Script Found \e[0m"
+  echo -e "\e[1;31m Given Tool Not Found \e[0m"
   exit 1
 fi
 echo TOOL_NAME=${TOOL_NAME_FROM_NUMBER}
