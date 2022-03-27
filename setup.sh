@@ -12,11 +12,19 @@ else
 	cd /tmp/labautomation
 	git stash &>/dev/null
 	git pull &>/dev/null
-fi 
-function SELECT() {
+fi
+
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
-export PS3="Select Tool> "
+
+function SELECT() {
+export PS3=""
 select tool in `ls -1 /tmp/labautomation/tools`; do
+  break
+done
+}< <(timeout 2s cat /dev/urandom)
+
+SELECT
+exit
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
 	case $SCRIPT_NO in
 		1)
@@ -37,7 +45,3 @@ select tool in `ls -1 /tmp/labautomation/tools`; do
 			;;
 		esac
 		break
-done
-}< <(timeout 2s cat /dev/urandom)
-
-SELECT
