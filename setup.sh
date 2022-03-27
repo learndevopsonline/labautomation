@@ -15,7 +15,7 @@ else
 fi 
 
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
-export PS3="$(read -p 'Select Tool' tool)"
+export PS3="\$(read -p 'Select Tool' tool)"
 select tool in `ls -1 /tmp/labautomation/tools`; do
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
 	case $SCRIPT_NO in
