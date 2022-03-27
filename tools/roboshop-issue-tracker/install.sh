@@ -52,6 +52,7 @@ for component in cart catalogue user shipping payment ; do
     echo -e "\e[1;31m Config Not Found\e[0m - \e[1m Will Not Check Further for this component\e[0m"
   fi
   echo
+  sleep 1
 done
 echo $FINAL
 exit
