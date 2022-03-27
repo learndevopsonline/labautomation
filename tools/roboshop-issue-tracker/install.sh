@@ -40,7 +40,7 @@ R3() {
 ## Report Configuration
 DLIM
 echo -e "\e[1m Checking Nginx Configuration\e[0m"
-DLIM
+DLIM1
 for component in cart catalogue user shipping payment ; do
   [ "$component" == "cart" -o "$component" == "user" ] && COMPONENT="$component\t"
   echo -n -e "Checking $COMPONENT Config.. \t"
