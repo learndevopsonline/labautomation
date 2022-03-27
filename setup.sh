@@ -16,7 +16,7 @@ fi
 
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 
-SELECT
+bash /tmp/labautomation/devopsmenu
 
 exit
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
