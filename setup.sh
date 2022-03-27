@@ -18,7 +18,7 @@ echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 export PS3="Select Tool (Choose Number / Name)> "
 i=0;j=10
 for tool in `ls -1 /tmp/labautomation/tools`; do
-  ls -1 /tmp/labautomation/tools | sed -n -e "1,$j"
+  ls -1 /tmp/labautomation/tools | sed -n -e "1,$j p"
   break
 done
 
