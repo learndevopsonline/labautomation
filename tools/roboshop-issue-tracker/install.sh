@@ -48,6 +48,7 @@ for component in cart catalogue user shipping payment ; do
     echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further\e[0m"
     FINAL="$FINAL $component"
   fi
+  echo
 done
 echo $FINAL
 exit
