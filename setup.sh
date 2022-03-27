@@ -25,25 +25,20 @@ if [ ! -f /tmp/labautomation/tools/$tool/install.sh -a -z "${TOOL_NAME_FROM_NUMB
   echo -e "\e[1;31m Given Tool Not Found \e[0m"
   exit 1
 fi
-echo TOOL_NAME=${TOOL_NAME_FROM_NUMBER}
-exit
-	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
-	case $SCRIPT_NO in
-		1)
+tool=${TOOL_NAME_FROM_NUMBER}
+SCRIPT_COUNT=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
+case $SCRIPT_COUNT in
+  1)
+    echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
+		sh /tmp/labautomation/tools/$tool/install.sh
+		;;
+	*)
+		echo -e "\e[31m Found Multiple Scripts, Choose One.. "
+		select script in `ls -1 /tmp/labautomation/tools/$tool/*.sh | awk -F / '{print $NF}'`; do
 			echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
-			sh /tmp/labautomation/tools/$tool/install.sh
-			;;
-		0)
-			echo -e "No Install Script Found"
-			exit 1
-			;;
-		*)
-			echo -e "\e[31m Found Multiple Scripts, Choose One.. "
-			select script in `ls -1 /tmp/labautomation/tools/$tool/*.sh | awk -F / '{print $NF}'`; do
-				echo -e "\e[1;33m★★★ Installing $tool ★★★\e[0m"
-				sh /tmp/labautomation/tools/$tool/$script
-				break
-			done
-			;;
-		esac
-		break
+			sh /tmp/labautomation/tools/$tool/$script
+			break
+		done
+		;;
+esac
+
