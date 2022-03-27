@@ -25,7 +25,7 @@ if [ ! -f /tmp/labautomation/tools/$tool/install.sh -a -z "${TOOL_NAME_FROM_NUMB
   echo -e "\e[1;31m No Install Script Found \e[0m"
   exit 1
 fi
-
+echo TOOL_NAME=${TOOL_NAME_FROM_NUMBER}
 exit
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
 	case $SCRIPT_NO in
