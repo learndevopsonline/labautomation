@@ -37,6 +37,20 @@ R3() {
   echo -e "  \e[1;35m->\e[0m Check whether the Server of the $component has opened all the ports or not"
 }
 
+## Report Configuration
+DLIM
+echo -e "e\[1m Checking Nginx Configuration\e[0m"
+DLIM
+for component in cart catalogue user shipping payment ; do
+  echo -n -e "Checking $component Config"
+  OUT=$(grep $component /etc/nginx/default.d/roboshop.conf | xargs -n1 | grep ^http | awk -F '[:,/]' '{print $4}')
+  if [ "$OUT" == "localhost" ]; then
+    echo -e "\e[1;32m Config Found\e[0m - \e[1m Will Check Further"
+    FINAL="$FINAL $component"
+  fi
+done
+
+exit
 for component in Catalogue Cart User Shipping Payment; do
   DLIM
   cat /etc/nginx/default.d/roboshop.conf | grep -i "$component" | grep localhost &>/dev/null
