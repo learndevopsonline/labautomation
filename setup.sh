@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SELECT
-
 echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/linuxautomations/labautomation/tree/master/tools\n"
 
 curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" >/tmp/common-functions.sh
@@ -18,7 +16,7 @@ fi
 
 echo -e "${Y}>>>>> Select a TOOL to Install${N}"
 
-
+SELECT
 
 exit
 	SCRIPT_NO=$(ls /tmp/labautomation/tools/$tool/*.sh |wc -l)
