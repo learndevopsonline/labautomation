@@ -49,7 +49,7 @@ for component in cart catalogue user shipping payment ; do
     FINAL="$FINAL $component"
   fi
 done
-
+echo $FINAL
 exit
 for component in Catalogue Cart User Shipping Payment; do
   DLIM
