@@ -19,7 +19,7 @@ Stat $?
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key &>>/tmp/jinstall.log 
 Stat $?
 
-sudo yum install jenkins -y &>>/tmp/jinstall.log 
+yum install jenkins -y &>>/tmp/jinstall.log
 Stat $?
 
 systemctl enable jenkins  &>>/tmp/jinstall.log 
