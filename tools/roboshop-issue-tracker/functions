@@ -1,3 +1,6 @@
+LOG=/tmp/issue-track.log
+rm -f $LOG
+
 ## Color Print
 ## Color Code - XX
 # b-Black, R-RED, G-GREEN, Y-YELLOW, B-BLUE, M-MAGENTA, C-CYAN, w-white

@@ -1,8 +1,6 @@
 #!/bin/bash
 
 source $(dirname $0)/functions
-LOG=/tmp/issue-track.log
-rm -f $LOG
 
 echo -e "\n\n\e[1;33m This script helps you to Check the Issues of RoboShop\e[0m"
 echo -e "\e[1m Note: This script is still under development and does not have all the cases ready yet.\e[0m"
