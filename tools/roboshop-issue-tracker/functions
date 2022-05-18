@@ -35,7 +35,7 @@ R03() {
 EXIT() {
   DLIM1
   wB "Read the possible solutions"
-  DLIM1
+  DLIM
   case $1 in
     CON1)
       # This is for SSH connection Failure , SSH port not reachable over nc
@@ -46,7 +46,7 @@ EXIT() {
       ## THis is a MongoDB Port connection failure
       R03
   esac
-  DLIM1
+  DLIM
   exit 1
 }
 
