@@ -10,6 +10,10 @@ wB() {
   echo -e "\e[1m${1}\e[0m"
 }
 
+CB() {
+  echo -e "\e[1m${1}\e[0m"
+}
+
 DLIM() {
   echo -e "---------------------------------------------------------------------------------------------------------"
 }
@@ -20,19 +24,29 @@ DLIM1() {
 
 
 R01() {
-  echo -e "-> Your Server $IP is not running, Ensure it is running"
+  CB "-> Your Server $IP is not running, Ensure it is running"
 }
 R02() {
-  echo -e "-> Your Server might be running, But the Security Group has not opened the ports, Ensure you attach the security group with all the ports opened as demonstrated during the training"
+  CB "-> Your Server might be running, But the Security Group has not opened the ports, Ensure you attach the security group with all the ports opened as demonstrated during the training"
+}
+R03() {
+  CB "-> MongoDB Port is not opened in security group, Also if the PORT is opened then DB is not running."
+
 }
 EXIT() {
+  DLIM1
+  wB "Read the possible solutions"
   case $1 in
     CON1)
       # This is for SSH connection Failure , SSH port not reachable over nc
       echo -e "SSH Connection to node is failure"
       R1;R2
       ;;
+    CON2)
+      ## THis is a MongoDB Port connection failure
+      R03
   esac
+  DLIM1
   exit 1
 }
 
@@ -66,5 +80,6 @@ CHECK_CONNECTION() {
     else
       wB "Port Check to MongoDB is \e[31mFAILURE"
       EXIT CON2
+    fi
   fi
 }
