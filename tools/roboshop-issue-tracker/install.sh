@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo $0
 source $(pwd)/functions
 
 echo -e "\n\n\e[1;33m This script helps you to Check the Issues of RoboShop\e[0m"
