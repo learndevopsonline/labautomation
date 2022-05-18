@@ -62,8 +62,9 @@ CHECK_CONNECTION() {
   if [ -n "${DBPORT}" ]; then
     nc -w 5 -z ${IP} ${DBPORT} &>/dev/null
     if [ $? -eq 0 ]; then
-      wB "Port Check to MongoDB is SUCCESS"
+      wB "Port Check to MongoDB is \e[32mSUCCESS"
     else
-      wB "Port Check to"
+      wB "Port Check to MongoDB is \e[31mFAILURE"
+      EXIT CON2
   fi
 }
