@@ -59,5 +59,5 @@ for component in ${FINAL}; do
   wB "IP = ${IP}"
   CHECK_CONNECTION
   scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
-  ssh $IP bash -x -s <$(dirname $0)/$component.bash
+  ssh $IP bash -s <$(dirname $0)/$component.bash
 done
