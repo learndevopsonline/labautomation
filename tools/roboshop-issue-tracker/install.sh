@@ -58,5 +58,5 @@ for component in ${FINAL}; do
   IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
   wB "IP = ${IP}"
   CHECK_CONNECTION
-  ssh $IP bash -s <$(dirname $0)/$component.bash 2>>${LOG}
+  ssh $IP bash -x -s <$(dirname $0)/$component.bash
 done
