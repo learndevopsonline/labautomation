@@ -11,7 +11,7 @@ wB() {
 }
 
 CB() {
-  echo -e "\e[1m${1}\e[0m"
+  echo -e "\e[1;36m${1}\e[0m"
 }
 
 DLIM() {
@@ -31,11 +31,11 @@ R02() {
 }
 R03() {
   CB "-> MongoDB Port is not opened in security group, Also if the PORT is opened then DB is not running."
-
 }
 EXIT() {
   DLIM1
   wB "Read the possible solutions"
+  DLIM1
   case $1 in
     CON1)
       # This is for SSH connection Failure , SSH port not reachable over nc
