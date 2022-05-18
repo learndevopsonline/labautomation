@@ -9,7 +9,7 @@ STAT "Restart Catalogue"
 echo -e "Checking MongoDB Status"
 
 ps -ef
-curl localhost:8080/health | jq .mongo
+curl 127.0.0.1:8080/health | jq .mongo
 DBSTAT=`curl -s localhost:8080/health | jq .mongo`
 if [ $DBSTAT == "true" ]; then
   wB "Catalogue Connecting to MongoDB is \e[32mSUCCESS"
