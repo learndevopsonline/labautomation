@@ -2,7 +2,7 @@
 
 source /tmp/functions
 #
-#echo -e "Restarting Catalogue"
+echo -e "Restarting Catalogue"
 #systemctl restart catalogue
 #STAT "Restart Catalogue"
 
