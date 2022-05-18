@@ -23,5 +23,6 @@ DLIM1
 echo "Finding IP address from Catalogue Config"
 IP=$(cat /etc/systemd/system/catalogue.service  | grep MONGO_URL  | awk -F '[:,/]' '{print $4}')
 wB "IP = $IP"
+DBPORT=27107
 CHECK_CONNECTION
 
