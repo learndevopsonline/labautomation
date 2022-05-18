@@ -12,7 +12,7 @@ DBSTAT=$(curl -s localhost:8080/health | jq .mongo)
 if [ $DBSTAT == "true" ]; then
   wB "Connection to MongoDB is \e[32mSUCCESS"
 else
-  wB "Connection to MongoDB is \e[32mFAILURE"
+  wB "Connection to MongoDB is \e[31mFAILURE"
 fi
 
 DLIM
