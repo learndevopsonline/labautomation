@@ -9,7 +9,7 @@ sleep 5
 
 echo -e "Checking MongoDB Status"
 curl localhost:8080/health | jq .mongo
-DBSTAT=`curl -s localhost:8080/health | jq .mongo`
+DBSTAT=$(curl -s localhost:8080/health | jq .mongo)
 if [ $DBSTAT == "true" ]; then
   wB "Catalogue Connecting to MongoDB is \e[32mSUCCESS"
 else
