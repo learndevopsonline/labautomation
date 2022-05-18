@@ -16,6 +16,6 @@ else
 fi
 
 DLIM
-echo -e "\e[1m Checking MongoDB \e[0m"
+wB "Checking MongoDB"
 DLIM1
 
