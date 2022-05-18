@@ -7,6 +7,7 @@ systemctl restart catalogue
 STAT "Restart Catalogue"
 
 echo -e "Checking MongoDB Status"
+netstat -lntp
 curl localhost:8080/health | jq .mongo
 DBSTAT=`curl -s localhost:8080/health | jq .mongo`
 if [ $DBSTAT == "true" ]; then
