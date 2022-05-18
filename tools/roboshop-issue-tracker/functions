@@ -39,12 +39,12 @@ CHECK_CONNECTION() {
   host $IP &>>${LOG}
   STAT "DNS Record Check"
 
-  echo -e "Checking SSH Connection to $IP"
+  wB "Checking SSH Connection to $IP"
   nc -w 5 -z $IP 22 &>/dev/null
   if [ $? -eq 0 ]; then
-    echo -e "Connection SSH \e[1;32mSUCCESS\e[0m"
+    wB "Connection SSH \e[1;32mSUCCESS\e[0m"
   else
-    echo -e "Connection SSH \e[1;31mFAILURE\e[0m"
+    wB "Connection SSH \e[1;31mFAILURE\e[0m"
     EXIT CON1
   fi
 }
