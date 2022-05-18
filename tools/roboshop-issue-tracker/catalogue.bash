@@ -5,6 +5,9 @@ source /tmp/functions
 
 echo -e "Restarting Catalogue"
 systemctl restart catalogue
+STAT "Restart Catalogue"
+
+
 DBSTAT=$(curl -s localhost:8080/health | jq .mongo)
 if [ $DBSTAT == "true" ]; then
   wB "Connection to MongoDB is SUCCESS"
