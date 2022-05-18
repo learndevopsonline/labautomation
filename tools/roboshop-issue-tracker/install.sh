@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source $(dirname $0)/functions
+LOG=/tmp/issue-track.log
+rm -f $LOG
 
 echo -e "\n\n\e[1;33m This script helps you to Check the Issues of RoboShop\e[0m"
 echo -e "\e[1m Note: This script is still under development and does not have all the cases ready yet.\e[0m"
@@ -62,7 +64,7 @@ for component in ${FINAL}; do
   DLIM1
   echo -e "Grabbing IP Address of $component"
   IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-  echo -e "\e[1mIP = ${IP}\e[0m"
+  wB "IP = ${IP}"
   CHECK_CONNECTION
-  ssh $IP bash -s <$(dirname $0)/$component.bash 2>>/tmp/issue-track.log
+  ssh $IP bash -s <$(dirname $0)/$component.bash 2>>${LOG}
 done

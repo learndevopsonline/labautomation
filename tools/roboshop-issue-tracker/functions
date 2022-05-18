@@ -1,3 +1,13 @@
+## Color Print
+## Color Code - XX
+# b-Black, R-RED, G-GREEN, Y-YELLOW, B-BLUE, M-MAGENTA, C-CYAN, w-white
+# B-BOLD, N-NORMAL
+
+wB() {
+  echo -e "\e[1m${1}\e[0m"
+}
+
+
 R01() {
   echo -e "-> Your Server $IP is not running, Ensure it is running"
 }
@@ -14,8 +24,20 @@ EXIT() {
   esac
   exit 1
 }
+
+STAT() {
+  if [ $? -eq 0 ]; then
+    wB "$1 - \e[32mSUCCESS"
+  else
+    wB "$1 - \e[31mFAILURE"
+    EXIT
+  fi
+}
+
 CHECK_CONNECTION() {
   echo -e "Checking DNS Record"
+  host $IP &>>${LOG}
+  STAT "DNS Record Check"
 
   echo -e "Checking SSH Connection to $IP"
   nc -w 5 -z $IP 22 &>/dev/null
