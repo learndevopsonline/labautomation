@@ -7,7 +7,7 @@ systemctl restart catalogue
 STAT "Restart Catalogue"
 
 echo -e "Checking MongoDB Status"
-curl -s localhost:8080/health | jq .mongo
+curl localhost:8080/health | jq .mongo
 DBSTAT=`curl -s localhost:8080/health | jq .mongo`
 if [ $DBSTAT == "true" ]; then
   wB "Catalogue Connecting to MongoDB is \e[32mSUCCESS"
