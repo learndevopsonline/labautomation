@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#source /tmp/functions
+source /tmp/functions
 #
 #echo -e "Restarting Catalogue"
 #systemctl restart catalogue
