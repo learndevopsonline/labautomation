@@ -60,5 +60,5 @@ for component in ${FINAL}; do
   CHECK_CONNECTION
   scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
   scp $(dirname $0)/$component.bash $IP:/tmp/$component.bash &>>${LOG}
-  ssh $IP "bash /tmp/$component.bash"
+  ssh -t $IP "bash /tmp/$component.bash"
 done
