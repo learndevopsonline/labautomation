@@ -64,5 +64,5 @@ for component in ${FINAL}; do
   IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
   echo -e "\e[1mIP = ${IP}\e[0m"
   CHECK_CONNECTION
-  ssh $IP <$component.bash
+  ssh $IP bash -s <$component.bash
 done
