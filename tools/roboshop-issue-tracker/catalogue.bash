@@ -4,6 +4,7 @@ source /tmp/functions
 #
 echo -e "Restarting Catalogue"
 systemctl restart catalogue
+sleep 5
 #STAT "Restart Catalogue"
 
 echo -e "Checking MongoDB Status"
