@@ -10,4 +10,7 @@ else
   echo -e "Connection to MongoDB is SUCCESS"
 fi
 
+DLIM
+echo -e "\e[1m Checking MongoDB - \e[0m"
+DLIM1
 
