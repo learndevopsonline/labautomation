@@ -35,6 +35,7 @@ else
     cd /tmp/labautomation
     git pull &>/dev/null
     if [ $? -ne 0 ]; then
+      cd /tmp
       rm -rf /tmp/lab*
       git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
     fi
