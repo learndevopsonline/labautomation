@@ -10,9 +10,9 @@ STAT "Restart Catalogue"
 echo -e "Checking MongoDB Status"
 DBSTAT=$(curl -s localhost:8080/health | jq .mongo)
 if [ $DBSTAT == "true" ]; then
-  wB "Connection to MongoDB is \e[32mSUCCESS"
+  wB "Catalogue Connecting to MongoDB is \e[32mSUCCESS"
 else
-  wB "Connection to MongoDB is \e[31mFAILURE"
+  wB "Catalogue Connecting to MongoDB is \e[31mFAILURE"
 fi
 
 DLIM
