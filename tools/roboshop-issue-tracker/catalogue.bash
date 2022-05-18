@@ -20,3 +20,7 @@ DLIM
 wB "Checking MongoDB"
 DLIM1
 
+echo "Finding IP address from Catalogue Config"
+IP=$(cat /etc/systemd/system/catalogue.service  | grep MONGO_URL  | awk -F '[:,/]' '{print $4}')
+CHECK_CONNECTION
+
