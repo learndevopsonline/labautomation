@@ -104,7 +104,7 @@ SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are ab
 STAT_CONNECTION $MONGODB_IP 27017 MongoDB
 #if [ $? -ne 0 ]; then
   SCENARIO_HEAD "MongoDB Service Should be Running for applications to work"
-
+  ssh $MONGODB_IP 'ps -ef | grep mongo'
 #fi
 
 
