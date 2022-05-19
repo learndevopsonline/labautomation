@@ -39,6 +39,8 @@ for component in catalogue cart user shipping payment ; do
   unset TAB
 done
 
+
+DLIM
 PRINT "Extracting List of Server Details"
 DLIM
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
