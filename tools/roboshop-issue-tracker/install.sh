@@ -102,9 +102,11 @@ NLPRINT
 COMPONENT_HEAD CATALOGUE
 SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are able to reach or not"
 STAT_CONNECTION $MONGODB_IP 27017 MongoDB
-if [ "${FURTHER_CHECK}" == "TRUE" ]; then
-  ssh $MONGODB_IP 'echo show dbs | mongo'
-fi
+#if [ $? -ne 0 ]; then
+  SCENARIO_HEAD "MongoDB Service Should be Running for applications to work"
+
+#fi
+
 
 
 

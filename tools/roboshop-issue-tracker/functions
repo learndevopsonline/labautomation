@@ -115,10 +115,10 @@ STAT_CONNECTION() {
   nc -w 5 -z ${1} ${2} &>/dev/null
   if [ $? -eq 0 ]; then
     BPRINT "${3} Connection to ${1} on PORT ${2} - \e[32mSUCCESS"
-    FURTHER_CHECK=FALSE
+    return 0
   else
     BPRINT "${3} Connection to ${1} on PORT ${2} - \e[31mFAILURE"
-    FURTHER_CHECK=TRUE
+    return 1
   fi
 }
 
