@@ -121,9 +121,9 @@ else
   ssh ${MONGODB_IP} 'echo show dbs | mongo' 2>/dev/null | tee /tmp/out
   grep catalogue /tmp/out  &>/dev/null && grep users /tmp/out &>/dev/null
   if [ $? -eq 0 ]; then
-    BPRINT "MongoDB Schema is Loaded"
+    BPRINT "\nMongoDB Schema is Loaded"
   else
-    EXIT "MongoDB need to have schema for the application to work, So follow documentation and load the schema"
+    EXIT "\nMongoDB need to have schema for the application to work, So follow documentation and load the schema"
   fi
   CONCLUDE "All good with MongoDB"
 fi
