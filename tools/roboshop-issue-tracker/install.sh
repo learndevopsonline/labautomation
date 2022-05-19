@@ -134,6 +134,12 @@ NLPRINT
 COMPONENT_HEAD CATALOGUE
 SCENARIO_HEAD "Catalogue Service should be running on Port 8080 and should be reachable to Frontend Service\nPort Check from Frontend to Catalogue"
 STAT_CONNECTION ${CATALOGUE_IP} 8080 Catalogue
-echo "curl -s http://${CATALOGUE_IP}:8080/health"
-curl -s http://${CATALOGUE_IP}:8080/health | jq
+
+SCENARIO_HEAD "Checking If Catalogue is able to Connect to MongoDB"
+MONGO_STATUS=$(curl -s http://${CATALOGUE_IP}:8080/health | jq .mongo)
+if [ "${MONGO_STATUS}" != "true" ]; then
+  CONCLUDE "  🥳🎉👍 >> All Good with Catalogue"
+else
+  STAT_SERVICE ${CATALOGUE_IP} catalogue
+fi
 
