@@ -39,12 +39,26 @@ for component in catalogue cart user shipping payment ; do
   unset TAB
 done
 
+PRINT "Extracting List of Server Details"
+DLIM
+echo ${FINAL} | xargs -n1 | grep catalogue
+if [ $? -eq 0 ]; then
+  BPRINT "CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')"
+else
+  BPRINT "CATALOGUE_IP=localhost"
+fi
+DLIM
+
+exit
 echo ${FINAL} | xargs -n1 | grep catalogue
 if [ $? -ne 0 ]; then
   EXIT "RoboShop Product will need to display the products, Products will be displayed from the \e[1;35mCatalogue\e[0m Component\nConfiguration releated to catalogue does not exist.\nHence Exiting"
 fi
 
-FIND_MONGODB  $(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+# Grab Catalogue IP
+IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+
+# MongoDB is a dependency to catalogue hence moving towards finding the information of MongoBD
 
   exit
 
