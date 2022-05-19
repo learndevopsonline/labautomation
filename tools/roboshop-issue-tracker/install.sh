@@ -69,7 +69,7 @@ DLIM
 
 NLPRINT
 DLIM
-PRINT "Finding DB Server Details"
+PRINT "Finding DB Server Details to App Servers"
 DLIM1
 scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
@@ -83,6 +83,17 @@ MYSQL_IP=$(cat /tmp/shipping.service  | grep DB_HOST | awk -F = '{print $3}')
 BPRINT "MYSQL_IP\t\t= ${MYSQL_IP}"
 RABBITMQ_IP=$(cat /tmp/payment.service  | grep AMQP_HOST | awk -F = '{print $3}')
 BPRINT "RABBITMQ_IP\t\t= ${RABBITMQ_IP}"
+DLIM
+
+NLPRINT
+DLIM
+PRINT "Checking SSH Connections to DB Servers"
+DLIM1
+CHECK_SSH_CONNECTION ${CATALOGUE_IP} && CATALOGUE_CHECK=1 || CATALOGUE_CHECK=0
+CHECK_SSH_CONNECTION ${USER_IP} && USER_CHECK=1 || USER_CHECK=0
+CHECK_SSH_CONNECTION ${CART_IP} && CART_CHECK=1 || CART_CHECK=0
+CHECK_SSH_CONNECTION ${SHIPPING_IP} && SHIPPING_CHECK=1 || SHIPPING_CHECK=0
+CHECK_SSH_CONNECTION ${PAYMENT_IP} && PAYMENT_CHECK=1 || PAYMENT_CHECK=0
 DLIM
 
 exit
