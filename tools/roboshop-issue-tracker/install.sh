@@ -112,7 +112,10 @@ STAT_CONNECTION $MONGODB_IP 27017 MongoDB
   else
     SCENARIO_HEAD "MongoDB Service Should be Listening on 0.0.0.0 instead of 127.0.0.1"
     ssh ${MONGODB_IP} 'netstat -lntp' 2>/dev/null | tee /tmp/out
-    cat /tmp/out
+    LISTEN_IP=$(cat /tmp/out | grep 27017  | awk '{print $4}' | awk -F : '{print $1}')
+    if [ "${LISTEN_IP}" != "0.0.0.0" ]; then
+      EXIT "You need to update MongoDB Service in /etc/mongod.conf - Update 127.0.0.1 to 0.0.0.0"
+    fi
 
   fi
 
