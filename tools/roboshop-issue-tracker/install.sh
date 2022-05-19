@@ -69,10 +69,10 @@ DLIM
 NLPRINT
 DLIM
 PRINT "Finding DB Server Details"
-scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp 2>/dev/null
-scp ${USER_IP}:/etc/systemd/system/user.service /tmp 2>/dev/null
-scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp 2>/dev/null
-scp ${PAYMENT_IP}:/etc/systemd/system/payment.service /tmp  2>/dev/null
+scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
+scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
+scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp &>/dev/null
+scp ${PAYMENT_IP}:/etc/systemd/system/payment.service /tmp  &>/dev/null
 MONGODB_IP=$(cat /tmp/catalogue.service  | grep MONGO_URL | awk -F '[:,/]' '{print $4}')
 BPRINT "MONGODB_IP\t\t= ${CART_IP}"
 REDIS_IP=$(cat /tmp/user.service  | grep REDIS_HOST | awk -F = '{print $3}')
