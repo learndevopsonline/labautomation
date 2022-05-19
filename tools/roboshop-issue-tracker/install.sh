@@ -46,13 +46,13 @@ DLIM
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
 USER_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "USER_IP\t\t= ${CATALOGUE_IP}"
+BPRINT "USER_IP\t\t= ${USER_IP}"
 CART_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i cart  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "CART_IP\t\t= ${CATALOGUE_IP}"
+BPRINT "CART_IP\t\t= ${CART_IP}"
 SHIPPING_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i shipping  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "SHIPPING_IP\t= ${CATALOGUE_IP}"
+BPRINT "SHIPPING_IP\t= ${SHIPPING_IP}"
 PAYMENT_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i payment  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "PAYMENT_IP\t= ${CATALOGUE_IP}"
+BPRINT "PAYMENT_IP\t= ${PAYMENT_IP}"
 DLIM
 
 NLPRINT
