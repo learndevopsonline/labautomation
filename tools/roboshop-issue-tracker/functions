@@ -60,7 +60,6 @@ CONCLUDE() {
   DLIM_UP
   BPRINT "${1}"
   DLIM_DOWN
-  exit 1
 }
 
 STAT() {
