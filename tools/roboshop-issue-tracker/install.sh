@@ -110,6 +110,8 @@ STAT_CONNECTION $MONGODB_IP 27017 MongoDB
     EXIT "You need to Start the MongoDB Service"
     exit
   else
+    echo
+  fi
 
 #fi
 
