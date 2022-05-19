@@ -132,5 +132,7 @@ fi
 ## Catalogue Scenarios
 NLPRINT
 COMPONENT_HEAD CATALOGUE
-
+SCENARIO_HEAD "Catalogue Service should be running on Port 8080 and should be reachable to Frontend Service"
+echo "curl -s http://${CATALOGUE_IP}:8080/health"
+curl -s http://${CATALOGUE_IP}:8080/health | jq
 
