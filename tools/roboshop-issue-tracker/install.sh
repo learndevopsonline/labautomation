@@ -43,8 +43,6 @@ PRINT "Extracting List of Server Details"
 DLIM
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
-
-fi
 DLIM
 
 exit
