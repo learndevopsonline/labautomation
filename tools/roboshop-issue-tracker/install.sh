@@ -44,9 +44,9 @@ DLIM
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "USER_IP\t= ${CATALOGUE_IP}"
+BPRINT "USER_IP\t\t= ${CATALOGUE_IP}"
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i cart  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-BPRINT "CART_IP\t= ${CATALOGUE_IP}"
+BPRINT "CART_IP\t\t= ${CATALOGUE_IP}"
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i shipping  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "SHIPPING_IP\t= ${CATALOGUE_IP}"
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i payment  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
