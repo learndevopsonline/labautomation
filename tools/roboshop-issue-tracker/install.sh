@@ -111,7 +111,9 @@ STAT_CONNECTION $MONGODB_IP 27017 MongoDB
     exit
   else
     SCENARIO_HEAD "MongoDB Service Should be Listening on 0.0.0.0 instead of 127.0.0.1"
-    ssh ${MONGODB_IP} 'netstat -lntp' 2>/dev/null
+    ssh ${MONGODB_IP} 'netstat -lntp' 2>/dev/null | tee /tmp/out
+    cat /tmp/out
+
   fi
 
 #fi
