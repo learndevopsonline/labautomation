@@ -38,8 +38,8 @@ for component in catalogue cart user shipping payment ; do
   fi
   unset TAB
 done
-NLPRINT
 
+NLPRINT
 DLIM
 PRINT "Extracting List of Server Details"
 DLIM
