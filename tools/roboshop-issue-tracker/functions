@@ -48,9 +48,9 @@ DLIM_UP() {
 
 EXIT() {
   DLIM_UP
-  BPRINT "Following are the solutions you can try"
+  BPRINT "Following are the solutions you can try\n"
   for i in "$@"; do
-    echo -e "✓  -  ${i}"
+    echo -e "\t\e[36m✓  -  ${i}\e[0m"
   done
   DLIM
   exit 1
