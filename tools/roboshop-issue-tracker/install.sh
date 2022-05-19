@@ -41,9 +41,10 @@ done
 
 PRINT "Extracting List of Server Details"
 DLIM
-echo ${FINAL} | xargs -n1 | grep catalogue
+echo ${FINAL} | xargs -n1 | grep catalogue &>/dev/null
 if [ $? -eq 0 ]; then
-  BPRINT "CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')"
+  CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+  BPRINT "CATALOGUE_IP=${CATALOGUE_IP}"
 else
   BPRINT "CATALOGUE_IP=localhost"
 fi
