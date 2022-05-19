@@ -141,5 +141,10 @@ if [ "${MONGO_STATUS}" != "true" ]; then
   CONCLUDE "  🥳🎉👍 >> All Good with Catalogue"
 else
   STAT_SERVICE ${CATALOGUE_IP} catalogue
+  if [ $? -ne 0 ]; then
+    EXIT "You need to Start the Catalogue Service \e[0m\e[1m(systemctl start catalogue)"
+    exit
+  fi
 fi
+
 
