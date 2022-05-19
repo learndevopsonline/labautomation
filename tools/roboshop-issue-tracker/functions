@@ -46,16 +46,6 @@ DLIM_UP() {
   echo -e "‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"
 }
 
-
-R01() {
-  CB "-> Your Server $IP is not running, Ensure it is running"
-}
-R02() {
-  CB "-> Your Server might be running, But the Security Group has not opened the ports, Ensure you attach the security group with all the ports opened as demonstrated during the training"
-}
-R03() {
-  CB "-> MongoDB Port is not opened in security group, Also if the PORT is opened then DB is not running."
-}
 EXIT() {
   DLIM1
     PRINT "$1"
@@ -118,4 +108,10 @@ SCENARIO_HEAD() {
   DLIM_UP
   BPRINT "\e[35mSCENARIO\e[0m - \e[1m $1"
   DLIM_DOWN
+}
+
+STAT_CONNECTION() {
+  nc -w 5 -z ${1} ${2} &>/dev/null
+  if [ $? -eq 0 ]; then
+    BPRINT "Connect"
 }

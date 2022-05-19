@@ -100,5 +100,7 @@ DLIM
 NLPRINT
 COMPONENT_HEAD CATALOGUE
 SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are able to reach or not"
+STAT_CONNECTION $MONGODB_IP 27107 MongoDB
+
 
 
