@@ -73,6 +73,7 @@ scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp 2>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp 2>/dev/null
 scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp 2>/dev/null
 scp ${PAYMENT_IP}:/etc/systemd/system/payment.service /tmp  2>/dev/null
+MONGODB_IP=$(cat /etc/systemd/system/catalogue.service)
 DLIM
 
 exit
