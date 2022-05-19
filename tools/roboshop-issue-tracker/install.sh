@@ -55,6 +55,15 @@ CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i payment  | awk 
 BPRINT "PAYMENT_IP\t= ${CATALOGUE_IP}"
 DLIM
 
+NLPRINT
+DLIM
+PRINT "Checking SSH Connections"
+DLIM
+for component in `echo ${FINAL} | tr [a-z] [A-Z]` ; do
+  nc -w 5 -z $(eval echo ${component}_IP) 22 &>/dev/null
+  echo $?
+done
+
 exit
 echo ${FINAL} | xargs -n1 | grep catalogue
 if [ $? -ne 0 ]; then
