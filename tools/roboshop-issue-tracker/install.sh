@@ -45,13 +45,13 @@ PRINT "Extracting List of Server Details"
 DLIM
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
-CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+USER_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "USER_IP\t\t= ${CATALOGUE_IP}"
-CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i cart  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+CART_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i cart  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CART_IP\t\t= ${CATALOGUE_IP}"
-CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i shipping  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+SHIPPING_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i shipping  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "SHIPPING_IP\t= ${CATALOGUE_IP}"
-CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i payment  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+PAYMENT_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i payment  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "PAYMENT_IP\t= ${CATALOGUE_IP}"
 DLIM
 
@@ -59,10 +59,7 @@ NLPRINT
 DLIM
 PRINT "Checking SSH Connections"
 DLIM
-for component in `echo ${FINAL} | tr [a-z] [A-Z]` ; do
-  nc -w 5 -z ${!${component}_IP} 22
-  echo $?
-done
+CHECK_SSH_CONNECTION ${CATALOGUE_IP}
 
 exit
 echo ${FINAL} | xargs -n1 | grep catalogue
