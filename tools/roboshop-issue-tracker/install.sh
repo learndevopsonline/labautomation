@@ -22,9 +22,9 @@ fi
 
 ## Component - 1 - Scenario 1
 
-DLIM
+DLIM_UP
 echo -e "\e[1m Checking Nginx Configuration\e[0m"
-DLIM1
+DLIM_DOWN
 
 for component in catalogue cart user shipping payment ; do
   [ "$component" == "cart" -o "$component" == "user" ] && TAB="\t"
@@ -41,9 +41,9 @@ done
 DLIM
 
 NLPRINT
-DLIM
+DLIM_UP
 PRINT "Extracting List of Server Details"
-DLIM1
+DLIM_DOWN
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
 USER_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
@@ -57,9 +57,9 @@ BPRINT "PAYMENT_IP\t= ${PAYMENT_IP}"
 DLIM
 
 NLPRINT
-DLIM
+DLIM_UP
 PRINT "Checking SSH Connections to App Servers"
-DLIM1
+DLIM_DOWN
 CHECK_SSH_CONNECTION ${CATALOGUE_IP} && CATALOGUE_CHECK=1 || CATALOGUE_CHECK=0
 CHECK_SSH_CONNECTION ${USER_IP} && USER_CHECK=1 || USER_CHECK=0
 CHECK_SSH_CONNECTION ${CART_IP} && CART_CHECK=1 || CART_CHECK=0
@@ -68,9 +68,9 @@ CHECK_SSH_CONNECTION ${PAYMENT_IP} && PAYMENT_CHECK=1 || PAYMENT_CHECK=0
 DLIM
 
 NLPRINT
-DLIM
+DLIM_UP
 PRINT "Finding DB Server Details"
-DLIM1
+DLIM_DOWN
 scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
 scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp &>/dev/null
@@ -86,9 +86,9 @@ BPRINT "RABBITMQ_IP\t\t= ${RABBITMQ_IP}"
 DLIM
 
 NLPRINT
-DLIM
+DLIM_UP
 PRINT "Checking SSH Connections to DB Servers"
-DLIM1
+DLIM_DOWN
 CHECK_SSH_CONNECTION ${MONGODB_IP} && MONGO_CHECK=1 || MONGO_CHECK=0
 CHECK_SSH_CONNECTION ${REDIS_IP} && REDIS_CHECK=1 || REDIS_CHECK=0
 CHECK_SSH_CONNECTION ${MYSQL_IP} && MYSQL_CHECK=1 || MYSQL_CHECK=0
