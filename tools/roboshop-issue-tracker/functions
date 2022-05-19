@@ -107,5 +107,10 @@ CHECK_SSH_CONNECTION() {
 COMPONENT_HEAD() {
   DLIM
   BPRINT " ++++++++++ $1 CHECKS ++++++++++"
-  DLIM
+  DLIM1
+}
+
+SCENARIO_HEAD() {
+  BPRINT "\e[35mSCENARIO\e[0m - \e[1m $1"
+  DLIM1
 }
