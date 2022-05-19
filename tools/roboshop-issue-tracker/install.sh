@@ -98,7 +98,7 @@ DLIM
 ## MongoDB Scenarios
 
 NLPRINT
-COMPONENT_HEAD CATALOGUE
+COMPONENT_HEAD MONGODB
 SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are able to reach or not"
 STAT_CONNECTION $MONGODB_IP 27017 MongoDB
 if [ $? -ne 0 ]; then
@@ -125,10 +125,13 @@ else
   else
     EXIT "\nMongoDB need to have schema for the application to work, So follow documentation and load the schema"
   fi
-  CONCLUDE "  🥳🎉👍 >> All good with MongoDB"
+  CONCLUDE "  🥳🎉👍 >> All Good with MongoDB"
 fi
 
 
+## Catalogue Scenarios
+NLPRINT
+COMPONENT_HEAD CATALOGUE
 
 
 
