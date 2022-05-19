@@ -111,6 +111,7 @@ COMPONENT_HEAD() {
 }
 
 SCENARIO_HEAD() {
+  echo "‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾"
   BPRINT "\e[35mSCENARIO\e[0m - \e[1m $1"
   DLIM1
 }
