@@ -97,8 +97,10 @@ CHECK_SSH_CONNECTION() {
   nc -w 5 -z $1 22 &>/dev/null
   if [ $? -eq 0 ]; then
     BPRINT "SSH Connection ${1} - \e[32m SUCCESS"
+    return 0
   else
     RBPRINT "SSH Connection to ${1} - \e[31m FAILED"
+    return 1
   fi
 }
 
