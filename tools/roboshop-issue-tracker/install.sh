@@ -26,7 +26,7 @@ DLIM
 echo -e "\e[1m Checking Nginx Configuration\e[0m"
 DLIM1
 
-for component in cart catalogue user shipping payment ; do
+for component in catalogue cart user shipping payment ; do
   [ "$component" == "cart" -o "$component" == "user" ] && TAB="\t"
   echo -n -e "Checking \e[1m$component\e[0m Config.. \t${TAB}"
   OUT=$(grep $component /etc/nginx/default.d/roboshop.conf | xargs -n1 | grep ^http | awk -F '[:,/]' '{print $4}')
@@ -40,6 +40,25 @@ for component in cart catalogue user shipping payment ; do
 done
 
 
+for component in ${FINAL}; do
+
+  if [ "${component}" == "catalogue" ]; then
+    FIND_MONGODB  $(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+  fi
+
+  exit
+
+  DLIM
+  echo -e "\e[1m Checking $component - \e[0m"
+  DLIM1
+  echo -e "Grabbing IP Address of $component"
+  IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
+  wB "IP = ${IP}"
+  CHECK_CONNECTION
+  scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
+  scp $(dirname $0)/$component.bash $IP:/tmp/$component.bash &>>${LOG}
+  ssh -t $IP "bash /tmp/$component.bash" 2>>${LOG}
+done
 
 
 
@@ -87,15 +106,4 @@ R3() {
 
 
 
-for component in ${FINAL}; do
-  DLIM
-  echo -e "\e[1m Checking $component - \e[0m"
-  DLIM1
-  echo -e "Grabbing IP Address of $component"
-  IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-  wB "IP = ${IP}"
-  CHECK_CONNECTION
-  scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
-  scp $(dirname $0)/$component.bash $IP:/tmp/$component.bash &>>${LOG}
-  ssh -t $IP "bash /tmp/$component.bash" 2>>${LOG}
-done
+

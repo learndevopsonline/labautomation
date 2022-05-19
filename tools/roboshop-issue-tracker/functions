@@ -18,6 +18,10 @@ RBPRINT() {
   echo -e "\e[1;31m${1}\e[0m"
 }
 
+GBPRINT() {
+  echo -e "\e[1;32m${1}\e[0m"
+}
+
 NLPRINT() {
   echo -e "\n"
 }
@@ -98,4 +102,17 @@ CHECK_CONNECTION() {
       EXIT CON2
     fi
   fi
+}
+
+CHECK_SSH_CONNECTION() {
+  nc -w 5 -z $1 22 &>/dev/null
+  if [ $? -eq 0 ]; then
+    GBPRINT "SSH Connection Success to ${1}"
+  else
+    RBPRINT "SSH Connection Failed to ${1}"
+  fi
+}
+
+FIND_MONGODB() {
+  CHECK_SSH_CONNECTION $1
 }
