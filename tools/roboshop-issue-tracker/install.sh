@@ -117,6 +117,8 @@ if [ $? -ne 0 ]; then
     fi
   fi
 else
+  SCENARIO_HEAD "MongoDB should have schema loaded for our application to work"
+  ssh ${MONGODB_IP} 'echo show dbs | mongo'
   CONCLUDE "All good with MongoDB"
 fi
 
