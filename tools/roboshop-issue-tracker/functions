@@ -112,6 +112,7 @@ SCENARIO_HEAD() {
 }
 
 STAT_CONNECTION() {
+  bash -x
   nc -w 5 -z ${1} ${2} &>/dev/null
   if [ $? -eq 0 ]; then
     BPRINT "${3} Connection to ${1} on PORT ${2} - \e[32mSUCCESS"
