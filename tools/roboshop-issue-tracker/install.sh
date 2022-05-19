@@ -96,7 +96,7 @@ CHECK_SSH_CONNECTION ${RABBITMQ_IP} && RABBITMQ_CHECK=1 || RABBITMQ_CHECK=0
 DLIM
 
 ## MongoDB Scenarios
-NLPRINT
+
 NLPRINT
 COMPONENT_HEAD CATALOGUE
 SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are able to reach or not"
