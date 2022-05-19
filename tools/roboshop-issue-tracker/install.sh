@@ -69,6 +69,7 @@ DLIM
 NLPRINT
 DLIM
 PRINT "Finding DB Server Details"
+DLIM
 scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
 scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp &>/dev/null
