@@ -97,7 +97,6 @@ DLIM
 
 ## MongoDB Scenarios
 
-FURTHER_CHECK=TRUE
 NLPRINT
 COMPONENT_HEAD CATALOGUE
 SCENARIO_HEAD "MongoDB Runs on Port 27017, Hence checking if that PORT we are able to reach or not"
@@ -116,9 +115,9 @@ if [ $? -ne 0 ]; then
     if [ "${LISTEN_IP}" != "0.0.0.0" ]; then
       EXIT "You need to update MongoDB Service in /etc/mongod.conf - Update 127.0.0.1 to 0.0.0.0"
     fi
-
   fi
-
+else
+  CONCLUDE "All good with MongoDB"
 fi
 
 

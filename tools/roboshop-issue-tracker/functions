@@ -56,6 +56,13 @@ EXIT() {
   exit 1
 }
 
+EXIT() {
+  DLIM_UP
+  BPRINT "${1}"
+  DLIM_DOWN
+  exit 1
+}
+
 STAT() {
   if [ $? -eq 0 ]; then
     wB "$1 - \e[32mSUCCESS"
