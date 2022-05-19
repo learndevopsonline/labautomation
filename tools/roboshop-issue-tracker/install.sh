@@ -106,11 +106,12 @@ STAT_CONNECTION $MONGODB_IP 27017 MongoDB
   SCENARIO_HEAD "MongoDB Service Should be Running for applications to work"
   ssh $MONGODB_IP 'systemctl status mongod -l'
   STAT_SERVICE $MONGODB_IP mongod
-  if [ $? -eq 0 ]; then
+  if [ $? -ne 0 ]; then
     EXIT "You need to Start the MongoDB Service \e[0m\e[1m(systemctl start mongod)"
     exit
   else
-    echo
+    SCENARIO_HEAD "MongoDB Service Should be Listening on 0.0.0.0 instead of 127.0.0.1"
+    ssh ${MONGODB_IP} 'netstat -lntp' 2>/dev/null
   fi
 
 #fi
