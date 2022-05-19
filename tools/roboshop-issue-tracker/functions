@@ -47,8 +47,11 @@ DLIM_UP() {
 }
 
 EXIT() {
-  DLIM1
-    PRINT "$1"
+  DLIM_UP
+  BPRINT "Following are the solutions you can try"
+  for i in "$@"; do
+    echo -e "✓  -  ${i}"
+  done
   DLIM
   exit 1
 }
@@ -122,3 +125,7 @@ STAT_CONNECTION() {
   fi
 }
 
+STAT_SERVICE() {
+  ssh ${1} "systemctl is-active --quiet ${2}" 2>/dev/null
+  return $?
+}
