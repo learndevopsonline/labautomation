@@ -73,7 +73,14 @@ scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp 2>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp 2>/dev/null
 scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp 2>/dev/null
 scp ${PAYMENT_IP}:/etc/systemd/system/payment.service /tmp  2>/dev/null
-MONGODB_IP=$(cat /etc/systemd/system/catalogue.service)
+MONGODB_IP=$(cat /tmp/catalogue.service  | grep MONGO_URL | awk -F '[:,/]' '{print $4}')
+BPRINT "MONGODB_IP\t\t= ${CART_IP}"
+REDIS_IP=$(cat /tmp/user.service  | grep REDIS_HOST | awk -F = '{print $3}')
+BPRINT "REDIS_IP\t\t= ${CART_IP}"
+MYSQL_IP=$(cat /tmp/shipping.service  | grep DB_HOST | awk -F = '{print $3}')
+BPRINT "MYSQL_IP\t\t= ${CART_IP}"
+RABBITMQ_IP=$(cat /tmp/payment.service  | grep AMQP_HOST | awk -F = '{print $3}')
+BPRINT "RABBITMQ_IP\t\t= ${CART_IP}"
 DLIM
 
 exit
