@@ -64,6 +64,16 @@ CHECK_SSH_CONNECTION ${USER_IP} && USER_CHECK=1 || USER_CHECK=0
 CHECK_SSH_CONNECTION ${CART_IP} && CART_CHECK=1 || CART_CHECK=0
 CHECK_SSH_CONNECTION ${SHIPPING_IP} && SHIPPING_CHECK=1 || SHIPPING_CHECK=0
 CHECK_SSH_CONNECTION ${PAYMENT_IP} && PAYMENT_CHECK=1 || PAYMENT_CHECK=0
+DLIM
+
+NLPRINT
+DLIM
+PRINT "Finding DB Server Details"
+scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp 2>/dev/null
+scp ${USER_IP}:/etc/systemd/system/user.service /tmp 2>/dev/null
+scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp 2>/dev/null
+scp ${PAYMENT_IP}:/etc/systemd/system/payment.service /tmp  2>/dev/null
+DLIM
 
 exit
 echo ${FINAL} | xargs -n1 | grep catalogue
