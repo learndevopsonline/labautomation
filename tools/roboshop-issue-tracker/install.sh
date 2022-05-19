@@ -44,9 +44,9 @@ DLIM
 echo ${FINAL} | xargs -n1 | grep catalogue &>/dev/null
 if [ $? -eq 0 ]; then
   CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-  BPRINT "CATALOGUE_IP\t=\t${CATALOGUE_IP}"
+  BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
 else
-  BPRINT "CATALOGUE_IP\t=\tlocalhost"
+  BPRINT "CATALOGUE_IP\t= localhost"
 fi
 DLIM
 
