@@ -54,18 +54,7 @@ R03() {
 }
 EXIT() {
   DLIM1
-  wB "Read the possible solutions"
-  DLIM
-  case $1 in
-    CON1)
-      # This is for SSH connection Failure , SSH port not reachable over nc
-      echo -e "SSH Connection to node is failure"
-      R1;R2
-      ;;
-    CON2)
-      ## THis is a MongoDB Port connection failure
-      R03
-  esac
+    PRINT "$1"
   DLIM
   exit 1
 }

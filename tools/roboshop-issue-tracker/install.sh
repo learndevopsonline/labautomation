@@ -39,12 +39,12 @@ for component in catalogue cart user shipping payment ; do
   unset TAB
 done
 
+echo ${FINAL} | xargs -n1 | grep catalogue
+if [ $? -ne 0 ]; then
+  EXIT "RoboShop Product will need to display the products, Products will be displayed from the \e[1;35mCatalogue\e[0m Component\nConfiguration releated to catalogue does not exist.\nHence Exiting"
+fi
 
-for component in ${FINAL}; do
-
-  if [ "${component}" == "catalogue" ]; then
-    FIND_MONGODB  $(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-  fi
+FIND_MONGODB  $(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 
   exit
 
@@ -58,7 +58,7 @@ for component in ${FINAL}; do
   scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
   scp $(dirname $0)/$component.bash $IP:/tmp/$component.bash &>>${LOG}
   ssh -t $IP "bash /tmp/$component.bash" 2>>${LOG}
-done
+
 
 
 
