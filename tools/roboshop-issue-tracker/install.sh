@@ -38,11 +38,12 @@ for component in catalogue cart user shipping payment ; do
   fi
   unset TAB
 done
+DLIM
 
 NLPRINT
 DLIM
 PRINT "Extracting List of Server Details"
-DLIM
+DLIM1
 CATALOGUE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i catalogue  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
 BPRINT "CATALOGUE_IP\t= ${CATALOGUE_IP}"
 USER_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i user  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
@@ -58,7 +59,7 @@ DLIM
 NLPRINT
 DLIM
 PRINT "Checking SSH Connections"
-DLIM
+DLIM1
 CHECK_SSH_CONNECTION ${CATALOGUE_IP} && CATALOGUE_CHECK=1 || CATALOGUE_CHECK=0
 CHECK_SSH_CONNECTION ${USER_IP} && USER_CHECK=1 || USER_CHECK=0
 CHECK_SSH_CONNECTION ${CART_IP} && CART_CHECK=1 || CART_CHECK=0
@@ -69,7 +70,7 @@ DLIM
 NLPRINT
 DLIM
 PRINT "Finding DB Server Details"
-DLIM
+DLIM1
 scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
 scp ${SHIPPING_IP}:/etc/systemd/system/shipping.service /tmp &>/dev/null
