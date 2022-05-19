@@ -125,7 +125,7 @@ else
   else
     EXIT "\nMongoDB need to have schema for the application to work, So follow documentation and load the schema"
   fi
-  CONCLUDE "🥳 👍 All good with MongoDB"
+  CONCLUDE "  🥳🎉👍 All good with MongoDB"
 fi
 
 
