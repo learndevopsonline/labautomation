@@ -107,7 +107,7 @@ STAT_CONNECTION $MONGODB_IP 27017 MongoDB
   ssh $MONGODB_IP 'systemctl status mongod -l'
   STAT_SERVICE $MONGODB_IP mongod
   if [ $? -eq 0 ]; then
-    EXIT "You need to Start the MongoDB Service \e[0m(systemctl start mongod)"
+    EXIT "You need to Start the MongoDB Service \e[1m(systemctl start mongod)"
     exit
   else
     echo
