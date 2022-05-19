@@ -58,7 +58,7 @@ DLIM
 
 NLPRINT
 DLIM
-PRINT "Checking SSH Connections"
+PRINT "Checking SSH Connections to App Servers"
 DLIM1
 CHECK_SSH_CONNECTION ${CATALOGUE_IP} && CATALOGUE_CHECK=1 || CATALOGUE_CHECK=0
 CHECK_SSH_CONNECTION ${USER_IP} && USER_CHECK=1 || USER_CHECK=0
@@ -69,7 +69,7 @@ DLIM
 
 NLPRINT
 DLIM
-PRINT "Finding DB Server Details to App Servers"
+PRINT "Finding DB Server Details"
 DLIM1
 scp ${CATALOGUE_IP}:/etc/systemd/system/catalogue.service /tmp &>/dev/null
 scp ${USER_IP}:/etc/systemd/system/user.service /tmp &>/dev/null
@@ -95,75 +95,9 @@ CHECK_SSH_CONNECTION ${MYSQL_IP} && MYSQL_CHECK=1 || MYSQL_CHECK=0
 CHECK_SSH_CONNECTION ${RABBITMQ_IP} && RABBITMQ_CHECK=1 || RABBITMQ_CHECK=0
 DLIM
 
-exit
-echo ${FINAL} | xargs -n1 | grep catalogue
-if [ $? -ne 0 ]; then
-  EXIT "RoboShop Product will need to display the products, Products will be displayed from the \e[1;35mCatalogue\e[0m Component\nConfiguration releated to catalogue does not exist.\nHence Exiting"
-fi
+## MongoDB Scenarios
 
-# Grab Catalogue IP
-IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-
-# MongoDB is a dependency to catalogue hence moving towards finding the information of MongoBD
-
-  exit
-
-  DLIM
-  echo -e "\e[1m Checking $component - \e[0m"
-  DLIM1
-  echo -e "Grabbing IP Address of $component"
-  IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep -i $component  | awk -F : '{print $(NF-1)}' | sed -e 's|//||')
-  wB "IP = ${IP}"
-  CHECK_CONNECTION
-  scp $(dirname $0)/functions $IP:/tmp/functions &>>${LOG}
-  scp $(dirname $0)/$component.bash $IP:/tmp/$component.bash &>>${LOG}
-  ssh -t $IP "bash /tmp/$component.bash" 2>>${LOG}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-exit
-
-## Cases
-RHEAD() {
-  echo -e "\n\e[1m Following are the possible mistakes that you have done\e[0m"
-}
-R1() {
-  echo -e "  \e[1;35m->\e[0m Check whether the IP address of the $component"
-}
-R2() {
-  echo -e "  \e[1;35m->\e[0m Check whether the Server of the $component is Up and Running in AWS Portal"
-}
-R3() {
-  echo -e "  \e[1;35m->\e[0m Check whether the Server of the $component has opened all the ports or not"
-}
-
-## Report Configuration
-
-
+COMPONENT_HEAD CATALOGUE
+SCENARIO_HEAD ""
 
 

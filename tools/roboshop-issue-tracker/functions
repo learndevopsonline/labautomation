@@ -104,6 +104,8 @@ CHECK_SSH_CONNECTION() {
   fi
 }
 
-FIND_MONGODB() {
-  CHECK_SSH_CONNECTION $1
+COMPONENT_HEAD() {
+  DLIM
+  BPRINT " ++++++++++ $1 CHECKS ++++++++++"
+  DLIM
 }
