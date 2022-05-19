@@ -60,7 +60,7 @@ DLIM
 PRINT "Checking SSH Connections"
 DLIM
 for component in `echo ${FINAL} | tr [a-z] [A-Z]` ; do
-  nc -w 5 -z ${`echo ${component}_IP`} 22
+  nc -w 5 -z ${!${component}_IP} 22
   echo $?
 done
 
