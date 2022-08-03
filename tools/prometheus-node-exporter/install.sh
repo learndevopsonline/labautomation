@@ -12,7 +12,7 @@ if [ -d /opt/node_exporter ]; then
   exit 0
 fi 
 
-URL=$(curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http)
+URL=$(curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http | head -1)
 
 FILENAME=$(echo $URL | awk -F / '{print $NF}')
 DIRNAME=$(echo $FILENAME | sed -e 's/.tar.gz//')
