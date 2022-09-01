@@ -20,7 +20,7 @@ if [ ! -f /etc/centos-release ]; then
 fi
 
 EL=$(rpm -q basesystem | sed -e 's/\./ /g' |xargs -n1 | grep el)
-if [ "$EL" != "el7" ]; then
+if [ "$EL" != "el7" -o "$EL" != "el8" ]; then
 	error "Currently this setup works only for CentOS-7 OS"
 	exit 1
 fi
