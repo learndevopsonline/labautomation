@@ -28,7 +28,7 @@ fi
 if [ -f /tmp/old-run-clients ]; then
   read -p "Enter Number of Clients [$(cat /tmp/old-run-clients)] : " clients
   if [ -z "$clients" ]; then
-    ip=$(cat /tmp/old-run-clients)
+    clients=$(cat /tmp/old-run-clients)
   fi
 else
   read -p 'Enter Number of Clients: ' clients
