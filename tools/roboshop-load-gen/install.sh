@@ -49,7 +49,7 @@ fi
 
 read -p "${message}" time
 if [ -z "$time" ]; then
-  ip=$(cat /tmp/old-run-time)
+  time=$(cat /tmp/old-run-time)
 fi
 echo $time >/tmp/old-run-time
 
