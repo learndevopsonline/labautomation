@@ -15,6 +15,9 @@ fi
 
 if [ -f /tmp/old-run-ip ]; then
   read -p "Enter Frontend IP Address [$(cat /tmp/old-run-ip)] : " ip
+  if [ -z "$ip" ]; then
+    ip=$(cat /tmp/old-run-ip)
+  fi
 else
   read -p "Enter Frontend IP Address : " ip
 fi
