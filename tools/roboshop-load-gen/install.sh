@@ -21,11 +21,28 @@ if [ -f /tmp/old-run-ip ]; then
 else
   read -p "Enter Frontend IP Address : " ip
 fi
+
 echo $ip >/tmp/old-run-ip
-read -p 'Enter Number of Clients: ' clients
+
+if [ -f /tmp/old-run-clients ]; then
+  read -p "Enter Number of Clients [$(cat /tmp/old-run-clients)] : " clients
+  if [ -z "$clients" ]; then
+    ip=$(cat /tmp/old-run-clients)
+  fi
+else
+  read -p 'Enter Number of Clients: ' clients
+fi
 echo ${clients} >>/tmp/old-run-clients
-read -p 'Enter Howmuch time to run[10m|1hr]: ' time
-echo $time >>/tmp/old-run-time
+
+if [ -f /tmp/old-run-time ]; then
+  read -p "Enter Howmuch time to run[10m|1hr] [$(cat /tmp/old-run-time)] : " time
+  if [ -z "$time" ]; then
+    ip=$(cat /tmp/old-run-time)
+  fi
+else
+  read -p 'Enter Howmuch time to run[10m|1hr]: ' time
+fi
+echo ${time} >>/tmp/old-run-time
 
 nc -w 3 -z ${ip} 443
 if [ $? -eq 0 ]; then
