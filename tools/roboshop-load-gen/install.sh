@@ -13,9 +13,17 @@ if [ $? -ne 0 ]; then
 fi
 
 
+if [ -f /tmp/old-run-ip ]; then
+  read -p "Enter Frontend IP Address [$(cat /tmp/old-run-ip)] : " ip
+else
+  read -p "Enter Frontend IP Address : " ip
+fi
 read -p 'Enter Frontend IP Address: ' ip
+echo $ip >/tmp/old-run-ip
 read -p 'Enter Number of Clients: ' clients
+echo ${clients} >>/tmp/old-run-clients
 read -p 'Enter Howmuch time to run[10m|1hr]: ' time
+echo $time >>/tmp/old-run-time
 
 nc -w 3 -z ${ip} 443
 if [ $? -eq 0 ]; then
