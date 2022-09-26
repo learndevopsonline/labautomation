@@ -37,7 +37,7 @@ echo ${clients} >>/tmp/old-run-clients
 if [ -f /tmp/old-run-time ]; then
   read -p "Enter Howmuch time to run[10m|1hr] [$(cat /tmp/old-run-time)] : " time
   if [ -z "$time" ]; then
-    ip=$(cat /tmp/old-run-time)
+    time=$(cat /tmp/old-run-time)
   fi
 else
   read -p 'Enter Howmuch time to run[10m|1hr]: ' time
