@@ -18,7 +18,6 @@ if [ -f /tmp/old-run-ip ]; then
 else
   read -p "Enter Frontend IP Address : " ip
 fi
-read -p 'Enter Frontend IP Address: ' ip
 echo $ip >/tmp/old-run-ip
 read -p 'Enter Number of Clients: ' clients
 echo ${clients} >>/tmp/old-run-clients
