@@ -12,39 +12,46 @@ if [ $? -ne 0 ]; then
   systemctl start docker
 fi
 
-
-if [ -f /tmp/old-run-ip ]; then
-  read -p "Enter Frontend IP Address [$(cat /tmp/old-run-ip)] : " ip
-  if [ -z "$ip" ]; then
-    ip=$(cat /tmp/old-run-ip)
-  else
-    read -p "Enter Frontend IP Address : " ip
-    echo $ip >/tmp/old-run-ip
-  fi
+input=$(cat /tmp/old-run-ip 2>/dev/null)
+if [ -z "${input}" ]; then
+  message="Enter Frontend IP Address: "
+else
+  message="Enter Frontend IP Address [$input]: "
 fi
 
+read -p "${message}" ip
+if [ -z "$ip" ]; then
+  ip=$(cat /tmp/old-run-ip)
+fi
+echo $ip >/tmp/old-run-ip
 
 
-if [ -f /tmp/old-run-clients ]; then
-  read -p "Enter Number of Clients [$(cat /tmp/old-run-clients)] : " clients
-  if [ -z "$clients" ]; then
-    clients=$(cat /tmp/old-run-clients)
-  else
-    read -p 'Enter Number of Clients: ' clients
-    echo ${clients} >/tmp/old-run-clients
-  fi
+input=$(cat /tmp/old-run-clients 2>/dev/null)
+if [ -z "${input}" ]; then
+  message="Enter number of Clients: "
+else
+  message="Enter number of Clients [$input]: "
 fi
 
-
-if [ -f /tmp/old-run-time ]; then
-  read -p "Enter Howmuch time to run[10m|1hr] [$(cat /tmp/old-run-time)] : " time
-  if [ -z "$time" ]; then
-    time=$(cat /tmp/old-run-time)
-  else
-    read -p 'Enter Howmuch time to run[10m|1hr]: ' time
-    echo ${time} >/tmp/old-run-time
-  fi
+read -p "${message}" clients
+if [ -z "$clients" ]; then
+  clients=$(cat /tmp/old-run-clients)
 fi
+echo $clients >/tmp/old-run-clients
+
+
+input=$(cat /tmp/old-run-time 2>/dev/null)
+if [ -z "${input}" ]; then
+  message="Enter time [10m|1hr]: "
+else
+  message="Enter time [10m|1hr] [$input]: "
+fi
+
+read -p "${message}" time
+if [ -z "$time" ]; then
+  ip=$(cat /tmp/old-run-time)
+fi
+echo $time >/tmp/old-run-time
 
 
 nc -w 3 -z ${ip} 443
