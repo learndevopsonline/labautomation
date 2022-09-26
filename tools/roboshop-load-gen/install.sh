@@ -20,9 +20,10 @@ if [ -f /tmp/old-run-ip ]; then
   fi
 else
   read -p "Enter Frontend IP Address : " ip
+  echo $ip >/tmp/old-run-ip
 fi
 
-echo $ip >/tmp/old-run-ip
+
 
 if [ -f /tmp/old-run-clients ]; then
   read -p "Enter Number of Clients [$(cat /tmp/old-run-clients)] : " clients
@@ -31,8 +32,9 @@ if [ -f /tmp/old-run-clients ]; then
   fi
 else
   read -p 'Enter Number of Clients: ' clients
+  echo ${clients} >>/tmp/old-run-clients
 fi
-echo ${clients} >>/tmp/old-run-clients
+
 
 if [ -f /tmp/old-run-time ]; then
   read -p "Enter Howmuch time to run[10m|1hr] [$(cat /tmp/old-run-time)] : " time
@@ -41,8 +43,9 @@ if [ -f /tmp/old-run-time ]; then
   fi
 else
   read -p 'Enter Howmuch time to run[10m|1hr]: ' time
+  echo ${time} >>/tmp/old-run-time
 fi
-echo ${time} >>/tmp/old-run-time
+
 
 nc -w 3 -z ${ip} 443
 if [ $? -eq 0 ]; then
