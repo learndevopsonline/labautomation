@@ -2,9 +2,7 @@
 
 echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/linuxautomations/labautomation/tree/master/tools\n"
 
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/dry/common-functions.sh >/tmp/common-functions.sh
-#source /root/scripts/common-functions.sh
-source /tmp/common-functions.sh
+source dry/common-functions.sh
 
 if [ ! -d /tmp/labautomation  ]; then 
 	git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
