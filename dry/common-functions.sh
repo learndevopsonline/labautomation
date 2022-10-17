@@ -12,6 +12,7 @@ LU="\e[2m"
 N="\e[0m"
 
 ELV=$(rpm -q basesystem |sed -e 's/\./ /g' |xargs -n 1|grep ^el)
+export OSVENDOR=$(rpm -qi basesystem | grep ^Vendor | awk '{print $NF}')
 
 ## Common Functions
 
@@ -62,7 +63,6 @@ head_lu() {
 	echo -e "  $LU$1$N\n"
 }
 
-export OSVENDOR=$(rpm -qi basesystem | grep ^Vendor | awk '{print $NF}')
 
 
 ### Checking Root User or not
