@@ -62,6 +62,9 @@ head_lu() {
 	echo -e "  $LU$1$N\n"
 }
 
+export OSVENDOR=$(rpm -qi basesystem | grep ^Vendor | awk '{print $NF}')
+
+
 ### Checking Root User or not
 CheckRoot() {
 LID=$(id -u)
@@ -194,10 +197,6 @@ CheckOS() {
 		exit 1
 	fi
   esac
-}
-
-CheckVendor() {
-  export OSVENDOR=$(rpm -qi basesystem | grep ^Vendor | awk '{print $NF}')
 }
 
 PrintCenter() {
