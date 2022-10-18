@@ -2,6 +2,9 @@
 
 echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/linuxautomations/labautomation/tree/master/tools\n"
 
+pwd
+echo $0
+exit 1
 source dry/common-functions.sh
 
 if [ ! -d /tmp/labautomation  ]; then 
