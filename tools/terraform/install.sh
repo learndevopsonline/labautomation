@@ -2,7 +2,7 @@
 
 #source ../$(pwd  | awk -F 'labautomation/' '{print $2}')/dry/common-functions.sh
 
-dirname .
+dirname `pwd`
 
 exit 1
 curl -s -L https://raw.githubusercontent.com/linuxautomations/labautomation/master/dry/common-functions.sh >/tmp/common-functions.sh
