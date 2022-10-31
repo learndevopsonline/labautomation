@@ -10,3 +10,15 @@
 #     cd  labautomation
 #     bash aws/nuke.sh
 #
+
+
+
+# Delete IAM Users
+
+# List IAM Users
+CURRENT_USER=$(aws sts get-caller-identity | jq '.Arn' |sed -e 's/"//g')
+ALL_USERS=$(aws iam list-users | jq '.Users[].Arn' | sed -e 's/"//g' | grep -v "${CURRENT_USER}" | awk -F / '{print $NF}')
+
+
+
+
