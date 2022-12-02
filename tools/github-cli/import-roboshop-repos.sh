@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE_REPO=https://github.com/orgs/roboshop-devops-project-v1/repositories
+SOURCE_REPO=git@github.com:roboshop-devops-project-v1/
 
 for component in cart catalogue user shipping payment dispatch frontend ; do
   cd /tmp
