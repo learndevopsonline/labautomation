@@ -33,7 +33,7 @@ else
   message="Enter Applicaiton Port [$port]: "
 fi
 
-read -p "${message}" ip
+read -p "${message}" port
 if [ -z "$port" ]; then
   ip=$(cat /tmp/old-port)
 fi
