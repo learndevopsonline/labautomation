@@ -68,8 +68,7 @@ fi
 echo $time >/tmp/old-run-time
 
 
-nc -w 3 -z ${ip} 443
-if [ $? -eq 0 ]; then
+if [ $port -eq 443 ]; then
   URL="https://${ip}/"
 else
   URL="http://${ip}/"
