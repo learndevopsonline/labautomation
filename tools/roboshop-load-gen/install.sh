@@ -19,11 +19,25 @@ else
   message="Enter Frontend IP Address [$input]: "
 fi
 
+
 read -p "${message}" ip
 if [ -z "$ip" ]; then
   ip=$(cat /tmp/old-run-ip)
 fi
 echo $ip >/tmp/old-run-ip
+
+port=$(cat /tmp/old-port 2>/dev/null)
+if [ -z "${port}" ]; then
+  message="Enter Application Port: "
+else
+  message="Enter Applicaiton Port [$port]: "
+fi
+
+read -p "${message}" ip
+if [ -z "$port" ]; then
+  ip=$(cat /tmp/old-port)
+fi
+echo $port >/tmp/old-port
 
 
 input=$(cat /tmp/old-run-clients 2>/dev/null)
