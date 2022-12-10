@@ -35,7 +35,7 @@ fi
 
 read -p "${message}" port
 if [ -z "$port" ]; then
-  ip=$(cat /tmp/old-port)
+  $port=$(cat /tmp/old-port)
 fi
 echo $port >/tmp/old-port
 
