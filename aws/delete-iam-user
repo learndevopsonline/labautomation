@@ -2,6 +2,7 @@
 
 read -p 'Enter Username: ' IAM_USERNAME
 
+aws iam delete-login-profile --user-name $IAM_USERNAME | jq .
 aws iam delete-user --user-name $IAM_USERNAME | jq .
 
 
