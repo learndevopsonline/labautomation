@@ -7,10 +7,10 @@ if [ -z "$role_name" ]; then
   exit
 fi
 
-echo "\e[1m ############### ROLE "
+echo -e "\e[1m ############### ROLE "
 aws iam get-role --role-name $role_name | jq .
 
-echo "\e[1m ############### ATTACHED POLICIES "
+echo -e "\e[1m ############### ATTACHED POLICIES "
 aws iam list-attached-role-policies --role-name $role_name | jq .
 
 
