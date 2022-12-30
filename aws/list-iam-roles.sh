@@ -8,5 +8,8 @@ if [ -z "$role_name" ]; then
 fi
 
 aws iam get-role --role-name $role_name | jq .
+aws iam list-attached-role-policies --role-name $role_name | jq .
+
+
 
 
