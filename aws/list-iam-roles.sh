@@ -13,6 +13,16 @@ aws iam get-role --role-name $role_name | jq .
 echo -e "\e[1m ############### ATTACHED POLICIES "
 aws iam list-attached-role-policies --role-name $role_name | jq .
 
+echo -n -e "\e[1;33mEnter Policy ARN to Describe\e[0m: "
+read -p '' policy_arn
 
+if [ -z "$policy_arn" ]; then
+  exit
+fi
+
+VER=$(aws iam get-policy --policy-arn  $role_policy | jq .Policy.DefaultVersionId | sed -e 's/"//g')
+
+echo -e "\e[1m ############### POLICY "
+aws iam get-policy-version --policy-arn  $role_policy --version-id $VER | jq .
 
 
