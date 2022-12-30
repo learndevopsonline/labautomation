@@ -7,5 +7,6 @@ if [ -z "$role_name" ]; then
   exit
 fi
 
-aws iam get-role --role-name $role_name --output table
+aws iam get-role --role-name $role_name | jq .
+
 
