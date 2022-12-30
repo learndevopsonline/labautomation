@@ -20,9 +20,9 @@ if [ -z "$policy_arn" ]; then
   exit
 fi
 
-VER=$(aws iam get-policy --policy-arn  $role_policy | jq .Policy.DefaultVersionId | sed -e 's/"//g')
+VER=$(aws iam get-policy --policy-arn  $policy_arn | jq .Policy.DefaultVersionId | sed -e 's/"//g')
 
 echo -e "\e[1m ############### POLICY "
-aws iam get-policy-version --policy-arn  $role_policy --version-id $VER | jq .
+aws iam get-policy-version --policy-arn  $policy_arn --version-id $VER | jq .
 
 
