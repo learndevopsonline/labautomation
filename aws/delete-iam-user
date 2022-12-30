@@ -1,0 +1,8 @@
+#!/bin/bash
+
+read -p 'Enter Username: ' IAM_USERNAME
+
+aws iam delete-user --user-name IAM_USERNAME | jq .
+
+
+
