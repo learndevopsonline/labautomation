@@ -3,6 +3,7 @@
 read -p 'Enter Username: ' IAM_USERNAME
 
 aws iam delete-login-profile --user-name $IAM_USERNAME | jq .
+aws iam detach-user-policy --user-name $IAM_USERNAME  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 aws iam delete-user --user-name $IAM_USERNAME | jq .
 
 
