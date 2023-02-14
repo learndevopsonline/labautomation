@@ -103,9 +103,9 @@ Description=Payment Service
 User=root
 WorkingDirectory=/payment
 Environment=CART_HOST=localhost
-Environment=CART_PORT=8083
+Environment=CART_PORT=8082
 Environment=USER_HOST=localhost
-Environment=USER_PORT=8082
+Environment=USER_PORT=8083
 Environment=AMQP_HOST=localhost
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
@@ -117,7 +117,9 @@ SyslogIdentifier=payment
 
 [Install]
 WantedBy=multi-user.target
-' >/etc/systemd/system/dispatch.service
+' >/etc/systemd/system/payment.service
+
+sed -i -e 's/8080/8084/' /payment/payment.ini
 
 systemctl daemon-reload
 systemctl enable payment
@@ -137,7 +139,7 @@ Description=Shipping Service
 
 [Service]
 User=roboshop
-Environment=CART_ENDPOINT=localhost:8083
+Environment=CART_ENDPOINT=localhost:8082
 Environment=DB_HOST=localhost
 ExecStart=/bin/java -jar /shipping/shipping.jar
 SyslogIdentifier=shipping
@@ -179,8 +181,9 @@ Description = Cart Service
 [Service]
 User=roboshop
 Environment=CART_SERVER_PORT=8082
-Environment=REDIS_HOST=localhost
-Environment=CATALOGUE_HOST=localhost
+Environment=REDIS_HOST=127.0.0.1
+Environment=CATALOGUE_HOST=127.0.0.1
+Environment=CATALOGUE_PORT=8081
 ExecStart=/bin/node /cart/server.js
 SyslogIdentifier=cart
 
@@ -195,9 +198,9 @@ Description = User Service
 [Service]
 User=roboshop
 Environment=MONGO=true
-Environment=REDIS_HOST=localhost
+Environment=REDIS_HOST=127.0.0.1
 Environment=USER_SERVER_PORT=8083
-Environment=MONGO_URL="mongodb://localhost:27017/users"
+Environment=MONGO_URL="mongodb://127.0.0.1:27017/users"
 ExecStart=/bin/node /user/server.js
 SyslogIdentifier=user
 
@@ -214,7 +217,7 @@ Description = Catalogue Service
 User=roboshop
 Environment=MONGO=true
 Environment=CATALOGUE_SERVER_PORT=8081
-Environment=MONGO_URL="mongodb://localhost:27017/catalogue"
+Environment=MONGO_URL="mongodb://127.0.0.1:27017/catalogue"
 ExecStart=/bin/node /catalogue/server.js
 SyslogIdentifier=catalogue
 
@@ -231,8 +234,8 @@ systemctl start cart
 systemctl enable user
 systemctl start user
 
-mongo --host localhost </catalogue/schema/catalogue.js
-mongo --host localhost </user/schema/user.js
+mongo --host 127.0.0.1 </catalogue/schema/catalogue.js
+mongo --host 127.0.0.1 </user/schema/user.js
 
 yum install nginx -y
 rm -rf /usr/share/nginx/html/*
@@ -248,11 +251,11 @@ location /images/ {
   root   /usr/share/nginx/html;
   try_files $uri /images/placeholder.jpg;
 }
-location /api/catalogue/ { proxy_pass http://localhost:8081/; }
-location /api/user/ { proxy_pass http://localhost:8082/; }
-location /api/cart/ { proxy_pass http://localhost:8083/; }
-location /api/shipping/ { proxy_pass http://localhost:8080/; }
-location /api/payment/ { proxy_pass http://localhost:8084/; }
+location /api/catalogue/ { proxy_pass http://127.0.0.1:8081/; }
+location /api/user/ { proxy_pass http://127.0.0.1:8083/; }
+location /api/cart/ { proxy_pass http://127.0.0.1:8082/; }
+location /api/shipping/ { proxy_pass http://127.0.0.1:8080/; }
+location /api/payment/ { proxy_pass http://127.0.0.1:8084/; }
 
 location /health {
   stub_status on;
