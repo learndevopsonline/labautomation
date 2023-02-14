@@ -92,7 +92,7 @@ mkdir /payment
 cd /payment
 
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
-unzip /tmp/payment.zip
+unzip -o /tmp/payment.zip
 pip3.6 install -r requirements.txt
 
 echo '
