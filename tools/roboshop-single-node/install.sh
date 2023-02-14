@@ -109,6 +109,7 @@ Environment=USER_PORT=8082
 Environment=AMQP_HOST=localhost
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
+Environment=SHOP_PAYMENT_PORT=8084
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
@@ -177,6 +178,7 @@ echo '
 Description = Cart Service
 [Service]
 User=roboshop
+Environment=CART_SERVER_PORT=8082
 Environment=REDIS_HOST=localhost
 Environment=CATALOGUE_HOST=localhost
 ExecStart=/bin/node /cart/server.js
@@ -194,6 +196,7 @@ Description = User Service
 User=roboshop
 Environment=MONGO=true
 Environment=REDIS_HOST=localhost
+Environment=USER_SERVER_PORT=8083
 Environment=MONGO_URL="mongodb://localhost:27017/users"
 ExecStart=/bin/node /user/server.js
 SyslogIdentifier=user
@@ -210,6 +213,7 @@ Description = Catalogue Service
 [Service]
 User=roboshop
 Environment=MONGO=true
+Environment=CATALOGUE_SERVER_PORT=8081
 Environment=MONGO_URL="mongodb://localhost:27017/catalogue"
 ExecStart=/bin/node /catalogue/server.js
 SyslogIdentifier=catalogue
