@@ -60,7 +60,7 @@ yum install python36 gcc python3-devel golang maven nodejs -y
 mkdir -p /dispatch
 cd /dispatch
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
-unzip /tmp/dispatch.zip
+unzip -o /tmp/dispatch.zip
 
 go mod init dispatch
 go get
@@ -127,7 +127,7 @@ mkdir -p /shipping
 cd /shipping
 
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
-unzip /tmp/shipping.zip
+unzip -o /tmp/shipping.zip
 mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
@@ -160,13 +160,13 @@ curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
 curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 
 cd /cart
-unzip /tmp/cart.zip
+unzip -o /tmp/cart.zip
 
 cd /user
-unzip /tmp/user.zip
+unzip -o /tmp/user.zip
 
 cd /catalogue
-unzip /tmp/catalogue.zip
+unzip -o /tmp/catalogue.zip
 
 for i in cart catalogue user ; do
   cd /$i
