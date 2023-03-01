@@ -8,5 +8,5 @@ if [ "$ELV" == "el7" ]; then
   pip3 install ansible
 elif [ "$ELV" == "el8" ]; then
   yum install python39-devel -y
-  pip3.9 install ansible botocore boto3
+  pip3.9 install ansible botocore boto3 python-jenkins
 fi
