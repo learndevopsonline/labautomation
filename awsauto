@@ -38,5 +38,5 @@ fi
 if [ ! -f /tmp/labautomation/setup.sh ]; then
   echo -e "\e[1;33m💡💡 Hint! Try Using \e[0m\e[1m'sudo labauto clean'\e[0m"
 fi
-
+export AWS_PAGER=""
 sh /tmp/labautomation/aws.sh $*
