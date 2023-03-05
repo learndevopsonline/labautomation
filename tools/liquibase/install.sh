@@ -12,4 +12,4 @@ rm -rf /opt/liquibase
 mkdir -p /opt/liquibase
 cd /opt/liquibase
 tar -xf /tmp/liquibase-$VERSION.tar.gz ; rm -f liquibase-$VERSION.tar.gz
-
+ln -s /opt/liquibase/liquibase /bin/liquibase
