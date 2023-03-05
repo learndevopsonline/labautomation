@@ -20,18 +20,28 @@ export OSVENDOR=$(rpm -qi basesystem  | grep Vendor | awk -F : '{print $NF}' | s
 hint() {
 	echo -e "➜  Hint: $1$N"
 }
+export -f hint
+
 info() {
 	echo -e " $1$N"
 }
+export -f info
+
 Info() {
 	echo -e "➜ INFO: $1$N"
 }
+export -f Info
+
 Infot() {
 	echo -e "\t➜ INFO: $1$N"
 }
+export -f InfoT
+
 warning() {
 	echo -e "${Y}☑  $1$N "
 }
+export -f warning
+
 warningt() {
 	echo -e "\t${Y}☑  $1$N "
 }
@@ -171,6 +181,7 @@ Stat() {
 		Split $LOG "$2"
 	fi
 }
+export -f Stat
 
 Statt() {
 	if [ $1 -eq 0 ] ; then
@@ -185,6 +196,7 @@ Statt() {
 		Split $LOG "$2"
 	fi
 }
+export -f Statt
 
 CheckOS() {
   OSVER=$(rpm -qi basesystem | grep ^Release | awk '{print $NF}' | awk -F . '{print $1}')
