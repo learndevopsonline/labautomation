@@ -35,7 +35,7 @@ export -f Info
 Infot() {
 	echo -e "\t➜ INFO: $1$N"
 }
-export -f InfoT
+export -f Infot
 
 warning() {
 	echo -e "${Y}☑  $1$N "
@@ -45,34 +45,46 @@ export -f warning
 warningt() {
 	echo -e "\t${Y}☑  $1$N "
 }
+
 success() {
 	echo -e "${G}✓  $1$N"
 }
+export -f success
+
 successt() {
 	echo -e "\t${G}✓  $1$N"
 }
+export -f successt
+
 error() {
 	echo -e "${R}✗  $1$N"
 }
+export -f error
+
 errort() {
 	echo -e "\t${R}✗  $1$N"
 }
+export -f errort
+
 head_bu() {
 	echo -e "  $BU$1$N\n"
 }
+export -f head_bu
 
 head_u() {
 	echo -e "  $U$1$N\n"
 }
+export -f head_u
 
 head_iu() {
 	echo -e "  \t$IU$1$N\n"
 }
+export -f head_iu
 
 head_lu() {
 	echo -e "  $LU$1$N\n"
 }
-
+export -f head_lu
 
 
 ### Checking Root User or not
@@ -84,6 +96,8 @@ if [ $LID -ne 0 ]; then
 fi
 }
 
+export -f CheckRoot
+
 ### Checking SELINUX
 CheckSELinux() {
 	STATUS=$(sestatus | grep 'SELinux status:'| awk '{print $NF}')
@@ -94,6 +108,7 @@ CheckSELinux() {
 		exit 1
 	fi
 }
+export -f CheckSELinux
 
 CheckFirewall() {
 
@@ -108,6 +123,7 @@ CheckFirewall() {
 	esac
 	success "Disabled FIREWALL Successfully"
 }
+export -f CheckFirewall
 
 DownloadJava() {
 	which java &>/dev/null
@@ -133,6 +149,7 @@ DownloadJava() {
 		;;
 	esac
 }
+export -f DownloadJava
 
 ### Enable EPEL repository.
 
@@ -147,6 +164,7 @@ EnableEPEL() {
 	esac
 	success "Configured EPEL repository Successfully"
 }
+export -f EnableEPEL
 
 ### Enable Docker Repository
 DockerCERepo() {
@@ -160,6 +178,7 @@ DockerCERepo() {
 		exit 1
 	fi
 }
+export -f DockerCERepo
 
 Split() {
 	HEADING=$2
@@ -167,6 +186,7 @@ Split() {
 	echo -e "\t\t\t\e[31m$HEADING\e[0m" >>$1
 	echo -e "===================================================================================================\n\n" >>$1
 }
+export -f Split
 
 Stat() {
 	if [ $1 -eq 0 ] ; then
@@ -210,6 +230,7 @@ CheckOS() {
 	fi
   esac
 }
+export -f CheckOS
 
 PrintCenter() {
   TEXT=$1
@@ -230,6 +251,6 @@ PrintCenter() {
   done
   printf "%*s\n" $(((${#header}+$COLUMNS)/2)) "$header"
 }
-
+export -f PrintCenter
 
 #
