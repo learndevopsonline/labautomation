@@ -1,6 +1,7 @@
 #!/bin/bash
 
 curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" >/tmp/common-functions.sh
+chmod 777 /tmp/common-functions.sh
 #source /root/scripts/common-functions.sh
 source /tmp/common-functions.sh
 
@@ -19,7 +20,9 @@ fi
 
 if [ "$1" == "clean" ]; then
   cd /tmp
-  rm -rf labautomation
+  sudo -v &>/dev/null
+  [ $? -eq 0 ] && sudo rm -rf labautomation || rm -rf labautomation
+  echo $?
   echo -e "\e[1;35m Cleanup Succeeded\e[0m"
   exit 0
 else
@@ -27,7 +30,8 @@ else
     cd /tmp/labautomation
     git pull &>/dev/null
     if [ $? -ne 0 ]; then
-      rm -rf /tmp/lab*
+      sudo -v &>/dev/null
+      [ $? -eq 0 ] && sudo rm -rf /tmp/lab* || rm -rf /tmp/lab*
       git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
     fi
   else
@@ -39,4 +43,4 @@ if [ ! -f /tmp/labautomation/setup.sh ]; then
   echo -e "\e[1;33m💡💡 Hint! Try Using \e[0m\e[1m'sudo labauto clean'\e[0m"
 fi
 export AWS_PAGER=""
-sh /tmp/labautomation/aws.sh $*
+bash /tmp/labautomation/aws.sh $*
