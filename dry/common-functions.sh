@@ -112,15 +112,15 @@ export -f CheckSELinux
 
 CheckFirewall() {
 
-	case $ELV in
-		el7|el8)
-			systemctl disable firewalld &>/dev/null
-			systemctl stop firewalld &>/dev/null
-		;;
-		*)  error "OS Version not supported"
-			exit 1
-		;;
-	esac
+#	case $ELV in
+#		el7|el8)
+#			systemctl disable firewalld &>/dev/null
+#			systemctl stop firewalld &>/dev/null
+#		;;
+#		*)  error "OS Version not supported"
+#			exit 1
+#		;;
+#	esac
 	success "Disabled FIREWALL Successfully"
 }
 export -f CheckFirewall
