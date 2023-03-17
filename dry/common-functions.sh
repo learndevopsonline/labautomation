@@ -12,6 +12,7 @@ LU="\e[2m"
 N="\e[0m"
 
 #ELV=$(rpm -q basesystem |sed -e 's/\./ /g' |xargs -n 1|grep ^el)
+ELV=$(rpm -qi basesystem | grep Release  | awk -F . '{print $NF}')
 export OSVENDOR=$(rpm -qi basesystem  | grep Vendor | awk -F : '{print $NF}' | sed -e 's/^ //')
 
 ## Common Functions
