@@ -1,1 +1,1 @@
-chatgpt_print "Hey, I am testing this,."
+chatgpt_print "\nThis issue comes due to installing two versions of Java in the system. \n\n. Now the question is how did two versiosn of Java installed in your System? \n Yes, Java one version you have installed for Jenkins agent to work, Also for CI purpose you also installed Maven, that in turn installs Java 8 as well. That is how this problem arises.\n\n To fix this we need to run this commands"
