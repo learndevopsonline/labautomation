@@ -259,7 +259,7 @@ export -f PrintCenter
 chatgpt_print() {
   for word in $@ ; do
 
-    echo -en "$word"
+    echo -en "$word "
     sleep 0.1
   done
 }
