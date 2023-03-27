@@ -255,3 +255,13 @@ PrintCenter() {
 export -f PrintCenter
 
 #
+
+chatgpt_print() {
+  for word in $@ ; do
+
+    echo -en "$i"
+    sleep 0.1
+  done
+}
+
+export -f chatgpt_print
