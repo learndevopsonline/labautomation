@@ -257,6 +257,7 @@ export -f PrintCenter
 #
 
 chatgpt_print() {
+  echo -e "\e[1m"
   for word in $@ ; do
 
     echo -en "$word "
