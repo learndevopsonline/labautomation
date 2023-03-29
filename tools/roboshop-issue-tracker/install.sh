@@ -11,7 +11,10 @@ chatgpt_print FRONTEND: Checking if the nginx is installed
 command_print "yum list installed | grep nginx.x"
 
 yum list installed | grep nginx.x
-Stat $? "\nNginx is installed"
+echo
+Stat $? "Nginx is installed"
+
+
 
 
 
