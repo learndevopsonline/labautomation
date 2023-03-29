@@ -1,6 +1,5 @@
 source /tmp/labautomation/dry/common-functions.sh
 
-set -x
 ## Frontend
 PrintCenter "RoboShop Project Setup Issue Finder"
 
