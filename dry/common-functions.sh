@@ -217,9 +217,9 @@ export -f Stat
 ## Status print rather than failing
 StatP() {
 	if [ $1 -eq 0 ] ; then
-		success "$2"
+		successn "$2"
 	elif [ $1 = "SKIP" ]; then
-		warning "$2"
+		warningn "$2"
 	else
 		error "$2"
 	fi
