@@ -269,8 +269,8 @@ chatgpt_print() {
 export -f chatgpt_print
 
 command_print() {
-  echo -e "\n\e[0mRunning the following command now."
-  echo -e "\e[36m $1 \e[0m\n"
+  echo -e "\n\e[0mRunning the following command now.\n"
+  echo -e "#️⃣ \e[36m $1 \e[0m"
 }
 
 export -f command_print
