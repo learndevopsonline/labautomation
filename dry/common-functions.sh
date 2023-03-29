@@ -263,6 +263,7 @@ chatgpt_print() {
     echo -en "$word "
     sleep 0.2
   done
+  echo
 }
 
 export -f chatgpt_print
