@@ -1,4 +1,4 @@
-soruce /tmp/common-functions.sh
+source /tmp/common-functions.sh
 
 ## Frontend
 PrintCenter "RoboShop Project Setup Issue Finder"
