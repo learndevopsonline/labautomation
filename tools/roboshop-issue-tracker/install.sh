@@ -26,7 +26,7 @@ command_print "netstat -lntp | grep nginx"
 
 netstat -lntp | grep nginx
 StatP $? "Nginx Service Running.."
-
+CASE 10
 
 
 
