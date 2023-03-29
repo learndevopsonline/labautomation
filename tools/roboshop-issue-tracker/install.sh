@@ -8,6 +8,9 @@ chatgpt_print Checking Frontend!!
 
 chatgpt_print FRONTEND: Checking if the nginx is installed
 
+command_print "yum list installed | grep nginx.x"
+
+
 
 
 
