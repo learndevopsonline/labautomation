@@ -3,8 +3,11 @@ source /tmp/common-functions.sh
 ## Frontend
 PrintCenter "RoboShop Project Setup Issue Finder"
 
-chatgpt_print To start checking roboshop project setup, It would be better to check the setup from frontend.
-chatgpt_print Cheecking Frontend!!
+echo This script runs only on the frontend server. Other servers it will always fail.
+chatgpt_print Checking Frontend!!
+
+chatgpt_print FRONTEND: Checking if the nginx is installed
+
 
 
 
