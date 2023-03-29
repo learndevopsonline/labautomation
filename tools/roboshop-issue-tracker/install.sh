@@ -1,5 +1,6 @@
 source /tmp/common-functions.sh
 
+set -x
 ## Frontend
 PrintCenter "RoboShop Project Setup Issue Finder"
 
