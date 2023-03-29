@@ -1,4 +1,4 @@
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 set -x
 ## Frontend
