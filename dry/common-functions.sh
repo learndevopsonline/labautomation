@@ -52,6 +52,11 @@ success() {
 }
 export -f success
 
+successn() {
+	echo -e "\n${G}✓  $1$N"
+}
+export -f successn
+
 successt() {
 	echo -e "\t${G}✓  $1$N"
 }
@@ -61,6 +66,11 @@ error() {
 	echo -e "${R}✗  $1$N"
 }
 export -f error
+
+errorn() {
+	echo -e "\n${R}✗  $1$N"
+}
+export -f errorn
 
 errort() {
 	echo -e "\t${R}✗  $1$N"
@@ -200,6 +210,18 @@ Stat() {
 	fi
 	if [ ! -z "$LOG" ]; then
 		Split $LOG "$2"
+	fi
+}
+export -f Stat
+
+## Status print rather than failing
+StatP() {
+	if [ $1 -eq 0 ] ; then
+		success "$2"
+	elif [ $1 = "SKIP" ]; then
+		warning "$2"
+	else
+		error "$2"
 	fi
 }
 export -f Stat
