@@ -22,6 +22,17 @@ cat /etc/nginx/default.d/roboshop.conf
 echo
 Stat $? "Found RoboShop Configuration"
 
+chatgpt_print FRONTEND: Checking Nginx Service is running or not.
+
+command_print "netstat -lntp | grep nginx"
+
+netstat -lntp | grep nginx
+echo
+Stat $? "Nginx Service Running.."
+
+
+
+
 
 
 
