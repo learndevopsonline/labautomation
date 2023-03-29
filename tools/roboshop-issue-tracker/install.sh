@@ -11,7 +11,6 @@ chatgpt_print FRONTEND: Checking if the nginx is installed
 command_print "yum list installed | grep nginx.x"
 
 yum list installed | grep nginx.x
-echo
 Stat $? "Nginx is installed"
 
 chatgpt_print FRONTEND: Checking for Roboshop nginx configuration.
@@ -19,7 +18,6 @@ chatgpt_print FRONTEND: Checking for Roboshop nginx configuration.
 command_print "cat /etc/nginx/default.d/roboshop.conf"
 
 cat /etc/nginx/default.d/roboshop.conf
-echo
 Stat $? "Found RoboShop Configuration"
 
 chatgpt_print FRONTEND: Checking Nginx Service is running or not.
@@ -27,7 +25,6 @@ chatgpt_print FRONTEND: Checking Nginx Service is running or not.
 command_print "netstat -lntp | grep nginx"
 
 netstat -lntp | grep nginx
-echo
 Stat $? "Nginx Service Running.."
 
 
