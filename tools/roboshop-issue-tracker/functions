@@ -5,6 +5,8 @@ CASE() {
        netstat -lntp | grep nginx
        if [ $? -ne 0 ]; then
          systemctl status -l nginx
+         ## something to fill
+
       fi
     ;;
   esac
