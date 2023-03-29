@@ -261,7 +261,7 @@ chatgpt_print() {
   for word in $@ ; do
 
     echo -en "$word "
-    sleep 0.25
+    sleep 0.5
   done
 }
 
