@@ -14,6 +14,19 @@ yum list installed | grep nginx.x
 echo
 Stat $? "Nginx is installed"
 
+chatgpt_print FRONTEND: Checking for Roboshop nginx configuration.
+
+command_print "cat /etc/nginx/default.d/roboshop.conf"
+
+cat /etc/nginx/default.d/roboshop.conf
+echo
+Stat $? "Found RoboShop Configuration"
+
+
+
+
+
+
 
 
 
