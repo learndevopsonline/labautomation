@@ -1,7 +1,7 @@
 source /tmp/labautomation/dry/common-functions.sh
 pwd
 
-source ./functions
+source tools/roboshop-issue-tracker/functions
 
 ## Frontend
 PrintCenter "RoboShop Project Setup Issue Finder"
