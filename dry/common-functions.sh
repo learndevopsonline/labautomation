@@ -23,6 +23,11 @@ hint() {
 }
 export -f hint
 
+hintt() {
+	echo -e "\t\e[1;36m ➜  Hint:\e[0m\e[1m $1$N"
+}
+export -f hint
+
 info() {
 	echo -e " $1$N"
 }
