@@ -1,6 +1,6 @@
-source /tmp/labautomation/dry/common-functions.sh
-pwd
+echo -e "\n\e[33mThis script is under development, So all the scenarios may not work\e[0m"
 
+source /tmp/labautomation/dry/common-functions.sh
 source tools/roboshop-issue-tracker/functions
 
 ## Frontend
