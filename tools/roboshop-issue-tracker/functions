@@ -13,12 +13,12 @@ CASE() {
           grep 'nginx\[' /var/log/messages | tail -n 4 | grep 'host not found' &>/dev/null
           if [ $? -eq 0 ]; then
             hintt "Issue is DNS record not found which is used in the Nginx Server"
-            hintt Checking DNS Entries
+            hintt "Checking DNS Entries"
             for server in $(cat /etc/nginx/default.d/roboshop.conf  | grep /api/ | xargs -n1  | grep ^http | awk -F : '{print $2}' | sed -e 's|//||' |xargs); do
-              hintt Checking DNS record for - $server
+              hintt "Checking DNS record for - $server"
               host $server
               if [ $? -ne 0 ]; then
-                hintt DNS Check Failed - $server
+                hintt "DNS Check Failed - $server"
                 SOLUTION 10
               fi
             done
