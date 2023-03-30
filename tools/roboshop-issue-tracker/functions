@@ -6,7 +6,8 @@ CASE() {
        if [ $? -ne 0 ]; then
          systemctl status -l nginx
          ## something to fill
-
+          echo -e "\n\e[1;33m Following are the errors \e[0m\n"
+          grep 'nginx\[' /var/log/messages
       fi
     ;;
   esac
