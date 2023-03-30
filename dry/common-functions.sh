@@ -222,6 +222,7 @@ StatP() {
 		warningn "$2"
 	else
 		error "$2"
+		[ "${StatP}" == 1 ] && exit 1 || EXIT=0
 	fi
 }
 export -f Stat

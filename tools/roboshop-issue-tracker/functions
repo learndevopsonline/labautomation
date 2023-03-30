@@ -1,7 +1,5 @@
 CASE() {
   case $1 in
-  EXIT)
-      exit 1;;
     1) ## Nginx service failed and not running
        systemctl restart nginx
        netstat -lntp | grep nginx

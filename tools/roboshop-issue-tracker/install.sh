@@ -20,8 +20,7 @@ chatgpt_print FRONTEND: Checking for Roboshop nginx configuration.
 command_print "cat /etc/nginx/default.d/roboshop.conf"
 
 cat /etc/nginx/default.d/roboshop.conf
-StatP $? "Found RoboShop Configuration"
-CASE EXIT
+EXIT=1 StatP $? "Found RoboShop Configuration"
 
 chatgpt_print FRONTEND: Checking Nginx Service is running or not.
 
