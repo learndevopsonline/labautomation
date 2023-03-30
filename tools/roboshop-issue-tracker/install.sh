@@ -4,7 +4,6 @@ source /tmp/labautomation/dry/common-functions.sh
 source tools/roboshop-issue-tracker/functions
 
 ## Frontend
-PrintCenter "RoboShop Project Setup Issue Finder"
 
 echo This script runs only on the frontend server. Other servers it will always fail.
 chatgpt_print Checking Frontend!!
