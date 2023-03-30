@@ -1,4 +1,6 @@
 source /tmp/labautomation/dry/common-functions.sh
+pwd
+
 source ./functions
 
 ## Frontend
