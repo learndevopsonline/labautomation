@@ -1,3 +1,4 @@
+
 CASE() {
   case $1 in
     10) ## Nginx service failed and not running
@@ -7,7 +8,20 @@ CASE() {
          systemctl status -l nginx
          ## something to fill
           echo -e "\n\e[1;33m Following are the errors \e[0m\n"
-          grep 'nginx\[' /var/log/messages
+          grep 'nginx\[' /var/log/messages | tail -n 4
+          grep 'nginx\[' /var/log/messages | tail -n 4 | grep 'host not found' &>/dev/null
+          if [ $? -eq 0 ]; then
+            echo "Issue is DNS record not found which is used in the Nginx Server"
+            echo Checking DNS Entries
+            for server in $(cat /etc/nginx/default.d/roboshop.conf  | grep /api/ | xargs -n1  | grep ^http | awk -F : '{print $2}' | sed -e 's|//||' |xargs); do
+              echo Checking DNS record for - $server
+              host $server
+              if [ $? -ne 0 ]; then
+                echo DNS Check Failed - $server
+                SOLUTION 10
+              fi
+            done
+          fi
       fi
     ;;
   esac

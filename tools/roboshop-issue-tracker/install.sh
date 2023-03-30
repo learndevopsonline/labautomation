@@ -2,6 +2,7 @@ echo -e "\n\e[33mThis script is under development, So all the scenarios may not 
 
 source /tmp/labautomation/dry/common-functions.sh
 source tools/roboshop-issue-tracker/functions
+source tools/roboshop-issue-tracker/solutions
 
 ## Frontend
 
@@ -29,6 +30,7 @@ command_print "netstat -lntp | grep nginx"
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 10
+
 
 
 

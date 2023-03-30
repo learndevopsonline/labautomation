@@ -1,0 +1,9 @@
+case $1 in
+  10)
+    echo "DNS record is not working"
+    echo "Check if your domain is properly configured or not in https://dnschecker.org "
+    echo "Check if your DNS record is been showing in in https://dnschecker.org or not"
+
+    exit 1
+    ;;
+esac
