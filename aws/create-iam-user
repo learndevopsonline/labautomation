@@ -3,6 +3,7 @@
 read -p 'Enter Username: ' IAM_USERNAME
 read -p 'Enter Password: ' IAM_PASSWORD
 
+aws iam create-user --user-name ${IAM_USERNAME}
 aws iam create-login-profile --user-name ${IAM_USERNAME} --password ${IAM_PASSWORD}
 aws iam attach-user-policy --policy-arn arn:aws:iam::aws:policy/AdministratorAccess --user-name ${IAM_USERNAME}
 
