@@ -2,4 +2,4 @@ aws ec2   describe-security-groups --query "SecurityGroups[*].{ID:GroupId, Name:
 
 read -p 'Enter security group ID: ' id
 
-aws ec2 describe-security-groups --group-ids ${id} --output json
+aws ec2 describe-security-group-rules --filter Name="group-id",Values="${id}" --query "SecurityGroupRules[*].{from: FromPort, to: ToPort, cidr:CidrIpv4}" --output table
