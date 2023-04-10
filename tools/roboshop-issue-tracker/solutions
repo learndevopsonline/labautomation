@@ -21,7 +21,14 @@ SOLUTION() {
       command_print "systemctl restart catalogue"
       exit 1
     ;;
-
+    202) ### Catalogue Schema is not loaded
+      echo -e "Categories on your frontend is not showing because catalogue schema does not exist"
+      echo -e "${BLU}SOLUTION${N}: Just load the schema again, Run the following command in ${TC}Catalogue Server${N}"
+      command_print "mongo --host ${MONGO_IP} </app/schema/catalogue.js"
+      command_print "systemctl restart catalogue"
+      exit 1
+    ;;
    esac
 }
+
 
