@@ -86,16 +86,6 @@ else
   CASE 202
 fi
 
-
-
-
-
-
-
-
-
-exit
-
 # Finding User Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
@@ -107,6 +97,9 @@ command_print "nc -z $USE_IP 22"
 nc -z $USE_IP 22
 StatP $? "Checking User Server is reachable"
 
+
+
+exit
 
 
 
