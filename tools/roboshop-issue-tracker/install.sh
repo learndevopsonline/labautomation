@@ -65,7 +65,7 @@ command_print "netstat -lntp"
 
 listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print $1}' | awk '{print $NF}'")
 if [ "$listen_addres" != "0.0.0.0" ]; then
-  StatP 0 "MongoDB listen address is configured"
+  EXIT=0 StatP 1 "MongoDB listen address is configured"
   CASE 200
 fi
 
