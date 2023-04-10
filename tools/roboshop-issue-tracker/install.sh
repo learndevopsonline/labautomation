@@ -69,12 +69,12 @@ if [ "$listen_addres" != "0.0.0.0" ]; then
   CASE 200
 fi
 
-chatgpt_print "CATALOGUE: Checking if catalogue is able to reach MongoDB Server or not"
+chatgpt_print "MONGODB: Checking if catalogue is able to reach MongoDB Server or not"
 command_print "nc -z $MONGO_IP 27017"
 remote_command $CAT_IP "nc -z $MONGO_IP 27017"
 Stat $? "Catalogue server able to connect to MongoDB server"
 
-chatgpt_print "CATALOGUE: Checking if catalogue schema is loaded in mongodb"
+chatgpt_print "MONGODB: Checking if catalogue schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
 
@@ -123,12 +123,12 @@ if [ "$listen_addres" != "0.0.0.0" ]; then
   CASE 200
 fi
 
-chatgpt_print "USER: Checking if user is able to reach MongoDB Server or not"
+chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
 command_print "nc -z $MONGO_IP 27017"
 remote_command $CAT_IP "nc -z $MONGO_IP 27017"
 Stat $? "User server able to connect to MongoDB server"
 
-chatgpt_print "USER: Checking if user schema is loaded in mongodb"
+chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
 
