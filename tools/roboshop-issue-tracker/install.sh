@@ -224,7 +224,10 @@ chatgpt_print "SHIPPING: Check if the shipping service is running or not"
 
 command_print "ps -ef | grep java"
 
-echo "ps -ef | grep java | grep -v grep" | ssh $SHI_IP 2>&1 | sed -e 1,39d | grep java
+remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
+Stat $? "Check Shipping is running or not"
+
+
 
 
 
