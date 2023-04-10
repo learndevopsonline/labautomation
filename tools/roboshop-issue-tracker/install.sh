@@ -39,6 +39,9 @@ CAT_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 |
 
 chatgpt_print "Catalogue IP : $CAT_IP"
 
+command_print "nc -z $CAT_IP 22"
+nc -z $CAT_IP 22
+StatP $? "Checking Catalogue Server is reachable"
 
 
 
