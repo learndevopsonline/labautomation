@@ -72,7 +72,14 @@ fi
 chatgpt_print "CATALOGUE: Checking if catalogue is able to reach MongoDB Server or not"
 command_print "nc -z $MONGO_IP 27017"
 remote_command $CAT_IP "nc -z $MONGO_IP 27017"
-Stat $? "Catalogue able to connect to MongoDB"
+Stat $? "Catalogue server able to connect to MongoDB server"
+
+chatgpt_print "CATALOGUE: Checking if catalogue schema is loaded in mongodb"
+command_print "echo 'show dbs' | mongo"
+remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1"
+
+
+
 
 
 
