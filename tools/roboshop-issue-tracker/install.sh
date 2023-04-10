@@ -76,7 +76,15 @@ Stat $? "Catalogue server able to connect to MongoDB server"
 
 chatgpt_print "CATALOGUE: Checking if catalogue schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
-remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1"
+remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
+if [ $? -eq 0 ]; then
+  EXIT=0 StatP 1 "Checking Catalogue Schema"
+  CASE 201
+else
+  EXIT=0 StatP 1 "Checking Catalogue Schema"
+  CASE 202
+fi
 
 
 

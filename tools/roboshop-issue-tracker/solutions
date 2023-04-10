@@ -1,18 +1,20 @@
 SOLUTION() {
    case $1 in
-     100)
-        echo "DNS record is not working"
-        echo "Check if your domain is properly configured or not in https://dnschecker.org "
-        echo "Check if your DNS record is been showing in in https://dnschecker.org or not"
-
-        exit 1
-        ;;
-     200)
-       echo -e "Ensure you change the file ${TC}/etc/mongod.conf${N} file and change the listen address from 127.0.0.1 to 0.0.0.0"
-       echo -e "Then save the file, Restart service using ${TC}systemctl restart mongod${N}"
-       echo -e "Check the status using ${TC}nestat -lntp${N}"
-       exit 1
-        ;;
+    100) ### Nginx service failed and not running
+      echo "DNS record is not working"
+      echo "Check if your domain is properly configured or not in https://dnschecker.org "
+      echo "Check if your DNS record is been showing in in https://dnschecker.org or not"
+      exit 1
+      ;;
+    200) ### Catalogue service address is not configured with 0.0.0.0
+      echo -e "Ensure you change the file ${TC}/etc/mongod.conf${N} file and change the listen address from 127.0.0.1 to 0.0.0.0"
+      echo -e "Then save the file, Restart service using ${TC}systemctl restart mongod${N}"
+      echo -e "Check the status using ${TC}nestat -lntp${N}"
+      exit 1
+      ;;
+    201) ### Catalogue Schema is lost due to public
+      echo -e "Categories on your frontend is not showing because catalogue schema does not exist"
+      echo -e "${HM}This is not your mistake, MongoDB have this behaviour${N}"
    esac
 }
 

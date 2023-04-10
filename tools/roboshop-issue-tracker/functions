@@ -30,6 +30,12 @@ CASE() {
     SOLUTION 200
     exit
     ;;
+  201) ### Catalogue schema lost due to Public IP of MongoDB
+    SOLUTION 201
+    ;;
+  202) ### Schema Missing
+    SOLUTION 202
+    ;;
   esac
 }
 
@@ -39,4 +45,5 @@ remote_command() {
 }
 
 TC="\e[1;43m"
+HM="\e[4;45m"
 N="\e[0m"
