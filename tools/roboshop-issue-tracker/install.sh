@@ -163,19 +163,9 @@ listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : 
 if [ "$listen_addres" != "0.0.0.0" ]; then
   EXIT=0 StatP 1 "REDIS listen address is configured"
   CASE 400
+else
+  StatP 0 "REDIS listen address is configured"
 fi
-
-exit
-
-
-
-
-
-
-
-
-
-
 
 # Finding Cart Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
@@ -187,6 +177,32 @@ chatgpt_print "Cart IP : $CAR_IP"
 command_print "nc -z $CAR_IP 22"
 nc -z $CAR_IP 22
 StatP $? "Checking Cart Server is reachable"
+
+chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+
+REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh CAR_IP 2>&1 | sed -e 1,39d)
+
+chatgpt_print "Redis IP : $REDIS_IP"
+
+command_print "nc -z $REDIS_IP 22"
+nc -z $REDIS_IP 22
+StatP $? "Checking Redis Server is reachable"
+
+chatgpt_print "REDIS: Checking if the Redis is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  EXIT=0 StatP 1 "REDIS listen address is configured"
+  CASE 400
+else
+  StatP 0 "REDIS listen address is configured"
+fi
+
+exit
+
+
+
 
 # Finding Shipping Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
