@@ -50,6 +50,16 @@ command_print "ps -ef | grep server.js"
 echo "ps -ef | grep server.js | grep -v grep" | ssh $CAT_IP 2>&1 | sed -e 1,39d | grep server.js
 StatP $? "Checking Catalogue Service is running"
 
+chatgpt_print "CATALOGUE: Catalogue Service is dependent on MongoDB Server. Fetching MongoDB IP address"
+
+MONGO_IP=$(echo "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print $3}' | awk -F : '{print $1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
+
+chatgpt_print "MongoDB IP : $CAT_IP"
+
+command_print "nc -z $MONGO_IP 22"
+nc -z $MONGO_IP 22
+StatP $? "Checking MongoDB Server is reachable"
+
 
 exit
 
