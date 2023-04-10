@@ -18,6 +18,10 @@ SOLUTION() {
       echo -e "Ref URL: https://www.mongodb.com/community/forums/t/database-deleted-auto/99623/7"
       echo -e "${BLU}SOLUTION${N}: Just load the schema again, Run the following command in ${TC}Catalogue Server${N}"
       command_print "mongo --host ${MONGO_IP} </app/schema/catalogue.js"
+      command_print "systemctl restart catalogue"
+      exit 1
+    ;;
+
    esac
 }
 
