@@ -42,7 +42,7 @@ chatgpt_print "Catalogue IP : $CAT_IP"
 command_print "nc -w 5 -z $CAT_IP 22"
 nc -w 5 -z $CAT_IP 22
 StatP $? "Checking Catalogue Server is reachable"
-
+CASE 0
 
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
@@ -59,6 +59,7 @@ chatgpt_print "MongoDB IP : $MONGO_IP"
 command_print "nc -w 5 -z $MONGO_IP 22"
 nc -w 5 -z $MONGO_IP 22
 StatP $? "Checking MongoDB Server is reachable"
+CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
@@ -103,6 +104,7 @@ chatgpt_print "User IP : $USE_IP"
 command_print "nc -w 5 -z $USE_IP 22"
 nc -w 5 -z $USE_IP 22
 StatP $? "Checking User Server is reachable"
+CASE 0
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 
@@ -113,6 +115,7 @@ chatgpt_print "MongoDB IP : $MONGO_IP"
 command_print "nc -w 5 -z $MONGO_IP 22"
 nc -w 5 -z $MONGO_IP 22
 StatP $? "Checking MongoDB Server is reachable"
+CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
@@ -155,6 +158,7 @@ chatgpt_print "Redis IP : $REDIS_IP"
 command_print "nc -w 5 -z $REDIS_IP 22"
 nc -w 5 -z $REDIS_IP 22
 StatP $? "Checking Redis Server is reachable"
+CASE 0
 
 chatgpt_print "REDIS: Checking if the Redis is running or not"
 command_print "netstat -lntp"
@@ -182,6 +186,7 @@ chatgpt_print "Cart IP : $CAR_IP"
 command_print "nc -w 5 -z $CAR_IP 22"
 nc -w 5 -z $CAR_IP 22
 StatP $? "Checking Cart Server is reachable"
+CASE 0
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 
@@ -220,6 +225,7 @@ chatgpt_print "Shipping IP : $SHI_IP"
 command_print "nc -w 5 -z $SHI_IP 22"
 nc -w 5 -z $SHI_IP 22
 StatP $? "Checking Shipping Server is reachable"
+CASE 0
 
 chatgpt_print "SHIPPING: Check if the shipping service is running or not"
 

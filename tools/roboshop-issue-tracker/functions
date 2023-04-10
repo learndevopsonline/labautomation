@@ -2,6 +2,10 @@ source /tmp/labautomation/dry/common-functions.sh
 
 CASE() {
   case $1 in
+    0) ### Server is not reachable
+      echo -e "\e[1;31mServer is not reachable\e[0m"
+      exit 1
+      ;;
     100) ## Nginx service failed and not running
        systemctl restart nginx
        netstat -lntp | grep nginx
