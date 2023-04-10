@@ -36,6 +36,11 @@ CASE() {
   202) ### Schema Missing
     SOLUTION 202
     ;;
+  400) ### Redis service address is not configured with 0.0.0.0
+    hintt "Redis Server Listen address is 127.0.0.1 instead of 0.0.0.0"
+    SOLUTION 400
+    exit
+    ;;
   esac
 }
 

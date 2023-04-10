@@ -28,6 +28,12 @@ SOLUTION() {
       command_print "systemctl restart catalogue"
       exit 1
     ;;
+    400) ### Redis service address is not configured with 0.0.0.0
+      echo -e "Ensure you change the file ${TC}/etc/redis.conf${N} file and change the listen address from 127.0.0.1 to 0.0.0.0"
+      echo -e "Then save the file, Restart service using ${TC}systemctl restart redis${N}"
+      echo -e "Check the status using ${TC}nestat -lntp${N}"
+      exit 1
+      ;;
    esac
 }
 

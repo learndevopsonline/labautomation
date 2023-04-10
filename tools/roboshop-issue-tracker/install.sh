@@ -159,10 +159,10 @@ StatP $? "Checking Redis Server is reachable"
 chatgpt_print "REDIS: Checking if the Redis is running or not"
 command_print "netstat -lntp"
 
-listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
+listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
 if [ "$listen_addres" != "0.0.0.0" ]; then
-  EXIT=0 StatP 1 "MongoDB listen address is configured"
-  CASE 200
+  EXIT=0 StatP 1 "REDIS listen address is configured"
+  CASE 400
 fi
 
 exit
