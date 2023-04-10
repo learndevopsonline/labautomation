@@ -43,7 +43,38 @@ command_print "nc -z $CAT_IP 22"
 nc -z $CAT_IP 22
 StatP $? "Checking Catalogue Server is reachable"
 
+# Finding User Server
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
+USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "USER IP : $USE_IP"
+
+command_print "nc -z $USE_IP 22"
+nc -z $USE_IP 22
+StatP $? "Checking User Server is reachable"
+
+# Finding Cart Server
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Cart IP : $CAR_IP"
+
+command_print "nc -z $CAR_IP 22"
+nc -z $CAR_IP 22
+StatP $? "Checking Cart Server is reachable"
+
+# Finding Shipping Server
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Shipping IP : $SHI_IP"
+
+command_print "nc -z $SHI_IP 22"
+nc -z $SHI_IP 22
+StatP $? "Checking Shipping Server is reachable"
 
 
 
