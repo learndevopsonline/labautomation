@@ -106,7 +106,7 @@ StatP $? "Checking User Server is reachable"
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 
-MONGO_IP=$(echo "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
+MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
 
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
@@ -145,6 +145,12 @@ if [ $? -ne 0 ]; then
 else
   StatP 0 "Checking User Schema"
 fi
+
+chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+
+MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
+
+chatgpt_print "MongoDB IP : $MONGO_IP"
 
 
 exit
