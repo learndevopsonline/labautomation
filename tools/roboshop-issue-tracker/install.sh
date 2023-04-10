@@ -150,8 +150,20 @@ chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis I
 
 REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
 
-chatgpt_print "MongoDB IP : $MONGO_IP"
+chatgpt_print "Redis IP : $REDIS_IP"
 
+command_print "nc -z $REDIS_IP 22"
+nc -z $REDIS_IP 22
+StatP $? "Checking Redis Server is reachable"
+
+chatgpt_print "REDIS: Checking if the Redis is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  EXIT=0 StatP 1 "MongoDB listen address is configured"
+  CASE 200
+fi
 
 exit
 
