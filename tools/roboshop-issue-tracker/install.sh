@@ -60,6 +60,14 @@ command_print "nc -z $MONGO_IP 22"
 nc -z $MONGO_IP 22
 StatP $? "Checking MongoDB Server is reachable"
 
+chatgpt_print "MONGODB: Checking if the DB is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print $1}' | awk '{print $NF}'")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  StatP 1  "MongoDB listen address is configured"
+fi
+
 
 exit
 
