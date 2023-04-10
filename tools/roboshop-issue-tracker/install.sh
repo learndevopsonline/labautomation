@@ -64,10 +64,14 @@ chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
 
 listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print $1}' | awk '{print $NF}'")
+echo $listen_addres
+
 if [ "$listen_addres" != "0.0.0.0" ]; then
   EXIT=0 StatP 1 "MongoDB listen address is configured"
   CASE 200
 fi
+
+
 
 
 exit
