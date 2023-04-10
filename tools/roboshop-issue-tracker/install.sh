@@ -80,15 +80,13 @@ remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
 
 grep catalogue /tmp/out &>/dev/null
 if [ $? -ne 0 ]; then
-  EXIT=0 StatP 1 "Checking Catalogue Schema"
-  CASE 202
-fi
-grep catalogue /tmp/out &>/dev/null
-if [ $? -ne 0 ]; then
   grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
   if [ $? -eq 0 ]; then
     EXIT=0 StatP 1 "Checking Catalogue Schema"
     CASE 201
+  else
+    EXIT=0 StatP 1 "Checking Catalogue Schema"
+    CASE 202
   fi
 fi
 
