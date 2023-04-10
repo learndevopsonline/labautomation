@@ -89,7 +89,7 @@ if [ $? -ne 0 ]; then
     CASE 202
   fi
 else
-  StatP 0 "Checking User Schema"
+  StatP 0 "Checking Catalogue Schema"
 fi
 
 
