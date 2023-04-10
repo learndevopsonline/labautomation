@@ -79,7 +79,7 @@ command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
 
 grep catalogue /tmp/out &>/dev/null
-if [ $? -eq 0 ]; then
+if [ $? -ne 0 ]; then
   EXIT=0 StatP 1 "Checking Catalogue Schema"
   CASE 202
 else
