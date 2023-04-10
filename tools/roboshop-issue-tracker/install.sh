@@ -209,11 +209,6 @@ command_print "nc -z $REDIS_IP 6379"
 remote_command $CAR_IP "nc -z $REDIS_IP 6379"
 Stat $? "Cart server able to connect to Redis server"
 
-exit
-
-
-
-
 # Finding Shipping Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
