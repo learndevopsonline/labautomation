@@ -88,6 +88,8 @@ if [ $? -ne 0 ]; then
     EXIT=0 StatP 1 "Checking Catalogue Schema"
     CASE 202
   fi
+else
+  StatP 0 "Checking User Schema"
 fi
 
 
@@ -134,12 +136,14 @@ grep users  /tmp/out &>/dev/null
 if [ $? -ne 0 ]; then
   grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
   if [ $? -eq 0 ]; then
-    EXIT=0 StatP 1 "Checking Catalogue Schema"
+    EXIT=0 StatP 1 "Checking User Schema"
     CASE 201
   else
-    EXIT=0 StatP 1 "Checking Catalogue Schema"
+    EXIT=0 StatP 1 "Checking User Schema"
     CASE 202
   fi
+else
+  StatP 0 "Checking User Schema"
 fi
 
 
