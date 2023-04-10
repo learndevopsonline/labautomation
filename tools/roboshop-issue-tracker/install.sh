@@ -43,16 +43,35 @@ command_print "nc -z $CAT_IP 22"
 nc -z $CAT_IP 22
 StatP $? "Checking Catalogue Server is reachable"
 
+
+### Categories not showing
+
+echo "ps -ef | grep server.js | grep -v grep" | ssh $USE_IP 2>&1 | sed -e 1,39d | grep java
+
+
+exit
+
 # Finding User Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
 USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
-chatgpt_print "USER IP : $USE_IP"
+chatgpt_print "User IP : $USE_IP"
 
 command_print "nc -z $USE_IP 22"
 nc -z $USE_IP 22
 StatP $? "Checking User Server is reachable"
+
+
+
+
+
+
+
+
+
+
+
 
 # Finding Cart Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
@@ -76,7 +95,11 @@ command_print "nc -z $SHI_IP 22"
 nc -z $SHI_IP 22
 StatP $? "Checking Shipping Server is reachable"
 
+chatgpt_print "SHIPPING: Check if the shipping service is running or not"
 
+command_print "ps -ef | grep java"
+
+echo "ps -ef | grep java | grep -v grep" | ssh $SHI_IP 2>&1 | sed -e 1,39d | grep java
 
 
 
