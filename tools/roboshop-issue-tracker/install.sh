@@ -32,7 +32,12 @@ EXIT=0 StatP $? "Nginx Service Running.."
 CASE 10
 
 
+# Finding Catalogue Server
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
+CAT_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Catalogue IP : $CAT_IP"
 
 
 
