@@ -31,7 +31,7 @@ netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
 
-
+<<COMMENT
 # Finding Catalogue Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
@@ -209,6 +209,7 @@ command_print "nc -z $REDIS_IP 6379"
 remote_command $CAR_IP "nc -z $REDIS_IP 6379"
 Stat $? "Cart server able to connect to Redis server"
 
+COMMENT
 # Finding Shipping Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
