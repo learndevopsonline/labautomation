@@ -180,7 +180,7 @@ StatP $? "Checking Cart Server is reachable"
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 
-REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh CAR_IP 2>&1 | sed -e 1,39d)
+REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $CAR_IP 2>&1 | sed -e 1,39d)
 
 chatgpt_print "Redis IP : $REDIS_IP"
 
