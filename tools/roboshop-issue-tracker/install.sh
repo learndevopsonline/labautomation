@@ -102,6 +102,45 @@ command_print "nc -z $USE_IP 22"
 nc -z $USE_IP 22
 StatP $? "Checking User Server is reachable"
 
+chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
+
+MONGO_IP=$(echo "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
+
+chatgpt_print "MongoDB IP : $MONGO_IP"
+
+command_print "nc -z $MONGO_IP 22"
+nc -z $MONGO_IP 22
+StatP $? "Checking MongoDB Server is reachable"
+
+chatgpt_print "MONGODB: Checking if the DB is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  EXIT=0 StatP 1 "MongoDB listen address is configured"
+  CASE 200
+fi
+
+chatgpt_print "USER: Checking if user is able to reach MongoDB Server or not"
+command_print "nc -z $MONGO_IP 27017"
+remote_command $CAT_IP "nc -z $MONGO_IP 27017"
+Stat $? "User server able to connect to MongoDB server"
+
+chatgpt_print "USER: Checking if user schema is loaded in mongodb"
+command_print "echo 'show dbs' | mongo"
+remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+
+grep users  /tmp/out &>/dev/null
+if [ $? -ne 0 ]; then
+  grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
+  if [ $? -eq 0 ]; then
+    EXIT=0 StatP 1 "Checking Catalogue Schema"
+    CASE 201
+  else
+    EXIT=0 StatP 1 "Checking Catalogue Schema"
+    CASE 202
+  fi
+fi
 
 
 exit
