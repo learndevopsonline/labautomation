@@ -44,9 +44,11 @@ nc -z $CAT_IP 22
 StatP $? "Checking Catalogue Server is reachable"
 
 
-### Categories not showing
-
+### Checking Catalogue service is running or not.
+chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
+command_print "ps -ef | grep server.js"
 echo "ps -ef | grep server.js | grep -v grep" | ssh $USE_IP 2>&1 | sed -e 1,39d | grep java
+StatP $? "Checking Catalogue Service is running"
 
 
 exit
