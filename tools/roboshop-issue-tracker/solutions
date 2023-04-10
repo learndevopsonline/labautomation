@@ -16,7 +16,7 @@ SOLUTION() {
       echo -e "Categories on your frontend is not showing because catalogue schema does not exist"
       echo -e "${HM}This is not your mistake, MongoDB have this behaviour${N}"
       echo -e "Ref URL: https://www.mongodb.com/community/forums/t/database-deleted-auto/99623/7"
-      echo -e "SOLUTION: Just load the schema again, Run the following command in Catalogue Server"
+      echo -e "${B}SOLUTION${N}: Just load the schema again, Run the following command in ${TC}Catalogue Server${N}"
       command_print "mongo --host ${MONGO_IP} </app/schema/catalogue.js"
    esac
 }
