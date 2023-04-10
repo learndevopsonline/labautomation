@@ -2,7 +2,7 @@ source /tmp/labautomation/dry/common-functions.sh
 
 CASE() {
   case $1 in
-    10) ## Nginx service failed and not running
+    100) ## Nginx service failed and not running
        systemctl restart nginx
        netstat -lntp | grep nginx
        if [ $? -ne 0 ]; then
@@ -25,6 +25,11 @@ CASE() {
           fi
       fi
     ;;
+  200) ### Catalogue service address is not configured with 0.0.0.0
+    hintt "MongoDB Server Listen address is 127.0.0.1 instead of 0.0.0.0"
+    SOLUTION 200
+    exit
+    ;;
   esac
 }
 
@@ -32,3 +37,6 @@ CASE() {
 remote_command() {
   echo "$2" | ssh $1 2>&1 | sed -e 1,39d
 }
+
+TC="\e[1;43m"
+N="\e[0m"

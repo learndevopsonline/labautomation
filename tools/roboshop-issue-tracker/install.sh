@@ -29,7 +29,7 @@ command_print "netstat -lntp | grep nginx"
 
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
-CASE 10
+CASE 100
 
 
 # Finding Catalogue Server
@@ -65,7 +65,8 @@ command_print "netstat -lntp"
 
 listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print $1}' | awk '{print $NF}'")
 if [ "$listen_addres" != "0.0.0.0" ]; then
-  StatP 1  "MongoDB listen address is configured"
+  StatP 0 "MongoDB listen address is configured"
+  CASE 200
 fi
 
 
