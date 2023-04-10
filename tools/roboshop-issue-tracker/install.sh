@@ -148,7 +148,7 @@ fi
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 
-MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
+REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
 
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
