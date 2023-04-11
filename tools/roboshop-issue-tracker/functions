@@ -27,6 +27,11 @@ CASE() {
               fi
             done
           fi
+          grep 'nginx: [emerg] invalid URL prefix' /var/log/messages | tail -n 2 2>/dev/null
+          if [ $? -eq 0 ]; then
+            hintt "Issue is You edited the configuration file and the file is having wrong syntax, So revist the changes you made and ensure you correct it as per document"
+            exit 1
+          fi
       fi
     ;;
   200) ### Catalogue service address is not configured with 0.0.0.0
