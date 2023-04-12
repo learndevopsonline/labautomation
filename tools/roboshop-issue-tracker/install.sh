@@ -56,8 +56,7 @@ chatgpt_print "MongoDB IP : $MONGO_IP"
 
 command_print "nc -w 5 -z $MONGO_IP 22"
 nc -w 5 -z $MONGO_IP 22
-StatP $? "Checking MongoDB Server is reachable"
-CASE 0
+StatP $? "Checking MongoDB Server is reachable" || CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
@@ -101,8 +100,7 @@ chatgpt_print "User IP : $USE_IP"
 
 command_print "nc -w 5 -z $USE_IP 22"
 nc -w 5 -z $USE_IP 22
-StatP $? "Checking User Server is reachable"
-CASE 0
+StatP $? "Checking User Server is reachable || CASE 0
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 
@@ -112,8 +110,7 @@ chatgpt_print "MongoDB IP : $MONGO_IP"
 
 command_print "nc -w 5 -z $MONGO_IP 22"
 nc -w 5 -z $MONGO_IP 22
-StatP $? "Checking MongoDB Server is reachable"
-CASE 0
+StatP $? "Checking MongoDB Server is reachable" || CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
@@ -183,8 +180,7 @@ chatgpt_print "Cart IP : $CAR_IP"
 
 command_print "nc -w 5 -z $CAR_IP 22"
 nc -w 5 -z $CAR_IP 22
-StatP $? "Checking Cart Server is reachable"
-CASE 0
+StatP $? "Checking Cart Server is reachable" || CASE 0
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 
