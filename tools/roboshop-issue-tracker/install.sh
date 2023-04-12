@@ -40,8 +40,7 @@ chatgpt_print "Catalogue IP : $CAT_IP"
 
 command_print "nc -w 5 -z $CAT_IP 22"
 nc -w 5 -z $CAT_IP 22
-StatP $? "Checking Catalogue Server is reachable"
-CASE 0
+StatP $? "Checking Catalogue Server is reachable" || CASE 0
 
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
