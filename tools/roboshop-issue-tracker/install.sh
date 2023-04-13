@@ -92,6 +92,8 @@ else
   StatP 0 "Checking Catalogue Schema"
 fi
 
+remote_command $CAT_IP "systemctl restart catalogue"
+
 
 # Finding User Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
@@ -172,6 +174,9 @@ chatgpt_print "USER: Checking if user is able to reach Redis Server or not"
 command_print "nc -w 5 -z $REDIS_IP 6379"
 remote_command $USE_IP "nc -w 5 -z $REDIS_IP 6379"
 Stat $? "User server able to connect to Redis server"
+
+remote_command $USE_IP "systemctl restart user"
+
 
 ## Finding Cart Server
 #command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
