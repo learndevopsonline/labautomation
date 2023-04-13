@@ -128,24 +128,24 @@ command_print "nc -w 5 -z $MONGO_IP 27017"
 remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
 Stat $? "User server able to connect to MongoDB server"
 
-#chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
-#command_print "echo 'show dbs' | mongo"
-#remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
-#
-#grep users  /tmp/out &>/dev/null
-#if [ $? -ne 0 ]; then
-#  grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
-#  if [ $? -eq 0 ]; then
-#    EXIT=0 StatP 1 "Checking User Schema"
-#    CASE 201
-#  else
-#    EXIT=0 StatP 1 "Checking User Schema"
-#    CASE 202
-#  fi
-#else
-#  StatP 0 "Checking User Schema"
-#fi
-#
+chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
+command_print "echo 'show dbs' | mongo"
+remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+
+grep users  /tmp/out &>/dev/null
+if [ $? -ne 0 ]; then
+  grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
+  if [ $? -eq 0 ]; then
+    EXIT=0 StatP 1 "Checking User Schema"
+    CASE 201
+  else
+    EXIT=0 StatP 1 "Checking User Schema"
+    CASE 202
+  fi
+else
+  StatP 0 "Checking User Schema"
+fi
+
 #chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 #
 #REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
