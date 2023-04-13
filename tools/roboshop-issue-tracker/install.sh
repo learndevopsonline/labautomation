@@ -179,22 +179,21 @@ remote_command $USE_IP "systemctl restart user"
 
 
 ## Finding Cart Server
-#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-#
-#CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-#
-#chatgpt_print "Cart IP : $CAR_IP"
-#
-#command_print "nc -w 5 -z $CAR_IP 22"
-#nc -w 5 -z $CAR_IP 22
-#StatP $? "Checking Cart Server is reachable" || CASE 0
-#
-#chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
-#
-#REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $CAR_IP 2>&1 | sed -e 1,39d)
-#
-#chatgpt_print "Redis IP : $REDIS_IP"
-#
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Cart IP : $CAR_IP"
+
+command_print "nc -w 5 -z $CAR_IP 22"
+nc -w 5 -z $CAR_IP 22
+StatP $? "Checking Cart Server is reachable" || CASE 0
+
+chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+REDIS_IP=$(remote_command $CAR_IP "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'")
+
+chatgpt_print "Redis IP : $REDIS_IP"
+
 #command_print "nc -w 5 -z $REDIS_IP 22"
 #nc -w 5 -z $REDIS_IP 22
 #StatP $? "Checking Redis Server is reachable"
