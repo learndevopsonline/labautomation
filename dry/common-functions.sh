@@ -230,6 +230,7 @@ StatP() {
 		error "$2 - ERROR"
 		[ "${StatP}" == 1 ] && exit 1 || EXIT=0
 	fi
+	return $1
 }
 export -f Stat
 
