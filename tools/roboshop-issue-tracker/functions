@@ -57,7 +57,7 @@ CASE() {
 
 remote_command() {
   set -e
-  echo "$2" | ssh $1 2>&1 | sed -e 1,39d
+  echo echo "$2" \| ssh $1 2\>\&1 \| sed -e 1,39d
 }
 
 TC="\e[1;43m"
