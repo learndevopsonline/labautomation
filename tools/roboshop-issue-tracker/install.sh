@@ -65,6 +65,8 @@ listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : 
 if [ "$listen_addres" != "0.0.0.0" ]; then
   EXIT=0 StatP 1 "MongoDB listen address is configured"
   CASE 200
+else
+  StatP 0 "MongoDB listen address is configured"
 fi
 
 chatgpt_print "MONGODB: Checking if catalogue is able to reach MongoDB Server or not"
