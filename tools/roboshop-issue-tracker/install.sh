@@ -59,6 +59,7 @@ StatP $? "Checking MongoDB Server is reachable" || CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
+remote_command $MONGO_IP "netstat -lntp"
 
 listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
 if [ "$listen_addres" != "0.0.0.0" ]; then
