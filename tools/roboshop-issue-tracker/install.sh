@@ -216,23 +216,22 @@ remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
 Stat $? "Cart server able to connect to Redis server"
 
 ## Finding Shipping Server
-#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-#
-#SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-#
-#chatgpt_print "Shipping IP : $SHI_IP"
-#
-#command_print "nc -w 5 -z $SHI_IP 22"
-#nc -w 5 -z $SHI_IP 22
-#StatP $? "Checking Shipping Server is reachable"
-#CASE 0
-#
-#chatgpt_print "SHIPPING: Check if the shipping service is running or not"
-#
-#command_print "ps -ef | grep java"
-#
-#remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
-#Stat $? "Check Shipping is running or not"
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Shipping IP : $SHI_IP"
+
+command_print "nc -w 5 -z $SHI_IP 22"
+nc -w 5 -z $SHI_IP 22
+StatP $? "Checking Shipping Server is reachable" || CASE 0
+
+chatgpt_print "SHIPPING: Check if the shipping service is running or not"
+
+command_print "ps -ef | grep java"
+
+remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
+Stat $? "Check Shipping is running or not"
 #
 #
 #
