@@ -200,6 +200,7 @@ StatP $? "Checking Redis Server is reachable"
 
 chatgpt_print "REDIS: Checking if the Redis is running or not"
 command_print "netstat -lntp"
+remote_command $REDIS_IP "netstat -lntp"
 
 listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
 if [ "$listen_addres" != "0.0.0.0" ]; then
