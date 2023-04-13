@@ -194,21 +194,21 @@ REDIS_IP=$(remote_command $CAR_IP "cat /etc/systemd/system/cart.service  | grep 
 
 chatgpt_print "Redis IP : $REDIS_IP"
 
-#command_print "nc -w 5 -z $REDIS_IP 22"
-#nc -w 5 -z $REDIS_IP 22
-#StatP $? "Checking Redis Server is reachable"
-#
-#chatgpt_print "REDIS: Checking if the Redis is running or not"
-#command_print "netstat -lntp"
-#
-#listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
-#if [ "$listen_addres" != "0.0.0.0" ]; then
-#  EXIT=0 StatP 1 "REDIS listen address is configured"
-#  CASE 400
-#else
-#  StatP 0 "REDIS listen address is configured"
-#fi
-#
+command_print "nc -w 5 -z $REDIS_IP 22"
+nc -w 5 -z $REDIS_IP 22
+StatP $? "Checking Redis Server is reachable"
+
+chatgpt_print "REDIS: Checking if the Redis is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  EXIT=0 StatP 1 "REDIS listen address is configured"
+  CASE 400
+else
+  StatP 0 "REDIS listen address is configured"
+fi
+
 #chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
 #command_print "nc -w 5 -z $REDIS_IP 6379"
 #remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
