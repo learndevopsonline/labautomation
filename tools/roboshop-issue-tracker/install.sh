@@ -146,17 +146,17 @@ else
   StatP 0 "Checking User Schema"
 fi
 
-#chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
-#
-#REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
-#
-#chatgpt_print "Redis IP : $REDIS_IP"
-#
-#command_print "nc -w 5 -z $REDIS_IP 22"
-#nc -w 5 -z $REDIS_IP 22
-#StatP $? "Checking Redis Server is reachable"
-#CASE 0
-#
+chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+
+REDIS_IP=$(remote_command $USE_IP "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'")
+
+chatgpt_print "Redis IP : $REDIS_IP"
+
+command_print "nc -w 5 -z $REDIS_IP 22"
+nc -w 5 -z $REDIS_IP 22
+StatP $? "Checking Redis Server is reachable"
+CASE 0
+
 #chatgpt_print "REDIS: Checking if the Redis is running or not"
 #command_print "netstat -lntp"
 #
