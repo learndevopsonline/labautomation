@@ -45,12 +45,11 @@ StatP $? "Checking Catalogue Server is reachable" || CASE 0
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
 command_print "ps -ef | grep server.js"
-remote_command $CAT_IP "ps -ef | grep server.js"
+remote_command $CAT_IP "ps -ef | grep server.js | grep -v grep"
 StatP $? "Checking Catalogue Service is running"
 
 chatgpt_print "CATALOGUE: Catalogue Service is dependent on MongoDB Server. Fetching MongoDB IP address"
-
-MONGO_IP=$(echo "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $CAT_IP 2>&1 | sed -e 1,39d)
+remote_command $CAT_IP "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'"
 
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
