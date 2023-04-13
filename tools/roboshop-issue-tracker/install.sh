@@ -45,7 +45,7 @@ StatP $? "Checking Catalogue Server is reachable" || CASE 0
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
 command_print "ps -ef | grep server.js"
-remote_command $CAT_IP "ps -ef "
+remote_command $CAT_IP "ps -ef | grep server.js"
 StatP $? "Checking Catalogue Service is running"
 
 chatgpt_print "CATALOGUE: Catalogue Service is dependent on MongoDB Server. Fetching MongoDB IP address"
