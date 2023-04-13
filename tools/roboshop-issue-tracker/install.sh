@@ -94,149 +94,149 @@ fi
 
 
 # Finding User Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
-USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-
-chatgpt_print "User IP : $USE_IP"
-
-command_print "nc -w 5 -z $USE_IP 22"
-nc -w 5 -z $USE_IP 22
-StatP $? "Checking User Server is reachable || CASE 0
-
-chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
-
-MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
-
-chatgpt_print "MongoDB IP : $MONGO_IP"
-
-command_print "nc -w 5 -z $MONGO_IP 22"
-nc -w 5 -z $MONGO_IP 22
-StatP $? "Checking MongoDB Server is reachable" || CASE 0
-
-chatgpt_print "MONGODB: Checking if the DB is running or not"
-command_print "netstat -lntp"
-
-listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
-if [ "$listen_addres" != "0.0.0.0" ]; then
-  EXIT=0 StatP 1 "MongoDB listen address is configured"
-  CASE 200
-fi
-
-chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
-command_print "nc -w 5 -z $MONGO_IP 27017"
-remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
-Stat $? "User server able to connect to MongoDB server"
-
-chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
-command_print "echo 'show dbs' | mongo"
-remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
-
-grep users  /tmp/out &>/dev/null
-if [ $? -ne 0 ]; then
-  grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
-  if [ $? -eq 0 ]; then
-    EXIT=0 StatP 1 "Checking User Schema"
-    CASE 201
-  else
-    EXIT=0 StatP 1 "Checking User Schema"
-    CASE 202
-  fi
-else
-  StatP 0 "Checking User Schema"
-fi
-
-chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
-
-REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
-
-chatgpt_print "Redis IP : $REDIS_IP"
-
-command_print "nc -w 5 -z $REDIS_IP 22"
-nc -w 5 -z $REDIS_IP 22
-StatP $? "Checking Redis Server is reachable"
-CASE 0
-
-chatgpt_print "REDIS: Checking if the Redis is running or not"
-command_print "netstat -lntp"
-
-listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
-if [ "$listen_addres" != "0.0.0.0" ]; then
-  EXIT=0 StatP 1 "REDIS listen address is configured"
-  CASE 400
-else
-  StatP 0 "REDIS listen address is configured"
-fi
-
-chatgpt_print "USER: Checking if user is able to reach Redis Server or not"
-command_print "nc -w 5 -z $REDIS_IP 6379"
-remote_command $USE_IP "nc -w 5 -z $REDIS_IP 6379"
-Stat $? "User server able to connect to Redis server"
-
-# Finding Cart Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
-CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-
-chatgpt_print "Cart IP : $CAR_IP"
-
-command_print "nc -w 5 -z $CAR_IP 22"
-nc -w 5 -z $CAR_IP 22
-StatP $? "Checking Cart Server is reachable" || CASE 0
-
-chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
-
-REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $CAR_IP 2>&1 | sed -e 1,39d)
-
-chatgpt_print "Redis IP : $REDIS_IP"
-
-command_print "nc -w 5 -z $REDIS_IP 22"
-nc -w 5 -z $REDIS_IP 22
-StatP $? "Checking Redis Server is reachable"
-
-chatgpt_print "REDIS: Checking if the Redis is running or not"
-command_print "netstat -lntp"
-
-listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
-if [ "$listen_addres" != "0.0.0.0" ]; then
-  EXIT=0 StatP 1 "REDIS listen address is configured"
-  CASE 400
-else
-  StatP 0 "REDIS listen address is configured"
-fi
-
-chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
-command_print "nc -w 5 -z $REDIS_IP 6379"
-remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
-Stat $? "Cart server able to connect to Redis server"
-
-# Finding Shipping Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
-SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-
-chatgpt_print "Shipping IP : $SHI_IP"
-
-command_print "nc -w 5 -z $SHI_IP 22"
-nc -w 5 -z $SHI_IP 22
-StatP $? "Checking Shipping Server is reachable"
-CASE 0
-
-chatgpt_print "SHIPPING: Check if the shipping service is running or not"
-
-command_print "ps -ef | grep java"
-
-remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
-Stat $? "Check Shipping is running or not"
-
-
-
-
-
-
-
-
-
-
-
-
+#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+#
+#USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+#
+#chatgpt_print "User IP : $USE_IP"
+#
+#command_print "nc -w 5 -z $USE_IP 22"
+#nc -w 5 -z $USE_IP 22
+#StatP $? "Checking User Server is reachable || CASE 0
+#
+#chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
+#
+#MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
+#
+#chatgpt_print "MongoDB IP : $MONGO_IP"
+#
+#command_print "nc -w 5 -z $MONGO_IP 22"
+#nc -w 5 -z $MONGO_IP 22
+#StatP $? "Checking MongoDB Server is reachable" || CASE 0
+#
+#chatgpt_print "MONGODB: Checking if the DB is running or not"
+#command_print "netstat -lntp"
+#
+#listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
+#if [ "$listen_addres" != "0.0.0.0" ]; then
+#  EXIT=0 StatP 1 "MongoDB listen address is configured"
+#  CASE 200
+#fi
+#
+#chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
+#command_print "nc -w 5 -z $MONGO_IP 27017"
+#remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
+#Stat $? "User server able to connect to MongoDB server"
+#
+#chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
+#command_print "echo 'show dbs' | mongo"
+#remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+#
+#grep users  /tmp/out &>/dev/null
+#if [ $? -ne 0 ]; then
+#  grep READ__ME_TO_RECOVER_YOUR_DATA /tmp/out &>/dev/null
+#  if [ $? -eq 0 ]; then
+#    EXIT=0 StatP 1 "Checking User Schema"
+#    CASE 201
+#  else
+#    EXIT=0 StatP 1 "Checking User Schema"
+#    CASE 202
+#  fi
+#else
+#  StatP 0 "Checking User Schema"
+#fi
+#
+#chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+#
+#REDIS_IP=$(echo "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
+#
+#chatgpt_print "Redis IP : $REDIS_IP"
+#
+#command_print "nc -w 5 -z $REDIS_IP 22"
+#nc -w 5 -z $REDIS_IP 22
+#StatP $? "Checking Redis Server is reachable"
+#CASE 0
+#
+#chatgpt_print "REDIS: Checking if the Redis is running or not"
+#command_print "netstat -lntp"
+#
+#listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
+#if [ "$listen_addres" != "0.0.0.0" ]; then
+#  EXIT=0 StatP 1 "REDIS listen address is configured"
+#  CASE 400
+#else
+#  StatP 0 "REDIS listen address is configured"
+#fi
+#
+#chatgpt_print "USER: Checking if user is able to reach Redis Server or not"
+#command_print "nc -w 5 -z $REDIS_IP 6379"
+#remote_command $USE_IP "nc -w 5 -z $REDIS_IP 6379"
+#Stat $? "User server able to connect to Redis server"
+#
+## Finding Cart Server
+#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+#
+#CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+#
+#chatgpt_print "Cart IP : $CAR_IP"
+#
+#command_print "nc -w 5 -z $CAR_IP 22"
+#nc -w 5 -z $CAR_IP 22
+#StatP $? "Checking Cart Server is reachable" || CASE 0
+#
+#chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+#
+#REDIS_IP=$(echo "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'" | ssh $CAR_IP 2>&1 | sed -e 1,39d)
+#
+#chatgpt_print "Redis IP : $REDIS_IP"
+#
+#command_print "nc -w 5 -z $REDIS_IP 22"
+#nc -w 5 -z $REDIS_IP 22
+#StatP $? "Checking Redis Server is reachable"
+#
+#chatgpt_print "REDIS: Checking if the Redis is running or not"
+#command_print "netstat -lntp"
+#
+#listen_addres=$(remote_command $REDIS_IP "netstat -lntp | grep redis | awk -F : '{print \$1}' | awk '{print \$NF}' | head -1")
+#if [ "$listen_addres" != "0.0.0.0" ]; then
+#  EXIT=0 StatP 1 "REDIS listen address is configured"
+#  CASE 400
+#else
+#  StatP 0 "REDIS listen address is configured"
+#fi
+#
+#chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
+#command_print "nc -w 5 -z $REDIS_IP 6379"
+#remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
+#Stat $? "Cart server able to connect to Redis server"
+#
+## Finding Shipping Server
+#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+#
+#SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+#
+#chatgpt_print "Shipping IP : $SHI_IP"
+#
+#command_print "nc -w 5 -z $SHI_IP 22"
+#nc -w 5 -z $SHI_IP 22
+#StatP $? "Checking Shipping Server is reachable"
+#CASE 0
+#
+#chatgpt_print "SHIPPING: Check if the shipping service is running or not"
+#
+#command_print "ps -ef | grep java"
+#
+#remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
+#Stat $? "Check Shipping is running or not"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
