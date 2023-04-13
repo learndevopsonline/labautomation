@@ -56,7 +56,7 @@ CASE() {
 
 
 remote_command() {
-  echo "$2" | ssh $1 2>&1 | grep -Ev '^Pseudo-terminal|^Warning'
+  echo "$2" | ssh $1 2>/dev/null # | grep -Ev '^Pseudo-terminal|^Warning'
 }
 
 TC="\e[1;43m"
