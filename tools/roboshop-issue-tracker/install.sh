@@ -114,20 +114,20 @@ command_print "nc -w 5 -z $MONGO_IP 22"
 nc -w 5 -z $MONGO_IP 22
 StatP $? "Checking MongoDB Server is reachable" || CASE 0
 
-#chatgpt_print "MONGODB: Checking if the DB is running or not"
-#command_print "netstat -lntp"
-#
-#listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
-#if [ "$listen_addres" != "0.0.0.0" ]; then
-#  EXIT=0 StatP 1 "MongoDB listen address is configured"
-#  CASE 200
-#fi
-#
-#chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
-#command_print "nc -w 5 -z $MONGO_IP 27017"
-#remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
-#Stat $? "User server able to connect to MongoDB server"
-#
+chatgpt_print "MONGODB: Checking if the DB is running or not"
+command_print "netstat -lntp"
+
+listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
+if [ "$listen_addres" != "0.0.0.0" ]; then
+  EXIT=0 StatP 1 "MongoDB listen address is configured"
+  CASE 200
+fi
+
+chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
+command_print "nc -w 5 -z $MONGO_IP 27017"
+remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
+Stat $? "User server able to connect to MongoDB server"
+
 #chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
 #command_print "echo 'show dbs' | mongo"
 #remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
