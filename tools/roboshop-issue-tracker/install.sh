@@ -69,7 +69,7 @@ else
   StatP 0 "MongoDB listen address is configured"
 fi
 
-chatgpt_print "MONGODB: Checking if catalogue is able to reach MongoDB Server or not"
+chatgpt_print "CATALOGUE: Checking if catalogue is able to reach MongoDB Server or not"
 command_print "nc -w 5 -z $MONGO_IP 27017"
 remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
 Stat $? "Catalogue server able to connect to MongoDB server"
