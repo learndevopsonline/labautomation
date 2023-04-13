@@ -106,7 +106,7 @@ StatP $? "Checking User Server is reachable" || CASE 0
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 
-MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
+MONGO_IP=$(remote_command $CAT_IP "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'")
 
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
