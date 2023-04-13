@@ -154,8 +154,7 @@ chatgpt_print "Redis IP : $REDIS_IP"
 
 command_print "nc -w 5 -z $REDIS_IP 22"
 nc -w 5 -z $REDIS_IP 22
-StatP $? "Checking Redis Server is reachable"
-CASE 0
+StatP $? "Checking Redis Server is reachable" || CASE 0
 
 #chatgpt_print "REDIS: Checking if the Redis is running or not"
 #command_print "netstat -lntp"
