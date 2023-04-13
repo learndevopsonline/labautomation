@@ -102,7 +102,7 @@ chatgpt_print "User IP : $USE_IP"
 
 command_print "nc -w 5 -z $USE_IP 22"
 nc -w 5 -z $USE_IP 22
-StatP $? "Checking User Server is reachable || CASE 0
+StatP $? "Checking User Server is reachable" || CASE 0
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 
