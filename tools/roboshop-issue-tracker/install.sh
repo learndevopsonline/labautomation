@@ -227,20 +227,18 @@ nc -w 5 -z $SHI_IP 22
 StatP $? "Checking Shipping Server is reachable" || CASE 0
 
 chatgpt_print "SHIPPING: Check if the shipping service is running or not"
-
 command_print "ps -ef | grep java"
-
 remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
 Stat $? "Check Shipping is running or not"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+
+
+
+
+
+
+
+
+
+
+
+
