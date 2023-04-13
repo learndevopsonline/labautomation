@@ -94,26 +94,26 @@ fi
 
 
 # Finding User Server
-#command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-#
-#USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
-#
-#chatgpt_print "User IP : $USE_IP"
-#
-#command_print "nc -w 5 -z $USE_IP 22"
-#nc -w 5 -z $USE_IP 22
-#StatP $? "Checking User Server is reachable || CASE 0
-#
-#chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
-#
-#MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
-#
-#chatgpt_print "MongoDB IP : $MONGO_IP"
-#
-#command_print "nc -w 5 -z $MONGO_IP 22"
-#nc -w 5 -z $MONGO_IP 22
-#StatP $? "Checking MongoDB Server is reachable" || CASE 0
-#
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "User IP : $USE_IP"
+
+command_print "nc -w 5 -z $USE_IP 22"
+nc -w 5 -z $USE_IP 22
+StatP $? "Checking User Server is reachable || CASE 0
+
+chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
+
+MONGO_IP=$(echo "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'" | ssh $USE_IP 2>&1 | sed -e 1,39d)
+
+chatgpt_print "MongoDB IP : $MONGO_IP"
+
+command_print "nc -w 5 -z $MONGO_IP 22"
+nc -w 5 -z $MONGO_IP 22
+StatP $? "Checking MongoDB Server is reachable" || CASE 0
+
 #chatgpt_print "MONGODB: Checking if the DB is running or not"
 #command_print "netstat -lntp"
 #
