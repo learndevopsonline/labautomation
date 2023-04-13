@@ -210,11 +210,11 @@ else
   StatP 0 "REDIS listen address is configured"
 fi
 
-#chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
-#command_print "nc -w 5 -z $REDIS_IP 6379"
-#remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
-#Stat $? "Cart server able to connect to Redis server"
-#
+chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
+command_print "nc -w 5 -z $REDIS_IP 6379"
+remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
+Stat $? "Cart server able to connect to Redis server"
+
 ## Finding Shipping Server
 #command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 #
