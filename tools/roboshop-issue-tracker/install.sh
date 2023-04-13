@@ -49,7 +49,7 @@ remote_command $CAT_IP "ps -ef | grep server.js | grep -v grep"
 StatP $? "Checking Catalogue Service is running"
 
 chatgpt_print "CATALOGUE: Catalogue Service is dependent on MongoDB Server. Fetching MongoDB IP address"
-remote_command $CAT_IP "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'"
+MONGO_IP=$(remote_command $CAT_IP "cat /etc/systemd/system/catalogue.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'")
 
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
