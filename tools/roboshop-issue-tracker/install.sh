@@ -214,6 +214,12 @@ chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
 command_print "nc -w 5 -z $REDIS_IP 6379"
 remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
 Stat $? "Cart server able to connect to Redis server"
+Dropping
+chatgpt_print "CART: Redis needs to be installed"
+
+
+#### Redis version has to be 6.2.x
+
 
 ## Finding Shipping Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
