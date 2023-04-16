@@ -15,7 +15,7 @@ fi
 ## Get Parameter Store
 
 ## Get Secret Store
-aws ssm describe-parameters | jq '.Parameters[].Name' | sed -e 's/"//g' >/tmp/list
+aws ssm describe-parameters | jq '.Parameters[].Name' >/tmp/list
 aws ssm delete-parameters --names $(cat /tmp/list |xargs)
 ## Get KMS Keys
 
