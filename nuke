@@ -16,7 +16,9 @@ fi
 
 ## Get Secret Store
 aws ssm describe-parameters | jq '.Parameters[].Name' >/tmp/list
-aws ssm delete-parameters --names $(cat /tmp/list)
+for i in `cat /tmp/list`; do
+  aws ssm delete-parameters --name $i
+done
 ## Get KMS Keys
 
 ## Get S3 Buckets
