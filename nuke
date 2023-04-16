@@ -25,7 +25,7 @@ done
 
 ## Get ECR
 
-for repo in `aws ecr describe-repositories | jq '.repositories[].repositoryName'` ; do
+for repo in `aws ecr describe-repositories | jq '.repositories[].repositoryName' |xargs` ; do
   aws ecr delete-repository  --repository-name $repo  --force
 done
 
