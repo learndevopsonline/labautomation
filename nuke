@@ -21,7 +21,7 @@ for i in `cat /tmp/list | xargs`; do
 done
 ## Get KMS Keys
 
-aws kms list-keys | jq ".Keys[].KeyId" >/tmp/list
+aws kms list-keys | jq ".Keys[].KeyId" | sed -e 's/"//g'>/tmp/list
 for i in `cat /tmp/list`; do
 aws kms schedule-key-deletion --key-id $i --pending-window-in-days 8
 done
