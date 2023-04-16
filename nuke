@@ -21,6 +21,10 @@ for i in `cat /tmp/list | xargs`; do
 done
 ## Get KMS Keys
 
+aws kms list-keys | jq ".Keys[].KeyId" >/tmp/list
+for i in `cat /tmp/list`; do
+aws kms schedule-key-deletion --key-id $i --pending-window-in-days 8 | jq '.DeletionDate'
+done
 ## Get S3 Buckets
 
 ## Get IAM Roles
