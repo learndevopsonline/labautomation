@@ -23,7 +23,7 @@ done
 
 aws kms list-keys | jq ".Keys[].KeyId" >/tmp/list
 for i in `cat /tmp/list`; do
-aws kms schedule-key-deletion --key-id $i --pending-window-in-days 8 | jq '.DeletionDate'
+aws kms schedule-key-deletion --key-id $i --pending-window-in-days 8
 done
 ## Get S3 Buckets
 
