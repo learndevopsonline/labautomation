@@ -8,3 +8,20 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+## Get Spot Requests
+
+## Get Route53
+
+## Get Parameter Store
+
+## Get Secret Store
+aws ssm describe-parameters | jq '.Parameters[].Name' | sed -e 's/"//g' >/tmp/list
+aws ssm delete-parameters --names $(cat /tmp/list |xargs)
+## Get KMS Keys
+
+## Get S3 Buckets
+
+## Get IAM Roles
+
+## Get IAM Policies
+
