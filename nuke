@@ -13,19 +13,27 @@ fi
 ## Get Route53
 
 ## Get Parameter Store
-
-## Get Secret Store
 aws ssm describe-parameters | jq '.Parameters[].Name' >/tmp/list
 for i in `cat /tmp/list | xargs`; do
   aws ssm delete-parameters --name $i | jq .DeletedParameters
 done
+
+## Get S3 Buckets
+for bucket in `aws s3 ls | awk '{print $NF}'`; do
+  aws s3 rm s3://$bucket --recursive
+done
+
+
+
+## Get Secret Store
+
 ## Get KMS Keys
 
 aws kms list-keys | jq ".Keys[].KeyId" | sed -e 's/"//g'>/tmp/list
 for i in `cat /tmp/list`; do
 aws kms schedule-key-deletion --key-id $i --pending-window-in-days 8
 done
-## Get S3 Buckets
+
 
 ## Get IAM Roles
 
