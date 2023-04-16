@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Script runs only in Workstation node where admin access is there.
+
+aws s3 ls &>/dev/null
+if [ $? -ne 0 ]; then
+    echo "Access Denied"
+    exit 1
+fi
+
