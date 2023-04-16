@@ -23,7 +23,11 @@ for bucket in `aws s3 ls | awk '{print $NF}'`; do
   aws s3 rm s3://$bucket --recursive
 done
 
+## Get ECR
 
+for repo in `aws ecr describe-repositories | jq '.repositories[].repositoryName'`do
+  aws ecr delete-repository  --repository-name $repo  --force
+done
 
 ## Get Secret Store
 
