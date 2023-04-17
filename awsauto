@@ -1,7 +1,12 @@
 #!/bin/bash
 
-curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" >/tmp/common-functions.sh
-chmod 777 /tmp/common-functions.sh
+if [ $(id -u) -ne 0 -o  $(id -u) -ne 1000 ]; then
+  echo "This script runs only as centos user or root user"
+  exit 1
+fi
+
+sudo curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" -o /tmp/common-functions.sh
+#chmod 777 /tmp/common-functions.sh
 #source /root/scripts/common-functions.sh
 source /tmp/common-functions.sh
 
