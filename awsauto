@@ -1,9 +1,13 @@
 #!/bin/bash
 
-if [ $(id -u) -eq 0 -o  $(id -u) -eq 1000 ]; then
-  echo "This script runs only as centos user or root user"
-  exit 1
-fi
+case $USER in
+  centos|root)
+    : ;;
+  *)
+    echo "This script runs only as centos user or root user"
+    exit 1
+  ;;
+esac
 
 sudo curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" -o /tmp/common-functions.sh
 #chmod 777 /tmp/common-functions.sh
