@@ -41,7 +41,7 @@ else
     if [ $? -ne 0 ]; then
       sudo -v &>/dev/null
       [ $? -eq 0 ] && sudo rm -rf /tmp/lab* || rm -rf /tmp/lab*
-      git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+      git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation #&>/dev/null
     fi
   else
     git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation #&>/dev/null
