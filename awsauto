@@ -39,11 +39,13 @@ else
     cd /tmp/labautomation
     git pull &>/dev/null
     if [ $? -ne 0 ]; then
+      cd ..
       sudo -v &>/dev/null
       [ $? -eq 0 ] && sudo rm -rf /tmp/lab* || rm -rf /tmp/lab*
       git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation #&>/dev/null
     fi
   else
+    cd ..
     git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation #&>/dev/null
   fi
 fi
