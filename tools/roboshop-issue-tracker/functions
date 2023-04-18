@@ -61,7 +61,7 @@ remote_command() {
   if [ $? -eq 0 ]; then
     sed -i -e '1,37 d' /tmp/tout
   fi
-  cat /tmp/out
+  cat /tmp/tout
 }
 
 TC="\e[1;43m"
