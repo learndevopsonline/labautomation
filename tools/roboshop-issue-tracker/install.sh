@@ -214,7 +214,7 @@ chatgpt_print "CART: Checking if cart is able to reach Redis Server or not"
 command_print "nc -w 5 -z $REDIS_IP 6379"
 remote_command $CAR_IP "nc -w 5 -z $REDIS_IP 6379"
 Stat $? "Cart server able to connect to Redis server"
-Dropping
+
 chatgpt_print "CART: Redis needs to be installed"
 
 
@@ -238,6 +238,21 @@ remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
 Stat $? "Check Shipping is running or not"
 
 
+## Finding Payment Server
+command_print "cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+
+PAY_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+
+chatgpt_print "Payment IP : $PAY_IP"
+
+command_print "nc -w 5 -z $PAY_IP 22"
+nc -w 5 -z $PAY_IP 22
+StatP $? "Checking Payment Server is reachable" || CASE 0
+
+chatgpt_print "PAYMENT: Check if the payment service is running or not"
+command_print "ps -ef | grep python"
+remote_command $SHI_IP "ps -ef | grep python | grep -v grep"
+Stat $? "Check Payment is running or not"
 
 
 
