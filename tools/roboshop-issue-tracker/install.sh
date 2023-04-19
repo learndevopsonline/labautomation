@@ -250,8 +250,8 @@ nc -w 5 -z $PAY_IP 22
 StatP $? "Checking Payment Server is reachable" || CASE 0
 
 chatgpt_print "PAYMENT: Check if the payment service is running or not"
-command_print "ps -ef | grep python"
-remote_command $SHI_IP "ps -ef | grep python | grep -v grep"
+command_print "ps -ef | grep payment"
+remote_command $SHI_IP "ps -ef | grep payment | grep -v grep"
 Stat $? "Check Payment is running or not"
 
 
