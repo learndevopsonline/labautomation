@@ -67,11 +67,13 @@ CASE() {
 
 remote_command() {
   echo "$2" | ssh -T $1 2>/dev/null >/tmp/tout
+  STAT=$?
   grep Customized /tmp/tout &>/dev/null
   if [ $? -eq 0 ]; then
     sed -i -e '1,37 d' /tmp/tout
   fi
   cat /tmp/tout
+  return $STAT
 }
 
 TC="\e[1;43m"
