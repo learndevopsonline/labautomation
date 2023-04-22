@@ -267,8 +267,8 @@ chatgpt_print "RABBITMQ: Checking if the RabbitMQ is running or not"
 command_print "netstat -lntp"
 remote_command $RABBITMQ_IP "netstat -lntp"
 
-check_rabbitmq=$(remote_command $RABBITMQ_IP "netstat -lntp | grep ':::5672' |wc -l")
-if [ "$check_rabbitmq" -gt 0 ]; then
+check_rabbitmq=$(remote_command $RABBITMQ_IP "netstat -lntp | grep '5672' |wc -l")
+if [ "$check_rabbitmq" -eq 0 ]; then
   EXIT=0 StatP 1 "RabbitMQ Service not running"
   CASE 400
 else
