@@ -34,6 +34,10 @@ SOLUTION() {
       echo -e "Check the status using ${TC}nestat -lntp${N}"
       exit 1
       ;;
+    900) ### RabbitMQ service is not running.
+      echo -e "RabbitMQ Service is not running, Ensure you install rabbitmq and start rabbitmq-servie"
+      exit 1
+      ;;
    esac
 }
 
