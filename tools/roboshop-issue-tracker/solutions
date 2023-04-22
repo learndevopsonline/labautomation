@@ -37,7 +37,7 @@ SOLUTION() {
     401) ### Redis Port is not reachable from user service
       echo
       echo -e "Redis port is not reachable to outside servers"
-      echo -e "This is due to you are not using ${TC}allow-all${N} security group to the instance"
+      echo -e "This is due to you are not using ${TC}allow-all${N} security group to the redis instance"
       exit 1
       ;;
     900) ### RabbitMQ service is not running.
