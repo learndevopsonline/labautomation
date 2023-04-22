@@ -30,7 +30,7 @@ command_print "netstat -lntp | grep nginx"
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
-<<COMMENT
+
 # Finding Catalogue Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
@@ -237,7 +237,6 @@ command_print "ps -ef | grep java"
 remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
 Stat $? "Check Shipping is running or not"
 
-COMMENT
 ## Finding Payment Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
