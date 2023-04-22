@@ -30,7 +30,7 @@ command_print "netstat -lntp | grep nginx"
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
-
+<<COMMENT
 # Finding Catalogue Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
@@ -237,7 +237,7 @@ command_print "ps -ef | grep java"
 remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
 Stat $? "Check Shipping is running or not"
 
-
+COMMENT
 ## Finding Payment Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
@@ -254,6 +254,18 @@ command_print "ps -ef | grep payment"
 remote_command $PAY_IP "ps -ef | grep payment | grep -v grep"
 Stat $? "Check Payment is running or not"
 
+chatgpt_print "PAYMENT: Payment Service is dependent on RabbitMQ Server. Fetching RabbitMQ IP address"
+RABBITMQ_IP=$(remote_command $PAY_IP "cat /etc/systemd/system/payment.service  | grep AMQP_HOST | awk -F = '{print \$NF}'")
+
+chatgpt_print "RabbitMQ IP : $RABBITMQ_IP"
+
+command_print "nc -w 5 -z $RABBITMQ_IP 22"
+nc -w 5 -z $RABBITMQ_IP 22
+StatP $? "Checking RabbitMQ Server is reachable"
+
+chatgpt_print "RABBITMQ: Checking if the RabbitMQ is running or not"
+command_print "netstat -lntp"
+remote_command $RABBITMQ_IP "netstat -lntp"
 
 
 
