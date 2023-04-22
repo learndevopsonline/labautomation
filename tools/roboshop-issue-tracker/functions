@@ -55,6 +55,7 @@ CASE() {
     hintt "Redis Port 6379 is not reachable from User Service"
     SOLUTION 401
     exit
+    ;;
   900) ### RabbitMQ service is not running
     hintt "RabbitMQ Server is not started and running"
     SOLUTION 900
