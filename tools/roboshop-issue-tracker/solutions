@@ -34,6 +34,12 @@ SOLUTION() {
       echo -e "Check the status using ${TC}nestat -lntp${N}"
       exit 1
       ;;
+    401) ### Redis Port is not reachable from user service
+      echo
+      echo -e "Redis port is not reachable to outside servers"
+      echo -e "This is due to you are not using ${TC}allow-all${N} security group to the instance"
+      exit 1
+      ;;
     900) ### RabbitMQ service is not running.
       echo -e "RabbitMQ Service is not running, Ensure you install rabbitmq and start rabbitmq-servie"
       exit 1

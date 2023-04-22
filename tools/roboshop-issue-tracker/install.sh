@@ -173,7 +173,12 @@ fi
 chatgpt_print "USER: Checking if user is able to reach Redis Server or not"
 command_print "nc -w 5 -z $REDIS_IP 6379"
 remote_command $USE_IP "nc -w 5 -z $REDIS_IP 6379"
-Stat $? "User server able to connect to Redis server"
+if [ "$?" -eq 1 ]; then
+  EXIT=0 StatP 1 "User server able to connect to Redis server"
+  CASE 401
+else
+  StatP 0 "User server able to connect to Redis server"
+fi
 
 remote_command $USE_IP "systemctl restart user"
 
