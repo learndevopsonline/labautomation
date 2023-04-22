@@ -42,6 +42,9 @@ SOLUTION() {
       echo -e "RabbitMQ Username or Password missing in the payment service file"
       echo -e "Try checking the username and password with ${TC}cat /etc/systemd/system/payment.service${N}"
       echo -e "Ensure you have username in AMQP_USER parameter and Password in AMQP_PASS Parameter"
+      echo -e "Observe the following command output"
+      command_print "cat /etc/systemd/system/payment.service"
+      remote_command $PAY_IP "cat /etc/systemd/system/payment.service"
       exit 1
    esac
 }
