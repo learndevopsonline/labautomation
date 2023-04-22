@@ -55,7 +55,12 @@ CASE() {
     hintt "RabbitMQ Server is not started and running"
     SOLUTION 900
     exit
-
+    ;;
+  1000) ### rabbitmq username and password is missing in the payment service file
+    hintt "Either RabbitMQ Username or Password is missing on the payment config file"
+    SOLUTION 1000
+    exit
+    ;;
   esac
 }
 
