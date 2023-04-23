@@ -75,7 +75,7 @@ CASE() {
 
 
 remote_command() {
-  echo "$2" | ssh -T $1 2>/dev/null >/tmp/tout
+  echo "$2" | ssh -T $1 >/tmp/tout
   STAT=$?
   grep Customized /tmp/tout &>/dev/null
   if [ $? -eq 0 ]; then
