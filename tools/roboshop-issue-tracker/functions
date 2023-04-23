@@ -56,6 +56,10 @@ CASE() {
     SOLUTION 401
     exit
     ;;
+  500) ### Redis IP address not configured in SystemD service file
+    hintt "Redis IP address not configured in SystemD service file "
+    SOLUTION 500
+    ;;
   900) ### RabbitMQ service is not running
     hintt "RabbitMQ Server is not started and running"
     SOLUTION 900

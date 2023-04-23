@@ -149,9 +149,11 @@ else
 fi
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
-
 REDIS_IP=$(remote_command $USE_IP "cat /etc/systemd/system/user.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'")
-
+if [ "$REDIS_IP" == "<REDIS-SERVER-IP>" -o -z "$REDIS_IP" ]; then
+  EXIT=0 StatP 1 "Redis IP Not Configured in User Service File"
+  CASE 500
+fi
 chatgpt_print "Redis IP : $REDIS_IP"
 
 command_print "nc -w 5 -z $REDIS_IP 22"
