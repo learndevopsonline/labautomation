@@ -45,7 +45,7 @@ SOLUTION() {
       echo -e "Ensure you configure the redis server details in User Service SystemD file"
       echo -e "You can see the mis-configuration in this file"
       command_print "cat /etc/systemd/system/user.service"
-      remote_command $USER_IP "cat /etc/systemd/system/payment.service"
+      remote_command $USE_IP "cat /etc/systemd/system/payment.service"
       exit 1
       ;;
     900) ### RabbitMQ service is not running.
