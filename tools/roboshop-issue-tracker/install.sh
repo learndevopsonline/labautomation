@@ -77,6 +77,7 @@ Stat $? "Catalogue server able to connect to MongoDB server"
 chatgpt_print "MONGODB: Checking if catalogue schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+cat /tmp/out
 
 grep catalogue /tmp/out &>/dev/null
 if [ $? -ne 0 ]; then
@@ -118,6 +119,7 @@ StatP $? "Checking MongoDB Server is reachable" || CASE 0
 
 chatgpt_print "MONGODB: Checking if the DB is running or not"
 command_print "netstat -lntp"
+remote_command $MONGO_IP "netstat -lntp"
 
 listen_addres=$(remote_command $MONGO_IP "netstat -lntp | grep mongo | awk -F : '{print \$1}' | awk '{print \$NF}'")
 if [ "$listen_addres" != "0.0.0.0" ]; then
