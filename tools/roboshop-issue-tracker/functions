@@ -75,8 +75,9 @@ CASE() {
 
 
 remote_command() {
-  echo "$2" | ssh -T $1 >/tmp/tout
+  echo "$2" | ssh -T $1 &>/tmp/tout
   STAT=$?
+  sed -i -e '/Warning:\ Permanently\ added/ d' /tmp/tout
   grep Customized /tmp/tout &>/dev/null
   if [ $? -eq 0 ]; then
     sed -i -e '1,37 d' /tmp/tout
