@@ -86,6 +86,13 @@ remote_command() {
   return $STAT
 }
 
+check_config_file(){
+  echo "ls -l $2" | ssh -T $1 &>/tmp/fout
+  if [ $? -ne 0 ]; then
+    SOLUTION 99 $1 $2
+  fi
+}
+
 TC="\e[1;43m"
 HM="\e[4;45m"
 N="\e[0m"

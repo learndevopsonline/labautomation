@@ -1,5 +1,11 @@
 SOLUTION() {
    case $1 in
+    99) ### SystemD file does not exist in remote server
+      echo "SystemD file missing"
+      echo "File - $3 missing on the server, You can check by using ${TC}cat $3${N}"
+      echo "Ensure you create this file and it will work"
+      exit 1
+      ;;
     100) ### Nginx service failed and not running
       echo "DNS record is not working"
       echo "Check if your domain is properly configured or not in https://dnschecker.org "

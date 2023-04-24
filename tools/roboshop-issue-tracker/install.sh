@@ -199,6 +199,7 @@ nc -w 5 -z $CAR_IP 22
 StatP $? "Checking Cart Server is reachable" || CASE 0
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
+check_config_file $CAR_IP /etc/systemd/system/cart.service
 REDIS_IP=$(remote_command $CAR_IP "cat /etc/systemd/system/cart.service  | grep REDIS_HOST  | awk -F = '{print \$NF}'")
 
 chatgpt_print "Redis IP : $REDIS_IP"
