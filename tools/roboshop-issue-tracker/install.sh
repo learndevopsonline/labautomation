@@ -128,8 +128,8 @@ if [ "$listen_addres" != "0.0.0.0" ]; then
 fi
 
 chatgpt_print "USER: Checking if user is able to reach MongoDB Server or not"
-command_print "nc -w 5 -z $USE_IP 27017"
-remote_command $CAT_IP "nc -w 5 -z $USE_IP 27017"
+command_print "nc -w 5 -z $MONGO_IP 27017"
+remote_command $USE_IP "nc -w 5 -z $MONGO_IP 27017"
 Stat $? "User server able to connect to MongoDB server"
 
 chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
