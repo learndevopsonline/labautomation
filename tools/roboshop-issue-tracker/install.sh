@@ -135,6 +135,7 @@ Stat $? "User server able to connect to MongoDB server"
 chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+cat /tmp/out
 
 grep users  /tmp/out &>/dev/null
 if [ $? -ne 0 ]; then
