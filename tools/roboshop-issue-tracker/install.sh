@@ -26,7 +26,7 @@ EXIT=1 StatP $? "Found RoboShop Configuration"
 chatgpt_print FRONTEND: Checking Nginx Service is running or not.
 
 command_print "netstat -lntp | grep nginx"
-set -x
+
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
