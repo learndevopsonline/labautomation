@@ -280,7 +280,7 @@ remote_command $RABBITMQ_IP "netstat -lntp"
 check_rabbitmq=$(remote_command $RABBITMQ_IP "netstat -lntp | grep '5672' |wc -l")
 if [ "$check_rabbitmq" -eq 0 ]; then
   EXIT=0 StatP 1 "RabbitMQ Service not running"
-  CASE 400
+  CASE 900
 else
   StatP 0 "RabbitMQ Service running"
 fi
