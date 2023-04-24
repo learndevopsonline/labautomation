@@ -26,7 +26,7 @@ EXIT=1 StatP $? "Found RoboShop Configuration"
 chatgpt_print FRONTEND: Checking Nginx Service is running or not.
 
 command_print "netstat -lntp | grep nginx"
-
+set -x
 netstat -lntp | grep nginx
 EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
@@ -127,9 +127,9 @@ if [ "$listen_addres" != "0.0.0.0" ]; then
   CASE 200
 fi
 
-chatgpt_print "MONGODB: Checking if user is able to reach MongoDB Server or not"
-command_print "nc -w 5 -z $MONGO_IP 27017"
-remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
+chatgpt_print "USER: Checking if user is able to reach MongoDB Server or not"
+command_print "nc -w 5 -z $USE_IP 27017"
+remote_command $CAT_IP "nc -w 5 -z $USE_IP 27017"
 Stat $? "User server able to connect to MongoDB server"
 
 chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
