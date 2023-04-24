@@ -77,7 +77,7 @@ Stat $? "Catalogue server able to connect to MongoDB server"
 chatgpt_print "MONGODB: Checking if catalogue schema is loaded in mongodb"
 command_print "echo 'show dbs' | mongo"
 remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
-cat /tmp/out | grep -E 'users|$'
+cat /tmp/out | grep -E 'catalogue|$'
 
 grep catalogue /tmp/out &>/dev/null
 if [ $? -ne 0 ]; then
