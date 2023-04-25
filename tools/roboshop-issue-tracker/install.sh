@@ -117,8 +117,6 @@ StatP $? "Checking User Server is reachable" || CASE 0
 chatgpt_print "USER: Fetching SystemD File"
 command_print "cat /etc/systemd/system/user.service"
 remote_command $CAT_IP "cat /etc/systemd/system/user.service"
-echo $?
-exit
 StatP $? "Fetching User Service File" || CASE 1
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
