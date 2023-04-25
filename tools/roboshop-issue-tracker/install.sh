@@ -42,6 +42,12 @@ command_print "nc -w 5 -z $CAT_IP 22"
 nc -w 5 -z $CAT_IP 22
 StatP $? "Checking Catalogue Server is reachable" || CASE 0
 
+### Printing Service File
+chatgpt_print "CATALOGUE: Fetching SystemD File"
+command_print "cat /etc/systemd/system/catalogue.service"
+remote_command $CAT_IP "cat /etc/systemd/system/catalogue.service"
+StatP $? "Fetching Catalogue Service File"
+
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
 command_print "ps -ef | grep server.js"
@@ -107,10 +113,14 @@ command_print "nc -w 5 -z $USE_IP 22"
 nc -w 5 -z $USE_IP 22
 StatP $? "Checking User Server is reachable" || CASE 0
 
+### Printing Service File
+chatgpt_print "USER: Fetching SystemD File"
+command_print "cat /etc/systemd/system/user.service"
+remote_command $CAT_IP "cat /etc/systemd/system/user.service"
+StatP $? "Fetching User Service File"
+
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
-
 MONGO_IP=$(remote_command $USE_IP "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'")
-
 chatgpt_print "MongoDB IP : $MONGO_IP"
 
 command_print "nc -w 5 -z $MONGO_IP 22"
@@ -190,7 +200,6 @@ remote_command $USE_IP "systemctl restart user"
 
 ## Finding Cart Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
 CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Cart IP : $CAR_IP"
@@ -198,6 +207,12 @@ chatgpt_print "Cart IP : $CAR_IP"
 command_print "nc -w 5 -z $CAR_IP 22"
 nc -w 5 -z $CAR_IP 22
 StatP $? "Checking Cart Server is reachable" || CASE 0
+
+### Printing Service File
+chatgpt_print "CART: Fetching SystemD File"
+command_print "cat /etc/systemd/system/cart.service"
+remote_command $CAT_IP "cat /etc/systemd/system/cart.service"
+StatP $? "Fetching Cart Service File"
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 check_config_file $CAR_IP /etc/systemd/system/cart.service
@@ -234,14 +249,18 @@ chatgpt_print "CART: Redis needs to be installed"
 
 ## Finding Shipping Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
 SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Shipping IP : $SHI_IP"
-
 command_print "nc -w 5 -z $SHI_IP 22"
 nc -w 5 -z $SHI_IP 22
 StatP $? "Checking Shipping Server is reachable" || CASE 0
+
+### Printing Service File
+chatgpt_print "SHIPPING: Fetching SystemD File"
+command_print "cat /etc/systemd/system/shipping.service"
+remote_command $CAT_IP "cat /etc/systemd/system/shipping.service"
+StatP $? "Fetching Shipping Service File"
 
 chatgpt_print "SHIPPING: Check if the shipping service is running or not"
 command_print "ps -ef | grep java"
@@ -250,14 +269,18 @@ Stat $? "Check Shipping is running or not"
 
 ## Finding Payment Server
 command_print "cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-
 PAY_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Payment IP : $PAY_IP"
-
 command_print "nc -w 5 -z $PAY_IP 22"
 nc -w 5 -z $PAY_IP 22
 StatP $? "Checking Payment Server is reachable" || CASE 0
+
+### Printing Service File
+chatgpt_print "PAYMENT: Fetching SystemD File"
+command_print "cat /etc/systemd/system/payment.service"
+remote_command $CAT_IP "cat /etc/systemd/system/payment.service"
+StatP $? "Fetching Payment Service File"
 
 chatgpt_print "PAYMENT: Check if the payment service is running or not"
 command_print "ps -ef | grep payment"
