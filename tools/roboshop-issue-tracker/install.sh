@@ -46,7 +46,7 @@ StatP $? "Checking Catalogue Server is reachable" || CASE 0
 chatgpt_print "CATALOGUE: Fetching SystemD File"
 command_print "cat /etc/systemd/system/catalogue.service"
 remote_command $CAT_IP "cat /etc/systemd/system/catalogue.service"
-StatP $? "Fetching Catalogue Service File"
+StatP $? "Fetching Catalogue Service File" || CASE 1
 
 ### Checking Catalogue service is running or not.
 chatgpt_print "CATALOGUE: Check if the catalogue service is running or not"
@@ -117,7 +117,7 @@ StatP $? "Checking User Server is reachable" || CASE 0
 chatgpt_print "USER: Fetching SystemD File"
 command_print "cat /etc/systemd/system/user.service"
 remote_command $CAT_IP "cat /etc/systemd/system/user.service"
-StatP $? "Fetching User Service File"
+StatP $? "Fetching User Service File" || CASE 1
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
 MONGO_IP=$(remote_command $USE_IP "cat /etc/systemd/system/user.service | grep MONGO_URL  | awk -F / '{print \$3}' | awk -F : '{print \$1}'")
@@ -212,7 +212,7 @@ StatP $? "Checking Cart Server is reachable" || CASE 0
 chatgpt_print "CART: Fetching SystemD File"
 command_print "cat /etc/systemd/system/cart.service"
 remote_command $CAT_IP "cat /etc/systemd/system/cart.service"
-StatP $? "Fetching Cart Service File"
+StatP $? "Fetching Cart Service File" || CASE 1
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
 check_config_file $CAR_IP /etc/systemd/system/cart.service
@@ -260,7 +260,7 @@ StatP $? "Checking Shipping Server is reachable" || CASE 0
 chatgpt_print "SHIPPING: Fetching SystemD File"
 command_print "cat /etc/systemd/system/shipping.service"
 remote_command $CAT_IP "cat /etc/systemd/system/shipping.service"
-StatP $? "Fetching Shipping Service File"
+StatP $? "Fetching Shipping Service File" || CASE 1
 
 chatgpt_print "SHIPPING: Check if the shipping service is running or not"
 command_print "ps -ef | grep java"
@@ -280,7 +280,7 @@ StatP $? "Checking Payment Server is reachable" || CASE 0
 chatgpt_print "PAYMENT: Fetching SystemD File"
 command_print "cat /etc/systemd/system/payment.service"
 remote_command $CAT_IP "cat /etc/systemd/system/payment.service"
-StatP $? "Fetching Payment Service File"
+StatP $? "Fetching Payment Service File" || CASE 1
 
 chatgpt_print "PAYMENT: Check if the payment service is running or not"
 command_print "ps -ef | grep payment"
