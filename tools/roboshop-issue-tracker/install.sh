@@ -116,7 +116,7 @@ StatP $? "Checking User Server is reachable" || CASE 0
 ### Printing Service File
 chatgpt_print "USER: Fetching SystemD File"
 command_print "cat /etc/systemd/system/user.service"
-remote_command $CAT_IP "cat /etc/systemd/system/user.service"
+remote_command $USE_IP "cat /etc/systemd/system/user.service"
 StatP $? "Fetching User Service File" || CASE 1
 
 chatgpt_print "USER: User Service is dependent on MongoDB Server. Fetching MongoDB IP address"
@@ -211,7 +211,7 @@ StatP $? "Checking Cart Server is reachable" || CASE 0
 ### Printing Service File
 chatgpt_print "CART: Fetching SystemD File"
 command_print "cat /etc/systemd/system/cart.service"
-remote_command $CAT_IP "cat /etc/systemd/system/cart.service"
+remote_command $CAR_IP "cat /etc/systemd/system/cart.service"
 StatP $? "Fetching Cart Service File" || CASE 1
 
 chatgpt_print "USER: User Service is dependent on Redis Server. Fetching Redis IP address"
@@ -259,7 +259,7 @@ StatP $? "Checking Shipping Server is reachable" || CASE 0
 ### Printing Service File
 chatgpt_print "SHIPPING: Fetching SystemD File"
 command_print "cat /etc/systemd/system/shipping.service"
-remote_command $CAT_IP "cat /etc/systemd/system/shipping.service"
+remote_command $SHI_IP "cat /etc/systemd/system/shipping.service"
 StatP $? "Fetching Shipping Service File" || CASE 1
 
 chatgpt_print "SHIPPING: Check if the shipping service is running or not"
@@ -279,7 +279,7 @@ StatP $? "Checking Payment Server is reachable" || CASE 0
 ### Printing Service File
 chatgpt_print "PAYMENT: Fetching SystemD File"
 command_print "cat /etc/systemd/system/payment.service"
-remote_command $CAT_IP "cat /etc/systemd/system/payment.service"
+remote_command $PAY_IP "cat /etc/systemd/system/payment.service"
 StatP $? "Fetching Payment Service File" || CASE 1
 
 chatgpt_print "PAYMENT: Check if the payment service is running or not"
