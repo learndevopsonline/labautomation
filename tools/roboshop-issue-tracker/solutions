@@ -65,7 +65,7 @@ SOLUTION() {
       echo -e "Ensure you have username in AMQP_USER parameter and Password in AMQP_PASS Parameter"
       echo -e "Observe the following command output"
       command_print "cat /etc/systemd/system/payment.service"
-      remote_command $PAY_IP "cat /etc/systemd/system/payment.service" | grep --color -E 'AMQP_USER|AMQP_PASS|$'
+      remote_command $PAY_IP "cat /etc/systemd/system/payment.service" | grep --color -E 'AMQP_USER=|AMQP_PASS=|rabbitmq_appuser_password|$'
       exit 1
    esac
 }
