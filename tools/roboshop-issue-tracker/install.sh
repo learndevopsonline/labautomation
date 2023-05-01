@@ -313,7 +313,7 @@ RABBITMQ_USER=$(remote_command $PAY_IP "cat /etc/systemd/system/payment.service 
 RABBITMQ_PASS=$(remote_command $PAY_IP "cat /etc/systemd/system/payment.service  | grep AMQP_PASS | awk -F = '{print \$NF}'")
 
 chatgpt_print "RabbitMQ Username & Password : $RABBITMQ_USER / $RABBITMQ_PASS"
-if [ -z "$RABBITMQ_USER" -o -z "$RABBITMQ_PASS" ]; then
+if [ -z "$RABBITMQ_USER" -o -z "$RABBITMQ_PASS" -o "$RABBITMQ_PASS" == "rabbitmq_appuser_password" ]; then
   EXIT=0 StatP 1 "RabbitMQ Credentials are missing in the service file"
   CASE 1000
 fi
