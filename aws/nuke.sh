@@ -32,6 +32,8 @@ done
 POLICIES=$(aws iam list-policies --scope Local --query "Policies[].Arn" --output text   | xargs -n1)
 
 for policy in ${POLICIES}; do
+  echo $policy
+
   for version in `aws iam list-policy-versions --policy-arn $policy --query "Versions[].VersionId" --output text`; do
     aws iam delete-policy-version --policy-arn $policy --version-id $version
   done
