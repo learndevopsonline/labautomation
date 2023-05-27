@@ -44,3 +44,8 @@ REPOS=$(aws ecr describe-repositories --query 'repositories[].repositoryName' --
 for repo in ${REPOS}; do
   aws ecr delete-repository --repository-name $repo --force
 done
+
+BUCKETS=$(aws s3api list-buckets --query "Buckets[].Name" --output text)
+for bucket in $BUCKETS; do
+  aws s3 rb s3://$bucket --force
+done
