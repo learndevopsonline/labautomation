@@ -23,7 +23,7 @@ for user in ${ALL_USERS}; do
   aws iam delete-user --user-name $user
 done
 
-ROLES=$(aws iam list-roles --query 'Roles[].RoleName' --output text|xargs -n1 | grep -Ev '^AWS|cross_role|main_role|OrganizationAccountAccessRole|workstation')
+ROLES=$(aws iam list-roles --query 'Roles[].RoleName' --output text|xargs -n1 | grep -Ev '^AWS|OrganizationAccountAccessRole|workstation')
 
 for role in ${ROLES}; do
   aws iam delete-role --role-name $role
