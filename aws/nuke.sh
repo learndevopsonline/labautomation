@@ -39,3 +39,8 @@ for policy in ${POLICIES}; do
   done
   aws iam delete-policy --policy-arn $policy
 done
+
+REPOS=$(aws ecr describe-repositories --query 'repositories[].repositoryName' --output text)
+for repo in ${REPOS}; do
+  aws ecr delete-repository --repository-name $repo --force
+done
