@@ -6,6 +6,7 @@ DOMAIN_NAME=$(aws route53 list-hosted-zones --query "HostedZones[*].{ID:Id,Name:
 SG_NAME="allow-all"
 #ENV="dev"
 #############################
+sudo rm -f /tmp/record.json
 
 env=dev
 

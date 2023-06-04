@@ -1,5 +1,5 @@
 {
-  "Comment": "CREATE/DELETE/UPSERT a record ",
+  "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
   "Changes": [{
     "Action": "UPSERT",
     "ResourceRecordSet": {
