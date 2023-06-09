@@ -3,7 +3,7 @@
 #read -p 'Enter Username: ' IAM_USERNAME
 #read -p 'Enter Password: ' IAM_PASSWORD
 IAM_USERNAME=skalluru
-IAM_PASSWORD=DevOps321
+IAM_PASSWORD=DevOps@321
 
 aws iam create-user --user-name ${IAM_USERNAME}
 aws iam create-login-profile --user-name ${IAM_USERNAME} --password ${IAM_PASSWORD}
