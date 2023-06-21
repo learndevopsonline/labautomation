@@ -14,5 +14,9 @@ bash tools/terraform/install.sh
 
 cd tools/minikube
 
+if [ ! -f "~/.ssh/id_rsa.pub" ]; then
+  cat /dev/zero | ssh-keygen -q -N ""
+fi
+
 terraform init
 terraform apply -auto-approve
