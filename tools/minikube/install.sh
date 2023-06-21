@@ -10,4 +10,5 @@
 #sudo chmod +x /bin/minikube
 #
 
-pwd
+bash tools/terraform/install.sh
+
