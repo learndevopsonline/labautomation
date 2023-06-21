@@ -11,7 +11,7 @@ data "aws_ami" "ami" {
 }
 
 data "external" "example" {
-program = ["bash", "${path.root}/route53.sh"]
+program = ["bash", "${path.root}/route53"]
 }
 
 module "vpc" {
