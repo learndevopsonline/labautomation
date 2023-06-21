@@ -12,3 +12,7 @@
 
 bash tools/terraform/install.sh
 
+cd tools/minikube
+
+terraform init
+terraform apply -auto-approve
