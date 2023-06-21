@@ -10,7 +10,7 @@ data "aws_ami" "ami" {
   owners      = ["973714476881"]
 }
 
-data "external" "example" {
+data "external" "zone" {
 program = ["bash", "${path.root}/route53"]
 }
 
@@ -42,11 +42,11 @@ module "minikube" {
   ssh_public_key = "~/.ssh/id_rsa.pub"
   aws_subnet_id = element(lookup(module.vpc, "public_subnets", null), 0)
   ami_image_id = data.aws_ami.ami.id
-  hosted_zone =
+  hosted_zone = data.external.zone.result.id
   hosted_zone_private = false
 
   tags = {
-    Application = "Minikube"
+    Name = "minikube"
   }
 
   addons = [

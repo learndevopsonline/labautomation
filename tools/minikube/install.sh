@@ -18,5 +18,7 @@ if [ ! -f "~/.ssh/id_rsa.pub" ]; then
   cat /dev/zero | ssh-keygen -q -N ""
 fi
 
+rm -rf .terraform*
+
 terraform init
 terraform apply -auto-approve
