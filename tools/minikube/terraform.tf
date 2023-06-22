@@ -41,7 +41,7 @@ module "minikube" {
   aws_instance_type = "t3.medium"
   ssh_public_key = "~/.ssh/id_rsa.pub"
   aws_subnet_id = element(lookup(module.vpc, "public_subnets", null), 0)
-  ami_image_id = data.aws_ami.ami.id
+  ami_image_id = "ami-09cb499e02a2faaa1"
   hosted_zone = data.external.zone.result.id
   hosted_zone_private = false
 
