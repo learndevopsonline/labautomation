@@ -57,6 +57,6 @@ module "minikube" {
 }
 
 output "kube_config" {
-  value = "Copy Kubernetes Configuration File From MiniKube \n Execute the following command "
+  value = "Copy Kubernetes Configuration File From MiniKube\nExecute the following command\nsudo scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig /tmp/kubeconfig"
 }
 
