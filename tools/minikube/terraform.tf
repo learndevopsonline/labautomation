@@ -44,6 +44,8 @@ module "minikube" {
   ami_image_id = data.aws_ami.ami.id
   hosted_zone = data.external.zone.result.id
   hosted_zone_private = false
+  ami_image_id = "ami-09cb499e02a2faaa1"
+
 
   tags = {
     Name = "minikube"
