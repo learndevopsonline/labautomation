@@ -56,4 +56,7 @@ module "minikube" {
   ]
 }
 
+output "kube_config" {
+  value = "Copy Kubernetes Configuration File From MiniKube \n Execute the following command "
+}
 
