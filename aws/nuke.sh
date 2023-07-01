@@ -50,4 +50,8 @@ for bucket in $BUCKETS; do
   aws s3 rb s3://$bucket --force
 done
 
-aws ssm delete-parameters --names $(aws ssm describe-parameters --query 'Parameters[].Name' --output text |xargs)
+PARAMS=$(aws ssm describe-parameters --query 'Parameters[].Name' --output text |xargs)
+
+for param in $PARAMS; do
+  aws ssm delete-parameter --name $param
+done
