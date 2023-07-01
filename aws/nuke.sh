@@ -49,3 +49,5 @@ BUCKETS=$(aws s3api list-buckets --query "Buckets[].Name" --output text)
 for bucket in $BUCKETS; do
   aws s3 rb s3://$bucket --force
 done
+
+aws ssm delete-parameters --names $(aws ssm describe-parameters --query 'Parameters[].Name' --output text |xargs)
