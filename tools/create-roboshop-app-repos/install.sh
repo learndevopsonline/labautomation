@@ -1,4 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
+
+echo All the repos are coming from https://github.com/roboshop-devops-project-v1/
+echo
+echo
 
 read -p 'Enter Username: ' username
 
