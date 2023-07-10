@@ -11,5 +11,6 @@ for repo in catalogue user cart shipping payment frontend dispatch ; do
   cp -r /tmp/$repo/* .
   git add -A
   git commit -m "Create Repo"
+  git branch -m main
   git push --set-upstream origin main
 done
