@@ -12,5 +12,4 @@ for repo in catalogue user cart shipping payment frontend dispatch ; do
   git add -A
   git commit -m "Create Repo"
   git push --set-upstream origin main
-  break
 done
