@@ -9,5 +9,8 @@ for repo in catalogue user cart shipping payment frontend dispatch ; do
   gh repo create $username/$repo --public --clone
   cd /home/centos/$repo
   cp -r /tmp/$repo/* .
+  git add -A
+  git commit -m "Create Repo"
+  git push --origin main
   break
 done
