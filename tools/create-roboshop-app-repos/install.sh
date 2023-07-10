@@ -11,6 +11,6 @@ for repo in catalogue user cart shipping payment frontend dispatch ; do
   cp -r /tmp/$repo/* .
   git add -A
   git commit -m "Create Repo"
-  git push --origin main
+  git push
   break
 done
