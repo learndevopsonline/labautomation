@@ -294,7 +294,7 @@ chatgpt_print "RabbitMQ IP : $RABBITMQ_IP"
 
 command_print "nc -w 5 -z $RABBITMQ_IP 22"
 nc -w 5 -z $RABBITMQ_IP 22
-StatP $? "Checking RabbitMQ Server is reachable"
+StatP $? "Checking RabbitMQ Server is reachable" || CASE 0
 
 chatgpt_print "RABBITMQ: Checking if the RabbitMQ is running or not"
 command_print "netstat -lntp"
