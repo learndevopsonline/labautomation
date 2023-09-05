@@ -5,8 +5,7 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi 
 
-if [ -d /opt/node_exporter ]; then 
-  rm -rf /opt/node_exporter
+if [ -d /opt/node_exporter ]; then
   systemctl enable node_exporter
   systemctl start node_exporter
   exit 0
