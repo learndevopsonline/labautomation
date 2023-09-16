@@ -7,7 +7,7 @@ source /tmp/common-functions.sh
 echo '[elasticsearch]
 name=Elasticsearch repository for 8.x packages
 baseurl=https://artifacts.elastic.co/packages/8.x/yum
-gpgcheck=1
+gpgcheck=0
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=1
 autorefresh=1
@@ -39,8 +39,11 @@ echo 'input {
 
 output {
   elasticsearch {
-    hosts => ["http://localhost:9200"]
+    hosts => ["https://localhost:9200"]
     index => "%{[@metadata][beat]}-%{[@metadata][version]}"
+    user => "elastic"
+    password => "REPLACE-YOUR_PASSWORD"
+    ssl_certificate_verification => false
   }
 }' >/etc/logstash/conf.d/logstash.conf
 
