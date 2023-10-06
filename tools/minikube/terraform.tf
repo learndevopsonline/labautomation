@@ -55,10 +55,17 @@ data "aws_security_group" "selected" {
   name = "minikube"
 }
 
+resource "aws_security_group_rule" "all" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = data.aws_security_group.selected.id
+}
+
 output "kube_config" {
   value = "Copy Kubernetes Configuration File From MiniKube\nExecute the following command\n\n\nsudo scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig /tmp/kubeconfig\nsudo chmod ugo+r /tmp/kubeconfig\n\n\n"
 }
 
-output "sgid" {
-  value = data.aws_security_group.selected.id
-}
+
