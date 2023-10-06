@@ -52,7 +52,7 @@ module "minikube" {
 
 data "aws_security_group" "selected" {
   depends_on = [module.minikube]
-  name = "minkube"
+  name = "minikube"
 }
 
 output "kube_config" {
