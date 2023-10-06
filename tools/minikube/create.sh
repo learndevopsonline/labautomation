@@ -10,7 +10,7 @@
 #sudo chmod +x /bin/minikube
 #
 
-bash tools/terraform/install.sh
+type terraform || bash tools/terraform/install.sh
 
 cd tools/minikube
 
