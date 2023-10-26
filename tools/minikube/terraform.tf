@@ -65,7 +65,7 @@ resource "aws_security_group_rule" "all" {
 }
 
 output "kube_config" {
-  value = "Copy Kubernetes Configuration File From MiniKube\nExecute the following command\n\n\nsudo scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig /tmp/kubeconfig\nsudo chmod ugo+r /tmp/kubeconfig\n\n### For KUBERNETES UI FOLLOW THESE STEPS\nNOTE: The following steps works only after above two commands successfully\n\nkubectl --kubeconfig=/tmp/kubeconfig delete svc -n kube-system kubernetes-dashboard\nkubectl --kubeconfig=/tmp/kubeconfig expose deployment kubernetes-dashboard -n kube-system --type=NodePort\nkubectl --kubeconfig=/tmp/kubeconfig get svc -A\nkubectl create token kubernetes-dashboard -n kube-system\n\n\n"
+  value = "Copy Kubernetes Configuration File From MiniKube\nExecute the following command\n\n\nsudo scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig /tmp/kubeconfig\nsudo chmod ugo+r /tmp/kubeconfig\n\n### For KUBERNETES UI FOLLOW THESE STEPS\nNOTE: The following steps works only after above two commands successfully\n\nkubectl --kubeconfig=/tmp/kubeconfig delete svc -n kube-system kubernetes-dashboard\nkubectl --kubeconfig=/tmp/kubeconfig expose deployment kubernetes-dashboard -n kube-system --type=NodePort\nkubectl --kubeconfig=/tmp/kubeconfig get svc -A\nkubectl --kubeconfig=/tmp/kubeconfig create token kubernetes-dashboard -n kube-system\n\n\n"
 }
 
 
