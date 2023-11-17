@@ -11,12 +11,13 @@ if [ $? -ne 0 ]; then
   gh auth login && gh repo list
 fi
 
-read -p 'Enter repository name: ' name
+read -p 'Enter repository name: ' repos
 CDIR=$(pwd)
 
-rm -rf local
-mkdir local
-cd local
+for name in ${repos} ; do
+rm -rf /tmp/local
+mkdir /tmp/local
+cd /tmp/local
 echo "# $name" >README.md
 git init
 git branch -m main
@@ -24,4 +25,5 @@ git add -A
 git commit -m INIT
 gh repo create $name --public  --source=. --push
 
+done
 
