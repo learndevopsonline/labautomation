@@ -14,6 +14,7 @@ fi
 read -p 'Enter repository name: ' name
 CDIR=$(pwd)
 
+rm -rf local
 mkdir local
 cd local
 echo "# $name" >README.md
