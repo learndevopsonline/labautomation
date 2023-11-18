@@ -10,6 +10,6 @@ gpgkey=https://packages.grafana.com/gpg.key
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt' >/etc/yum.repos.d/grafana.repo
 
-yum install grafana-8.5.6-1 -y 
+yum install grafana -y
 systemctl enable grafana-server
 systemctl start grafana-server
