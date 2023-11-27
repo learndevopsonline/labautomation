@@ -16,5 +16,4 @@ for component in cart catalogue user shipping payment dispatch frontend ; do
   git add -A
   git commit -m INIT
   gh repo create $gusername/$component --public --source=. --push
-  exit
 done
