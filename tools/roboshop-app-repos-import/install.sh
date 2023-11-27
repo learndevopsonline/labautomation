@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 read -p 'Enter GitHub Username: ' gusername
 
@@ -10,5 +10,6 @@ for component in cart catalogue user shipping payment dispatch frontend ; do
   git clone $SOURCE_REPO/$component
   rm -rf /tmp/$component/.git
   cd /tmp/$component
+  exit
   gh repo create $gusername/$component --public --source=. --remote=upstream
 done
