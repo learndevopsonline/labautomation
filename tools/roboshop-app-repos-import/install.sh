@@ -11,6 +11,10 @@ for component in cart catalogue user shipping payment dispatch frontend ; do
   git clone $SOURCE_REPO/$component
   rm -rf /tmp/$component/.git
   cd /tmp/$component
-  gh repo create $gusername/$component --public --source=. --remote=upstream
+  git init
+  git branch -m main
+  git add -A
+  git commit -m INIT
+  gh repo create $gusername/$component --public --source=. --push
   exit
 done
