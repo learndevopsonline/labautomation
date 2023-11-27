@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 read -p 'Enter GitHub Username: ' gusername
 
 SOURCE_REPO=https://github.com/roboshop-devops-project-v1
