@@ -6,3 +6,4 @@ cd /tmp/Python*
 curl -L -O $LINK
 tar -xf $FILE && rm -f $FILE
 cd $DIR
+ls -l
