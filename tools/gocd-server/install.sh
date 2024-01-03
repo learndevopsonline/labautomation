@@ -7,8 +7,8 @@ Stat $? "Install Java"
 curl https://download.gocd.org/gocd.repo -o /etc/yum.repos.d/gocd.repo  &>>/tmp/gocd-server.log
 Stat $? "Download GoCD Repo File"
 
-yum install -y go-server
+yum install -y go-server &>>/tmp/gocd-server.log
 Stat $? "Install GoCD Server"
 
-systemctl restart go-server
+systemctl restart go-server &>>/tmp/gocd-server.log
 Stat $? "Start GoCD Service"
