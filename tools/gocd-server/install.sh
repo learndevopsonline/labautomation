@@ -12,3 +12,5 @@ Stat $? "Install GoCD Server"
 
 systemctl restart go-server &>>/tmp/gocd-server.log
 Stat $? "Start GoCD Service"
+
+echo -e "Open this URL -> http://$(curl ifconfig.co):8153"
