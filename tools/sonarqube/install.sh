@@ -11,7 +11,7 @@ yum install java-17-openjdk unzip -y
 #VERSION=$(curl -s https://binaries.sonarsource.com/Distribution/sonarqube/ | grep '.zip<' | tail -1 | sed -e 's/</ /g'  | xargs -n1 | grep ^href | sed -e 's/href=sonarqube-//' -e 's/.zip>//')
 #URL="https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${VERSION}.zip"
 #URL=$(curl -s -L https://www.sonarqube.org/downloads/ | grep zip  | grep 'Community Edition' | grep 'sonarqube-8' | head -1  | awk -F '"' '{print $2}')
-URL="https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.10.61524.zip"
+URL="https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.0.87286.zip"
 FILENAME=$(echo $URL | awk -F / '{print $NF}')
 FOLDERNAME=$(echo $FILENAME | sed -e 's/.zip//g')
 
