@@ -6,7 +6,7 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 yum install epel-release -y
-yum install java-11-openjdk unzip -y
+yum install java-17-openjdk unzip -y
 #URL=$(curl -s https://www.sonarqube.org/downloads/ | grep 'Community Edition' | grep sonarqube-|head -1  | sed -e "s/>/ /g"|xargs -n 1  | grep ^href | awk -F = '{print $2}')
 #VERSION=$(curl -s https://binaries.sonarsource.com/Distribution/sonarqube/ | grep '.zip<' | tail -1 | sed -e 's/</ /g'  | xargs -n1 | grep ^href | sed -e 's/href=sonarqube-//' -e 's/.zip>//')
 #URL="https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-${VERSION}.zip"
