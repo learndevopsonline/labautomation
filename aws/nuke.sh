@@ -11,6 +11,13 @@
 #     bash aws/nuke.sh
 #
 
+# Delete Instances Other than Workstation
+
+# Delete spot instances
+SIDS=$(aws ec2 describe-spot-instance-requests --query 'SpotInstanceRequests[*].SpotInstanceRequestId' --output text  | xargs)
+for i in $SIDS ; do
+  aws ec2 cancel-spot-instance-requests --spot-instance-request-ids $i
+done
 
 
 # Delete IAM Users
