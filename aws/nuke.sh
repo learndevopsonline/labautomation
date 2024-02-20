@@ -19,6 +19,12 @@ for i in $SIDS ; do
   aws ec2 cancel-spot-instance-requests --spot-instance-request-ids $i
 done
 
+# Delete the instances
+INSTANCES=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].{Instance:InstanceId,PublicIP:PublicIpAddress,PrivateIP:PrivateIpAddress,State:State.Name,Name:Tags[?Key==`Name`]|[0].Value}' --output table | grep i- | grep -v workstation | awk '{print $2}' |xargs)
+for i in $INSTANCES; do
+  aws ec2 terminate-instances --instance-ids $i
+done
+
 
 # Delete IAM Users
 
