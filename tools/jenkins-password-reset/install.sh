@@ -11,7 +11,7 @@ sed -i -e '/useSecurity/ s/true/false/' /var/lib/jenkins/config.xml
 systemctl restart jenkins
 success "Restarted Jenkins"
 
-read -p 'Do you want to rever the change? []Y/n' ans
+read -p 'Do you want to rever the change? [Y/n]: ' ans
 
 if [ -z "$ans" -o "$ans" == "n*" ]; then
   exit
