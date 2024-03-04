@@ -16,7 +16,7 @@ read -p 'Enter repository name / file : ' repos
 if [ -f "$repos" ]; then
   CDIR=$(pwd)
 
-  for name in $(cat repos) ; do
+  for name in $(cat $repos) ; do
   rm -rf /tmp/local
   mkdir /tmp/local
   cd /tmp/local
