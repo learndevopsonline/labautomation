@@ -4,7 +4,7 @@ dnf install java-17-openjdk.x86_64 -y  &>/tmp/gocd-agent.log
 Stat $? "Install Java"
 
 id gocd  &>>/tmp/gocd-agent.log
-if [ $? -ne 0 ]; then
+if [ $? -eq 0 ]; then
   kill -9 `ps -u gocd | grep -v PID | awk '{print $1}'` &>>/tmp/gocd-agent.log
   userdel -rf gocd
 fi
