@@ -9,7 +9,7 @@ case $USER in
   ;;
 esac
 
-sudo curl -s "https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh" -o /tmp/common-functions.sh
+sudo curl -s "https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh" -o /tmp/common-functions.sh
 #chmod 777 /tmp/common-functions.sh
 #source /root/scripts/common-functions.sh
 source /tmp/common-functions.sh
@@ -42,11 +42,11 @@ else
       cd ..
       sudo -v &>/dev/null
       [ $? -eq 0 ] && sudo rm -rf /tmp/lab* || rm -rf /tmp/lab*
-      git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+      git clone https://github.com/learndevopsonline/labautomation.git /tmp/labautomation &>/dev/null
     fi
   else
     cd ..
-    git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+    git clone https://github.com/learndevopsonline/labautomation.git /tmp/labautomation &>/dev/null
   fi
 fi
 

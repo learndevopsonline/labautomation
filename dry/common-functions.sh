@@ -151,7 +151,7 @@ DownloadJava() {
 	fi
 	case $1 in
 		8)
-			curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/java-params >/tmp/java-params
+			curl -s https://raw.githubusercontent.com/learndevopsonline/scripts/master/java-params >/tmp/java-params
 			source /tmp/java-params
 			#BASE_URL8=http://download.oracle.com/otn-pub/java/jdk/$RELEASE/$SESSION_ID/$VERSION
 			JDK_VERSION=`echo $BASE_URL_8 | rev | cut -d "/" -f1 | rev`

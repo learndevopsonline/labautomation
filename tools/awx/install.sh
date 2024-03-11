@@ -20,15 +20,15 @@ Stat $?
 ln -s /usr/bin/python3 /usr/bin/python33 || true
 
 echo "Install Docker"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker/install-for-devops-trainings.sh | bash  &>>$LOG
+curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/tools/docker/install-for-devops-trainings.sh | bash  &>>$LOG
 Stat $?
 
 echo "Install DOcker-Compose"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/docker-compose/install.sh | bash -x &>>$LOG
+curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/tools/docker-compose/install.sh | bash -x &>>$LOG
 Stat $?
 
 echo "Install NodeJS"
-curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
+curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/tools/nodejs/install.sh | bash &>>$LOG
 Stat $?
 
 echo "Install Ansible"

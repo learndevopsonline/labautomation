@@ -5,7 +5,7 @@ if [ -f dry/common-functions.sh ]; then
   source dry/common-functions.sh
 fi
 
-curl -s -L https://raw.githubusercontent.com/linuxautomations/labautomation/master/dry/common-functions.sh >/tmp/common-functions.sh
+curl -s -L https://raw.githubusercontent.com/learndevopsonline/labautomation/master/dry/common-functions.sh >/tmp/common-functions.sh
 source /tmp/common-functions.sh
 yum install -y yum-utils
 case $OSVENDOR in

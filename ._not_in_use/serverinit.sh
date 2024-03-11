@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -s https://raw.githubusercontent.com/linuxautomations/scripts/master/common-functions.sh >/tmp/common-functions.sh
+curl -s https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh >/tmp/common-functions.sh
 source /tmp/common-functions.sh
 
 CheckRoot
@@ -37,7 +37,7 @@ if [ $? -ne 0 ]; then
         sleep 60
     fi
 
-    gcloud compute instances create imaging --zone=us-east1-b --machine-type=n1-standard-1 --metadata=startup-script=curl\ -s\ https://raw.githubusercontent.com/linuxautomations/scripts/master/init.sh\ \|\ sudo\ bash --image=$IMAGE --image-project=centos-cloud --boot-disk-size=10GB &>/dev/null
+    gcloud compute instances create imaging --zone=us-east1-b --machine-type=n1-standard-1 --metadata=startup-script=curl\ -s\ https://raw.githubusercontent.com/learndevopsonline/scripts/master/init.sh\ \|\ sudo\ bash --image=$IMAGE --image-project=centos-cloud --boot-disk-size=10GB &>/dev/null
     Stat $? "Started making Image"
 
 
@@ -63,7 +63,7 @@ if [ $? -ne 0 ]; then
 fi
 
 ZONES=(us-east4-c us-central1-c us-west1-b europe-west1-b asia-east1-b asia-northeast1-b)
-for servername in `curl -s https://raw.githubusercontent.com/linuxautomations/labautomation/master/serverslist | dos2unix ` ; do 
+for servername in `curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/serverslist | dos2unix ` ; do
    echo -e "Creating Server .. $servername"
    RNO=$(( ( RANDOM % 6 )  + 1 ))
    zone=${ZONES[$RNO]}

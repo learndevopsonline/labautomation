@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/linuxautomations/labautomation/tree/master/tools\n"
+echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/learndevopsonline/labautomation/tree/master/tools\n"
 
 source `dirname $0`/dry/common-functions.sh
 
 if [ ! -d /tmp/labautomation  ]; then 
-	git clone https://github.com/linuxautomations/labautomation.git /tmp/labautomation &>/dev/null
+	git clone https://github.com/learndevopsonline/labautomation.git /tmp/labautomation &>/dev/null
 else 
 	cd /tmp/labautomation
 	git stash &>/dev/null
