@@ -34,15 +34,14 @@ Environment=SYSTEMD_KILLMODE_WARNING=true
 WantedBy=multi-user.target
 
 ' >/etc/systemd/system/go-agent.service
-Stat $? "Setup systemd GoCD Service file"
+Stat $? "Setup systemd GoCD Agent Service file"
 
 systemctl daemon-reload &>>/tmp/gocd-agent.log
-Stat $? "Load the Service"
-
 systemctl enable go-agent &>>/tmp/gocd-agent.log
-Stat $? "Enable GoCD Service"
+Stat $? "Enable GoCD Agent Service"
 
 systemctl start go-agent &>>/tmp/gocd-agent.log
-Stat $? "Start GoCD Service"
+Stat $? "Start GoCD Agent Service"
 
-echo -e "Open this URL -> http://$(curl -s ifconfig.me):8153"
+echo -e "\n \n -> Open this file \e[1;33m/home/gocd/go-agent-23.5.0/wrapper-config/wrapper-properties.conf\e[0m & Update \e[1;33mwrapper.app.parameter.101\e[0m line and replace \e[1;31mlocalhost\e[0m with gocd server ip address and restart gocd-agent service"
+echo -e "To restart service \e[1;33msystemctl restart gocd-agent\e[0m"
