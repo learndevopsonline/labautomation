@@ -16,7 +16,7 @@ unzip  -o /opt/go-server-23.5.0-18179.zip -d /home/gocd/ &>>/tmp/gocd-server.log
 Stat $? "Unzipping GoCD zip file"
 
 chown -R gocd:gocd /home/gocd/go-server-23.5.0  &>>/tmp/gocd-server.log
-Stat $? "Change Ownership to /home/gocd/go-server-23.5.0 directory"
+Stat $? "Changing Ownership of /home/gocd/go-server-23.5.0 directory"
 
 echo '
 [Unit]
@@ -38,7 +38,7 @@ WantedBy=multi-user.target
 Stat $? "Setup systemd GoCD Service file"
 
 systemctl daemon-reload &>>/tmp/gocd-server.log
-Stat $? "Load the service"
+Stat $? "Load the Service"
 
 systemctl enable go-server &>>/tmp/gocd-server.log
 Stat $? "Enable GoCD Service"
