@@ -14,16 +14,10 @@ CheckSELinux
 CheckFirewall &>/dev/null
 
 ## Supported OS's
-# CentOS 7
-if [ ! -f /etc/centos-release ]; then
-	error "Currently this setup works only for CentOS Operating System"
-	exit 1
-fi
-
 EL=$(rpm -q basesystem | sed -e 's/\./ /g' |xargs -n1 | grep el)
 case $EL in
-  el7|el8) : ;;
-  *) error "Currently this setup works only for CentOS-7/8 OS"
+  el8|el9) : ;;
+  *) error "Currently this setup works only for CentOS-8/RHEL-9 OS"
 	    exit 1
 	    ;;
 esac
