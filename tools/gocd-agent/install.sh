@@ -1,15 +1,48 @@
 source /tmp/labautomation/dry/common-functions.sh
 
+dnf install java-17-openjdk.x86_64 -y  &>/tmp/gocd-agent.log
+Stat $? "Install Java"
 
-curl https://download.gocd.org/gocd.repo -o /etc/yum.repos.d/gocd.repo  &>>/tmp/gocd-server.log
-Stat $? "Download GoCD Repo File"
+id gocd  &>>/tmp/gocd-agent.log
+if [ $? -ne 0 ]; then
+useradd gocd  &>>/tmp/gocd-agent.log
+fi
+Stat $? "Adding GoCD user"
 
-yum install -y go-agent &>>/tmp/gocd-server.log
-Stat $? "Install GoCD Server"
+curl -L -o /tmp/go-agent-23.5.0-18179.zip https://download.gocd.org/binaries/23.5.0-18179/generic/go-agent-23.5.0-18179.zip &>>/tmp/gocd-agent.log
+Stat $? "Download GoCD zip File"
 
-echo -e "\e[35m Open file : /usr/share/go-agent/wrapper-config/wrapper-properties.conf"
-echo -e "\e[35m Then Update GoCD Server IP Address"
-echo -e "\e[36m Then Restart go-agent service (systemctl restart go-agent)\e[0m"
+unzip  -o /tmp/go-agent-23.5.0-18179.zip -d /home/gocd/ &>>/tmp/gocd-agent.log && rm -f /tmp/go-agent-23.5.0-18179.zip
+Stat $? "Unzipping GoCD zip file"
+
+chown -R gocd:gocd /home/gocd/go-agent-23.5.0  &>>/tmp/gocd-agent.log
 
 
+echo '
+[Unit]
+Description=GoCD Server
 
+[Service]
+Type=forking
+User=gocd
+ExecStart=/home/gocd/go-agent-23.5.0/bin/go-agent start sysd
+ExecStop=/home/gocd/go-agent-23.5.0/bin/go-agent stop sysd
+KillMode=control-group
+Environment=SYSTEMD_KILLMODE_WARNING=true
+
+[Install]
+WantedBy=multi-user.target
+
+' >/etc/systemd/system/go-agent.service
+Stat $? "Setup systemd GoCD Service file"
+
+systemctl daemon-reload &>>/tmp/gocd-agent.log
+Stat $? "Load the Service"
+
+systemctl enable go-agent &>>/tmp/gocd-agent.log
+Stat $? "Enable GoCD Service"
+
+systemctl start go-agent &>>/tmp/gocd-agent.log
+Stat $? "Start GoCD Service"
+
+echo -e "Open this URL -> http://$(curl -s ifconfig.me):8153"

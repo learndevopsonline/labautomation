@@ -9,19 +9,18 @@ useradd gocd  &>>/tmp/gocd-server.log
 fi
 Stat $? "Adding GoCD user"
 
-curl -L -o /opt/go-server-23.5.0-18179.zip  https://download.gocd.org/binaries/23.5.0-18179/generic/go-server-23.5.0-18179.zip &>>/tmp/gocd-server.log
+curl -L -o /tmp/go-server-23.5.0-18179.zip  https://download.gocd.org/binaries/23.5.0-18179/generic/go-server-23.5.0-18179.zip &>>/tmp/gocd-server.log
 Stat $? "Download GoCD zip File"
 
-unzip  -o /opt/go-server-23.5.0-18179.zip -d /home/gocd/ &>>/tmp/gocd-server.log
+unzip  -o /tmp/go-server-23.5.0-18179.zip -d /home/gocd/ &>>/tmp/gocd-server.log && rm -f /tmp/go-server-23.5.0-18179.zip
 Stat $? "Unzipping GoCD zip file"
 
 chown -R gocd:gocd /home/gocd/go-server-23.5.0  &>>/tmp/gocd-server.log
-Stat $? "Changing Ownership of /home/gocd/go-server-23.5.0 directory"
+
 
 echo '
 [Unit]
-Description=go-server
-After=syslog.target
+Description=GoCD Server
 
 [Service]
 Type=forking
