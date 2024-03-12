@@ -9,4 +9,7 @@ if [ "$ELV" == "el7" ]; then
 elif [ "$ELV" == "el8" ]; then
   yum install python3.11-devel python3.11-pip -y
   pip3.11 install ansible botocore boto3 python-jenkins
+elif [ "$ELV" == "el9" ]; then
+  yum install python3.11-devel python3.11-pip -y
+  pip3.11 install ansible botocore boto3 python-jenkins
 fi
