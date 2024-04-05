@@ -1,5 +1,11 @@
 #!/bin/bash
 
+type gh &>/dev/null
+
+if [ $? -ne 0 ]; then
+  sudo labauto github-cli
+fi
+
 mkdir -p /opt/github-repos
 cd /opt/github-repos
 
