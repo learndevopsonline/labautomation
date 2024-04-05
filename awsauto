@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo curl -s "https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh" -o /tmp/common-functions.sh
+sudo curl -s "https://raw.githubusercontent.com/learndevopsonline/labautomation/master/dry/common-functions.sh" -o /tmp/common-functions.sh
 source /tmp/common-functions.sh
 
 if [ "$1" == "clean" ]; then
