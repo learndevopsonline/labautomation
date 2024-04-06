@@ -121,8 +121,6 @@ CheckSELinux() {
 	STATUS=$(sestatus | grep 'SELinux status:'| awk '{print $NF}')
 	if [ "$STATUS" != 'disabled' ]; then
 		error "SELINUX Enabled on the server, Hence cannot proceed. Please Disable it and run again.!!"
-		hint "Probably you can run the following script to disable SELINUX"
-		info "  curl -s https://raw.githubusercontent.com/indexit-devops/caput/master/vminit.sh | sudo bash"
 		exit 1
 	fi
 }

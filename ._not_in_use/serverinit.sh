@@ -1,7 +1,6 @@
 #!/bin/bash
 
-curl -s https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh >/tmp/common-functions.sh
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 CheckRoot
 

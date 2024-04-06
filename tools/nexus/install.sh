@@ -1,11 +1,7 @@
-#!/bin/bash 
-#curl -s https://raw.githubusercontent.com/learndevopsonline/nexus/master/install.sh | sudo bash
 #!/bin/bash
 
 ## Source Common Functions
-curl -s "https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh" >/tmp/common-functions.sh
-#source /root/scripts/common-functions.sh
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 ## Checking Root User or not.
 CheckRoot

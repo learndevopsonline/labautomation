@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 if [ "$ELV" == "el7" ]; then
   yum install python3-pip -y

@@ -1,8 +1,6 @@
 #!/bin/bash 
 
-curl -s "https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh" >/tmp/common-functions.sh
-#source /root/scripts/common-functions.sh
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
@@ -58,7 +56,7 @@ yum install nginx -y &>/dev/null
 Stat $? "Install Nginx"
 
 
-curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/tools/elk/http-proxy.conf >/etc/nginx/nginx.conf
+cp /tmp/labautomation/tools/elk/nginx.conf /etc/nginx/nginx.conf
 systemctl enable nginx
 systemctl start nginx
 Stat $? "Start Kibana"

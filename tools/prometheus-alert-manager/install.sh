@@ -20,6 +20,6 @@ tar -xf $FILENAME
 rm -f $FILENAME 
 mv $DIRNAME alertmanager
 
-curl -s https://raw.githubusercontent.com/learndevopsonline/labautomation/master/tools/prometheus-alert-manager/alertmanager.service >/etc/systemd/system/alertmanager.service
+cp /tmp/labautomation/tools/prometheus-alert-manager/alertmanager.service /etc/systemd/system/alertmanager.service
 systemctl enable alertmanager
 systemctl start alertmanager

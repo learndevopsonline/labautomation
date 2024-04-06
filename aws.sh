@@ -5,9 +5,7 @@ rm -f $LOG
 
 echo -e "\n\e[1;33m You can find all the scripts in following location\e[0m\nhttps://github.com/learndevopsonline/labautomation/tree/master/aws\n"
 
-#curl -s "https://raw.githubusercontent.com/learndevopsonline/scripts/master/common-functions.sh" >/tmp/common-functions.sh
-#source /root/scripts/common-functions.sh
-source /tmp/common-functions.sh
+source /tmp/labautomation/dry/common-functions.sh
 
 if [ ! -d /tmp/labautomation  ]; then
 	git clone https://github.com/learndevopsonline/labautomation.git /tmp/labautomation &>/dev/null
