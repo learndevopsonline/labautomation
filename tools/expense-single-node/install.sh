@@ -32,6 +32,8 @@ WantedBy=multi-user.target
 systemctl daemon-reload
 systemctl enable backend
 systemctl restart backend
+mysql -h ${IPADDR} -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
 
 
 
