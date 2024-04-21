@@ -12,7 +12,7 @@
 #
 
 AccountNo=$(aws sts get-caller-identity | jq .Account |xargs)
-
+<<COM
 # Delete Instances Other than Workstation
 
 # Delete spot instances
@@ -27,6 +27,15 @@ for i in $INSTANCES; do
   aws ec2 terminate-instances --instance-ids $i
 done
 
+COM
+## Delete AMI
+LIST=$(aws ec2 describe-images  --owners self --query 'Images[*].ImageId' --output text)
+for image in $LIST ; do
+  aws ec2 deregister-image --image-id $image
+done
+## Delete Snapshots
+exit
+## Delete EBS
 
 # Delete IAM Users
 
