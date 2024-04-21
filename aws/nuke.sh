@@ -12,7 +12,7 @@
 #
 
 AccountNo=$(aws sts get-caller-identity | jq .Account |xargs)
-<<COM
+
 # Delete Instances Other than Workstation
 
 # Delete spot instances
@@ -40,7 +40,7 @@ for snap in $LIST; do
   echo Delete Snapshot - $snap
   aws ec2 delete-snapshot --snapshot-id $snap
 done
-COM
+
 ## Delete EBS
 LIST=$(aws ec2 describe-volumes --query "Volumes[*].VolumeId" --output text)
 for volume in $LIST; do
