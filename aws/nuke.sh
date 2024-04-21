@@ -31,10 +31,17 @@ COM
 ## Delete AMI
 LIST=$(aws ec2 describe-images  --owners self --query 'Images[*].ImageId' --output text)
 for image in $LIST ; do
+  echo Deleteing AMI - $image
   aws ec2 deregister-image --image-id $image
 done
 ## Delete Snapshots
+LIST=$(aws ec2 describe-snapshots --owner-ids self --query 'Snapshots[*].SnapshotId' --output text)
+for snap in $LIST; do
+  echo Delete Snapshot - $snap
+  aws ec2 delete-snapshot --snapshot-id $snap
+done
 exit
+
 ## Delete EBS
 
 # Delete IAM Users
