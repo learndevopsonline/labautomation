@@ -27,7 +27,7 @@ for i in $INSTANCES; do
   aws ec2 terminate-instances --instance-ids $i
 done
 
-COM
+
 ## Delete AMI
 LIST=$(aws ec2 describe-images  --owners self --query 'Images[*].ImageId' --output text)
 for image in $LIST ; do
@@ -40,9 +40,14 @@ for snap in $LIST; do
   echo Delete Snapshot - $snap
   aws ec2 delete-snapshot --snapshot-id $snap
 done
-exit
-
+COM
 ## Delete EBS
+LIST=$(aws ec2 describe-volumes --query "Volumes[*].VolumeId" --output text)
+for volume in $LIST; do
+  echo Delete Volume - $volume
+  aws ec2 delete-volume --volume-id $volume
+done
+
 
 # Delete IAM Users
 
