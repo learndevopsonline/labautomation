@@ -25,5 +25,9 @@ if [ $? -ne 0 ]; then
   systemctl daemon-reload
   systemctl start cri-docker
   systemctl enable cri-docker
+  curl -L -o /bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  chmod +x /bin/kubectl
 fi
 
+echo "Running the following command - minikube start --force"
+minikube start --force
