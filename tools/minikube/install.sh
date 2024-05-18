@@ -20,7 +20,7 @@ if [ $? -ne 0 ]; then
   mv cri-dockerd/cri-dockerd /bin
   cd /tmp
   rm -rf cri-dockerd
-  git clone git clone https://github.com/Mirantis/cri-dockerd.git
+  git clone https://github.com/Mirantis/cri-dockerd.git
   cp  cri-dockerd/packaging/systemd/* /etc/systemd/system
   systemctl daemon-reload
   systemctl start cri-docker
