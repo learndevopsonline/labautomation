@@ -1,0 +1,12 @@
+[Unit]
+Description=Octant
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Type=simple
+ExecStart=/usr/local/bin/octant  --listener-addr 0.0.0.0:7777
+
+[Install]
+WantedBy=multi-user.target
