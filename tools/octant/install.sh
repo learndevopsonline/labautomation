@@ -5,7 +5,12 @@ rpm -qa | grep minikube &>/dev/null
 if [ $? -eq 0 ]; then
   cp /tmp/labautomation/tools/octant/octant-minikube.service /etc/systemd/system/octant.service
 else
-  cp /tmp/labautomation/tools/octant/octant.service /etc/systemd/system/octant.service
+  if centos &>/dev/null
+  if [ $? -eq 0 ]; then
+    sed -e "s/USER/centos/" /tmp/labautomation/tools/octant/octant.service >/etc/systemd/system/octant.service
+  else
+    sed -e "s/USER/ec2-user/" /tmp/labautomation/tools/octant/octant.service >/etc/systemd/system/octant.service
+  fi
 fi
 systemctl daemon-reload
 systemctl enable octant
