@@ -14,5 +14,5 @@ else
 fi
 systemctl daemon-reload
 systemctl enable octant
-systemctl start octant
+systemctl restart octant
 
