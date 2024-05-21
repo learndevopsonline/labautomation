@@ -5,7 +5,7 @@ rpm -qa | grep minikube &>/dev/null
 if [ $? -eq 0 ]; then
   cp /tmp/labautomation/tools/octant/octant-minikube.service /etc/systemd/system/octant.service
 else
-  if centos &>/dev/null
+  id centos &>/dev/null
   if [ $? -eq 0 ]; then
     sed -e "s/USER/centos/" /tmp/labautomation/tools/octant/octant.service >/etc/systemd/system/octant.service
   else
