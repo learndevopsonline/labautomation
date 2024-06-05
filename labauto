@@ -1,5 +1,14 @@
 #!/bin/bash
 
+## Supported OS's
+EL=$(rpm -q basesystem | sed -e 's/\./ /g' |xargs -n1 | grep el)
+case $EL in
+  el8|el9) : ;;
+  *) error "Currently this setup works only for CentOS-8/RHEL-9 OS"
+	    exit 1
+	    ;;
+esac
+
 if [ "$1" == "clean" ]; then
   cd /tmp
   rm -rf labautomation
@@ -19,29 +28,14 @@ else
   fi
 fi
 
+if [ ! -f /tmp/labautomation/setup.sh ]; then
+  echo -e "\e[1;33m💡💡 Hint! Try Using \e[0m\e[1m'sudo labauto clean'\e[0m"
+  exit 1
+fi
 
 source /tmp/labautomation/dry/common-functions.sh
 
 ## Checking Root User or not.
 CheckRoot
-
-## Checking SELINUX Enabled or not.
-CheckSELinux
-
-## Checking Firewall on the Server.
-CheckFirewall &>/dev/null
-
-## Supported OS's
-EL=$(rpm -q basesystem | sed -e 's/\./ /g' |xargs -n1 | grep el)
-case $EL in
-  el8|el9) : ;;
-  *) error "Currently this setup works only for CentOS-8/RHEL-9 OS"
-	    exit 1
-	    ;;
-esac
-
-if [ ! -f /tmp/labautomation/setup.sh ]; then
-  echo -e "\e[1;33m💡💡 Hint! Try Using \e[0m\e[1m'sudo labauto clean'\e[0m"
-fi
 
 bash /tmp/labautomation/setup.sh $*
