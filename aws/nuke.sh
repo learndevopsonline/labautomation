@@ -13,7 +13,7 @@
 
 AccountNo=$(aws sts get-caller-identity | jq .Account |xargs)
 
-cat<<EOF
+: <<'END_COMMENT'
 # Delete Instances Other than Workstation
 
 # Delete spot instances
@@ -181,7 +181,7 @@ certs=$(aws acm list-certificates --query 'CertificateSummaryList[*].Certificate
 for cert in $certs ; do
   aws acm delete-certificate --certificate-arn $cert
 done
-EOF
+END_COMMENT
 
 ## KMS
 keys=$(aws kms list-keys --query 'Keys[*].KeyArn' --output text)
