@@ -130,7 +130,8 @@ for zone in $zones ; do
     aws route53 list-resource-record-sets --hosted-zone-id $zone --query "ResourceRecordSets[?Name == '$name']" >/tmp/out
     type=$(cat /tmp/out | jq '.[0].Type' |xargs)
     ttl=$(cat /tmp/out | jq '.[0].TTL')
-    [ "${ttl}" == "null" -o -z "${ttl}" ] && ttl=30
+
+if [ "${ttl}" == "null" ]; then
 
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
@@ -143,15 +144,31 @@ echo '{
       "ResourceRecords": [{ "Value": "VALUE"}]
     }}]
 }' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|VALUE|${value}|" -e "s/ttl/${ttl}/" >/tmp/record.json
-
-echo
-echo
-cat /tmp/record.json
-echo
-echo
-
   aws route53  change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
 
+else
+
+echo '{
+  "Comment": "Creating Alias resource record sets in Route 53",
+  "Changes": [
+    {
+      "Action": "CREATE",
+      "ResourceRecordSet": {
+        "Name": "COMPONENT",
+        "Type": "TYPE",
+        "AliasTarget": {
+          "HostedZoneId": "ZONE",
+          "DNSName": "www.google.com",
+          "EvaluateTargetHealth": false
+        }
+      }
+    }
+  ]
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|ZONE|${zone}|" >/tmp/record.json
+
+aws route53  change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
+
+fi
   done
   aws route53 delete-hosted-zone --id $zone
 done
