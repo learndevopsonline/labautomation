@@ -149,6 +149,8 @@ echo '{
 
 else
 
+  ZONE=$(cat /tmp/out | jq '.[0].AliasTarget.HostedZoneId' )
+
 echo '{
   "Comment": "Creating Alias resource record sets in Route 53",
   "Changes": [
@@ -165,7 +167,7 @@ echo '{
       }
     }
   ]
-}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|ZONE|${zone}|" >/tmp/record.json
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|ZONE|${ZONE}|" >/tmp/record.json
 
 cat /tmp/record.json
 
