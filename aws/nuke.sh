@@ -161,7 +161,7 @@ echo '{
         "Type": "TYPE",
         "AliasTarget": {
           "HostedZoneId": "ZONE",
-          "DNSName": "www.google.com",
+          "DNSName": "a3e9b4f93131c45e6960d1d69c775be7-459f82da3f0092da.elb.us-east-1.amazonaws.com.",
           "EvaluateTargetHealth": false
         }
       }
