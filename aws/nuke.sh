@@ -150,6 +150,7 @@ echo '{
 else
 
   ZONE=$(cat /tmp/out | jq '.[0].AliasTarget.HostedZoneId' |xargs)
+  NAME=$(cat /tmp/out | jq '.[0].AliasTarget.DNSName' |xargs)
 
 echo '{
   "Comment": "Creating Alias resource record sets in Route 53",
@@ -161,13 +162,13 @@ echo '{
         "Type": "TYPE",
         "AliasTarget": {
           "HostedZoneId": "ZONE",
-          "DNSName": "a3e9b4f93131c45e6960d1d69c775be7-459f82da3f0092da.elb.us-east-1.amazonaws.com.",
-          "EvaluateTargetHealth": false
+          "DNSName": "NAME",
+          "EvaluateTargetHealth": true
         }
       }
     }
   ]
-}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|ZONE|${ZONE}|" >/tmp/record.json
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|ZONE|${ZONE}|" -e "s/NAME/${NAME}/" >/tmp/record.json
 
 cat /tmp/record.json
 
