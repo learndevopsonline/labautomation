@@ -122,48 +122,26 @@ done
 ## Route53
 zones=$(aws route53 list-hosted-zones --query "HostedZones[*].{ID:Id,Name:Name,Private:Config.PrivateZone}" --output text | awk -F / '{print $NF}')
 for zone in $zones ; do
-  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].Name' --output text)
+  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Type:Type}' --output text | awk '{print $1","$2}' | sed -e 's/.,/,/')
   for record in $records ; do
 
+    name=$(echo $record | awk -F , '{print $1}')
+    type=$(echo $record | awk -F , '{print $2}')
+
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
   "Changes": [{
     "Action": "DELETE",
     "ResourceRecordSet": {
       "Name": "COMPONENT",
-      "Type": "TXT",
+      "Type": "TYPE",
       "TTL": 30,
-      "ResourceRecords": [{ "Value": "IPADDRESS"}]
+      "ResourceRecords": [{ "Value": "1.1.1.1"}]
     }}]
-}' | sed -e "s/COMPONENT/$record/" -e "s/IPADDRESS/1.1.1.1/" >/tmp/record.json
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" >/tmp/record.json
 
-  aws route53 change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
-echo '{
-  "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
-  "Changes": [{
-    "Action": "DELETE",
-    "ResourceRecordSet": {
-      "Name": "COMPONENT",
-      "Type": "A",
-      "TTL": 30,
-      "ResourceRecords": [{ "Value": "IPADDRESS"}]
-    }}]
-}' | sed -e "s/COMPONENT/$record/" -e "s/IPADDRESS/1.1.1.1/" >/tmp/record.json
+  aws route53  change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
 
-  aws route53 change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
-echo '{
-  "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
-  "Changes": [{
-    "Action": "DELETE",
-    "ResourceRecordSet": {
-      "Name": "COMPONENT",
-      "Type": "CNAME",
-      "TTL": 30,
-      "ResourceRecords": [{ "Value": "www.google.com"}]
-    }}]
-}' | sed -e "s/COMPONENT/$record/" >/tmp/record.json
-
-  aws route53 change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
   done
   aws route53 delete-hosted-zone --id $zone
 done
