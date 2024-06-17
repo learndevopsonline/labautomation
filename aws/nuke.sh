@@ -131,6 +131,7 @@ aws s3api list-object-versions \
           --region $region
    done
 done
+  aws s3 rm s3://$bucket --recursive
   aws s3 rb s3://$bucket --force
 done
 
