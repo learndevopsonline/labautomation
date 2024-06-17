@@ -122,7 +122,7 @@ AccountNo=$(aws sts get-caller-identity | jq .Account |xargs)
 ## Route53
 zones=$(aws route53 list-hosted-zones --query "HostedZones[*].{ID:Id,Name:Name,Private:Config.PrivateZone}" --output text | awk -F / '{print $NF}')
 for zone in $zones ; do
-  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Value:ResourceRecords[0].Value}' --output text | awk '{print $1"|"$2}' | grep -Ev 'NS|SOA' | sed -e 's/"/\\\\"/g')
+  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Value:ResourceRecords[0].Value}' --output text | awk '{print $1"|"$2}' | grep -Ev 'NS|SOA|awsdns-' | sed -e 's/"/\\\\"/g')
   for record in $records ; do
 
     name=$(echo $record | awk -F '|' '{print $1}')
