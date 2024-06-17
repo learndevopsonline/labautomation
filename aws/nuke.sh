@@ -139,7 +139,7 @@ echo '{
       "TTL": 30,
       "ResourceRecords": [{ "Value": "VALUE"}]
     }}]
-}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s/VALUE/${value}|" >/tmp/record.json
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s/VALUE/${value}/" >/tmp/record.json
 
   aws route53  change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
 
