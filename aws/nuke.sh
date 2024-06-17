@@ -131,6 +131,19 @@ echo '{
     "Action": "DELETE",
     "ResourceRecordSet": {
       "Name": "COMPONENT",
+      "Type": "TXT",
+      "TTL": 30,
+      "ResourceRecords": [{ "Value": "IPADDRESS"}]
+    }}]
+}' | sed -e "s/COMPONENT/$record/" -e "s/IPADDRESS/1.1.1.1/" >/tmp/record.json
+
+  aws route53 change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
+echo '{
+  "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
+  "Changes": [{
+    "Action": "DELETE",
+    "ResourceRecordSet": {
+      "Name": "COMPONENT",
       "Type": "A",
       "TTL": 30,
       "ResourceRecords": [{ "Value": "IPADDRESS"}]
