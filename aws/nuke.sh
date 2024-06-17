@@ -122,16 +122,15 @@ done
 ## Route53
 zones=$(aws route53 list-hosted-zones --query "HostedZones[*].{ID:Id,Name:Name,Private:Config.PrivateZone}" --output text | awk -F / '{print $NF}')
 for zone in $zones ; do
-  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Type:Type,TTL:TTL,Value:ResourceRecords[0].Value}' --output text | awk '{print $1"|"$2"|"$3"|"$4}' | grep -Ev 'NS|SOA' | sed -e 's/"/\\\\"/g')
+  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Value:ResourceRecords[0].Value}' --output text | awk '{print $1"|"$2"}' | grep -Ev 'NS|SOA' | sed -e 's/"/\\\\"/g')
   for record in $records ; do
 
     name=$(echo $record | awk -F '|' '{print $1}')
+    value=$(echo $record | awk -F '|' '{print $2}')
     aws route53 list-resource-record-sets --hosted-zone-id $zone --query "ResourceRecordSets[?Name == '$name']" >/tmp/out
-exit
-    type=$(echo $record | awk -F '|' '{print $2}')
-    value=$(echo $record | awk -F '|' '{print $4}')
-    ttl=$(echo $record | awk -F '|' '{print $3}')
-    [ "${ttl}" == "None" -o -z "${ttl}" ] && ttl=30
+    type=$(cat /tmp/out | jq '.[0].Type')
+    ttl=$(cat /tmp/out | jq '.[0].TTL')
+    [ "${ttl}" == "null" -o -z "${ttl}" ] && ttl=30
 
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
