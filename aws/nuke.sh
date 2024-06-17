@@ -136,7 +136,7 @@ echo '{
     "ResourceRecordSet": {
       "Name": "COMPONENT",
       "Type": "TYPE",
-      "TTL": 30,
+      "TTL": 300,
       "ResourceRecords": [{ "Value": "VALUE"}]
     }}]
 }' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|VALUE|${value}|" >/tmp/record.json
