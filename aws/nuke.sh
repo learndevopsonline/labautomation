@@ -155,7 +155,7 @@ echo '{
   "Comment": "Creating Alias resource record sets in Route 53",
   "Changes": [
     {
-      "Action": "CREATE",
+      "Action": "DELETE",
       "ResourceRecordSet": {
         "Name": "COMPONENT",
         "Type": "TYPE",
