@@ -141,6 +141,12 @@ echo '{
     }}]
 }' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s/VALUE/${value}/" >/tmp/record.json
 
+echo
+echo
+/tmp/record.json
+echo
+echo
+
   aws route53  change-resource-record-sets --hosted-zone-id $zone --change-batch file:///tmp/record.json
 
   done
