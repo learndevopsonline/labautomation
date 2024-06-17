@@ -180,3 +180,10 @@ certs=$(aws acm list-certificates --query 'CertificateSummaryList[*].Certificate
 for cert in $certs ; do
   aws acm delete-certificate --certificate-arn $cert
 done
+
+## KMS
+keys=$(aws kms list-keys --query 'Keys[*].KeyArn' --output text)
+for key in $keys; do
+  aws kms schedule-key-deletion --key-id $key --pending-window-in-days 7
+
+done
