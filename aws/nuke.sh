@@ -13,7 +13,7 @@
 
 AccountNo=$(aws sts get-caller-identity | jq .Account |xargs)
 
-: <<'END_COMMENT'
+#: <<'END_COMMENT'
 # Delete Instances Other than Workstation
 
 # Delete spot instances
@@ -110,6 +110,27 @@ done
 
 BUCKETS=$(aws s3api list-buckets --query "Buckets[].Name" --output text)
 for bucket in $BUCKETS; do
+
+aws s3api list-object-versions \
+          --bucket $bucket \
+          --region $region \
+          --query "Versions[].Key"  \
+          --output json | jq 'unique' | jq -r '.[]' | while read key; do
+   echo "deleting versions of $key"
+   aws s3api list-object-versions \
+          --bucket $bucket \
+          --region $region \
+          --prefix $key \
+          --query "Versions[].VersionId"  \
+          --output json | jq 'unique' | jq -r '.[]' | while read version; do
+     echo "deleting $version"
+     aws s3api delete-object \
+          --bucket $bucket \
+          --key $key \
+          --version-id $version \
+          --region $region
+   done
+done
   aws s3 rb s3://$bucket --force
 done
 
@@ -181,7 +202,7 @@ certs=$(aws acm list-certificates --query 'CertificateSummaryList[*].Certificate
 for cert in $certs ; do
   aws acm delete-certificate --certificate-arn $cert
 done
-END_COMMENT
+#END_COMMENT
 
 ## KMS
 keys=$(aws kms list-keys --query 'Keys[*].KeyArn' --output text)
