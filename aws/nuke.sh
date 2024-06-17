@@ -129,6 +129,7 @@ for zone in $zones ; do
     type=$(echo $record | awk -F '|' '{print $2}')
     value=$(echo $record | awk -F '|' '{print $3}')
     ttl=$(echo $record | awk -F '|' '{print $4}')
+    [ "${ttl}" == "None" ] && ttl=30
 
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
