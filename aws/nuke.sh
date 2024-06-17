@@ -143,7 +143,7 @@ echo '{
 
 echo
 echo
-/tmp/record.json
+cat /tmp/record.json
 echo
 echo
 
