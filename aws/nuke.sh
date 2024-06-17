@@ -149,7 +149,7 @@ echo '{
 
 else
 
-  ZONE=$(cat /tmp/out | jq '.[0].AliasTarget.HostedZoneId' )
+  ZONE=$(cat /tmp/out | jq '.[0].AliasTarget.HostedZoneId' |xargs)
 
 echo '{
   "Comment": "Creating Alias resource record sets in Route 53",
