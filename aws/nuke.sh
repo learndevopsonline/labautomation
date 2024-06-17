@@ -128,9 +128,6 @@ for zone in $zones ; do
     name=$(echo $record | awk -F '|' '{print $1}')
     value=$(echo $record | awk -F '|' '{print $2}')
     aws route53 list-resource-record-sets --hosted-zone-id $zone --query "ResourceRecordSets[?Name == '$name']" >/tmp/out
-
-    cat /tmp/out
-    continue
     type=$(cat /tmp/out | jq '.[0].Type' |xargs)
     ttl=$(cat /tmp/out | jq '.[0].TTL')
     echo $ttl
