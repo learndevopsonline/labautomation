@@ -122,12 +122,13 @@ done
 ## Route53
 zones=$(aws route53 list-hosted-zones --query "HostedZones[*].{ID:Id,Name:Name,Private:Config.PrivateZone}" --output text | awk -F / '{print $NF}')
 for zone in $zones ; do
-  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Type:Type,Value:ResourceRecords[0].Value}' --output text | awk '{print $1"|"$2"|"$3}' | sed -e 's/|,/,/' | grep -Ev 'NS,|SOA,' | sed -e 's/"/\\\\"/g')
+  records=$(aws route53 list-resource-record-sets --hosted-zone-id $zone --query 'ResourceRecordSets[*].{Name:Name,Type:Type,Value:ResourceRecords[0].Value,TTL:TTL}' --output text | awk '{print $1"|"$2"|"$3"|"$4}' | sed -e 's/|,/,/' | grep -Ev 'NS|SOA' | sed -e 's/"/\\\\"/g')
   for record in $records ; do
 
     name=$(echo $record | awk -F '|' '{print $1}')
     type=$(echo $record | awk -F '|' '{print $2}')
     value=$(echo $record | awk -F '|' '{print $3}')
+    ttl=$(echo $record | awk -F '|' '{print $4}')
 
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
@@ -136,10 +137,10 @@ echo '{
     "ResourceRecordSet": {
       "Name": "COMPONENT",
       "Type": "TYPE",
-      "TTL": 300,
+      "TTL": ttl,
       "ResourceRecords": [{ "Value": "VALUE"}]
     }}]
-}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|VALUE|${value}|" >/tmp/record.json
+}' | sed -e "s/COMPONENT/$name/" -e "s/TYPE/${type}/" -e "s|VALUE|${value}|" -e "s/ttl/${ttl}/" >/tmp/record.json
 
 echo
 echo
