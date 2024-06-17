@@ -130,6 +130,8 @@ for zone in $zones ; do
     aws route53 list-resource-record-sets --hosted-zone-id $zone --query "ResourceRecordSets[?Name == '$name']" >/tmp/out
     type=$(cat /tmp/out | jq '.[0].Type' |xargs)
     ttl=$(cat /tmp/out | jq '.[0].TTL')
+    echo $ttl
+    continue
 
 if [ "${ttl}" == "null" ]; then
 
