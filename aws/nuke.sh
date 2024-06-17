@@ -131,7 +131,7 @@ for zone in $zones ; do
     type=$(cat /tmp/out | jq '.[0].Type' |xargs)
     ttl=$(cat /tmp/out | jq '.[0].TTL')
 
-if [ "${ttl}" == "null" ]; then
+if [ "${value}" != "None" ]; then
 
 echo '{
   "Comment": "Created Server - Private IP address - IPADDRESS , DNS Record - COMPONENT-dev.DOMAIN_NAME",
