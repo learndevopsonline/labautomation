@@ -1,2 +1,1 @@
-cd tools/minikube/terraform
-bash create.sh
+bash tools/minikube/terraform/create.sh
