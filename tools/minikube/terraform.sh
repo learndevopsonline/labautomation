@@ -1,1 +1,2 @@
-pwd
+cd tools/minikube/terraform
+bash create.sh
