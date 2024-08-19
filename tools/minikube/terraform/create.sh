@@ -25,6 +25,7 @@ echo "Ensure you open the following URL and subscribe. Wait for Subscription to 
 echo "https://aws.amazon.com/marketplace/pp/prodview-foff247vr2zfw?ref_=aws-mp-console-subscription-detail"
 read -p ""
 
+cd terraform
 rm -rf .terraform*
 
 terraform init
