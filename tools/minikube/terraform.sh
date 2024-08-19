@@ -1,1 +1,1 @@
-bash tools/minikube/terraform/create.sh
+bash -x tools/minikube/terraform/create.sh
