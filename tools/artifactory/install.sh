@@ -11,3 +11,12 @@ PACK=$(yum list all  --showduplicates| grep Artifactory | grep jfrog-artifactory
 yum install $PACK -y
 systemctl enable artifactory
 systemctl start artifactory
+echo 'configVersion: 1
+shared:
+    security:
+    node:
+    database:
+        allowNonPostgresql: true
+access:' >/opt/jfrog/artifactory/var/etc/system.yaml
+systemctl restart artifactory
+
