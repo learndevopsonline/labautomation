@@ -9,7 +9,7 @@ fi
 
 read -p 'Enter GitHub Username/OrganizationName: ' gusername
 
-SOURCE_REPO=https://github.com/roboshop-devops-project-v1
+SOURCE_REPO=https://github.com/roboshop-devops-project-v3
 
 for component in cart catalogue user shipping payment dispatch frontend ; do
   cd /tmp
