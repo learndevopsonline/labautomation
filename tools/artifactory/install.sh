@@ -9,5 +9,15 @@ repo_gpgcheck=0' > /etc/yum.repos.d/artifactory.repo
 PACK=$(yum list all  --showduplicates| grep Artifactory | grep jfrog-artifactory-oss.x86_64 | tail -1 | awk '{print $1"-"$2}' | sed -e 's/.x86_64//')
 
 yum install $PACK -y
+
+echo 'configVersion: 1
+shared:
+    security:
+    node:
+    database:
+        allowNonPostgresql: true
+access:' >/opt/jfrog/artifactory/var/etc/system.yaml
+
 systemctl enable artifactory
-systemctl start artifactory
+systemctl restart artifactory
+
