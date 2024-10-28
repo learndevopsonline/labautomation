@@ -11,5 +11,5 @@ elif [ "$ELV" == "el8" ]; then
   pip3.12 install ansible ansible-core==2.16 botocore boto3 python-jenkins
 elif [ "$ELV" == "el9" ]; then
   yum install python3.11-devel python3.11-pip -y
-  pip3.11 install ansible botocore boto3 python-jenkins
+  pip3.11 install ansible botocore boto3 python-jenkins hvac
 fi
