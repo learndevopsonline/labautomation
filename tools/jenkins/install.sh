@@ -11,7 +11,7 @@ Stat() {
     fi 
 }
 
-yum install fontconfig java-11-openjdk-devel wget -y  &>/tmp/jinstall.log
+yum install fontconfig java-21-openjdk-devel wget -y  &>/tmp/jinstall.log
 Stat $?
 wget --no-check-certificate -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo &>>/tmp/jinstall.log 
 Stat $?
