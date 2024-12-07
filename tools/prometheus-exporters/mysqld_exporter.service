@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/opt/mysqld_exporter/mysqld_exporter
+ExecStart=/opt/mysqld_exporter/mysqld_exporter  --config.my-cnf=/opt/mysqld_exporter/cnf
 
 [Install]
 WantedBy=multi-user.target

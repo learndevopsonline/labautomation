@@ -11,6 +11,19 @@ tar -xf $download_file
 rm -f $download_file
 mv $dir_name mysqld_exporter
 
+echo '[client]
+user = exporter
+password = exporter123
+host = localhost' >/opt/mysqld_exporter/cnf
+
 cp /tmp/labautomation/tools/prometheus-exporters/mysqld_exporter.service /etc/systemd/system/mysqld_exporter.service
 systemctl enable mysqld_exporter
 systemctl start mysqld_exporter
+
+
+echo "Login to MySQL and run these mysql commands"
+echo '------------------------------------------------------------------------------------------'
+echo "CREATE USER 'exporter'@'localhost' IDENTIFIED BY 'exporter' WITH MAX_USER_CONNECTIONS 3;"
+echo "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'localhost';"
+echo '------------------------------------------------------------------------------------------'
+
