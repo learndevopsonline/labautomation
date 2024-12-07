@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/opt/exporter_exporter/exporter_exporter  --config.my-cnf=/opt/exporter_exporter/exporter_exporter.conf
+ExecStart=/opt/exporter_exporter/exporter_exporter  --config.file=/opt/exporter_exporter/exporter_exporter.conf
 
 [Install]
 WantedBy=multi-user.target
