@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus mysqld_exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/mysqld_exporter/mysqld_exporter
+
+[Install]
+WantedBy=multi-user.target

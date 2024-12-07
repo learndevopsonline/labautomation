@@ -11,4 +11,6 @@ tar -xf $download_file
 rm -f $download_file
 mv $dir_name mysqld_exporter
 
-
+cp /tmp/labautomation/tools/prometheus-exporters/mysqld_exporter.service /etc/systemd/system/mysqld_exporter.service
+systemctl enable mysqld_exporter
+systemctl start mysqld_exporter
