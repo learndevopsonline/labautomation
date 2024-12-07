@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus exporter_exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/opt/exporter_exporter/exporter_exporter  --config.my-cnf=/opt/exporter_exporter/exporter_exporter.conf
+
+[Install]
+WantedBy=multi-user.target
