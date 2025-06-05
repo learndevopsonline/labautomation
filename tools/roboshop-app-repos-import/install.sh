@@ -17,6 +17,7 @@ for component in cart catalogue user shipping payment dispatch frontend ; do
   git clone $SOURCE_REPO/$component
   rm -rf /tmp/$component/.git
   cd /tmp/$component
+  git config --global --add safe.directory /tmp/$component
   git init
   git branch -m main
   git add -A
