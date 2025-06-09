@@ -25,12 +25,14 @@ logged_username=$(gh auth status | grep Logged | xargs -n1 | tail -n 2 | head -n
 user_id=$(curl -s https://api.github.com/users/$logged_username | jq .id)
 
 for repo in catalogue user cart shipping payment frontend dispatch ; do
-  gh api \
-    --method PUT \
-    -H "Accept: application/vnd.github+json" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    /repos/$username/roboshop-$repo/environments/PROD \
-    -F "prevent_self_review=false" -f "reviewers[][type]=User" -F "reviewers[][id]=$user_id"
+  for env in DEV QA UAT PROD; do
+    gh api \
+      --method PUT \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      /repos/$username/roboshop-$repo/environments/$env \
+      -F "prevent_self_review=false" -f "reviewers[][type]=User" -F "reviewers[][id]=$user_id"
+  done
 done
 
 
