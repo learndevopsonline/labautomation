@@ -25,7 +25,7 @@ logged_username=$(gh auth status | grep Logged | xargs -n1 | tail -n 2 | head -n
 user_id=$(curl -s https://api.github.com/users/$logged_username | jq .id)
 
 for repo in catalogue user cart shipping payment frontend dispatch ; do
-  for env in DEV QA UAT PROD; do
+  for env in QA UAT PROD; do
     gh api \
       --method PUT \
       -H "Accept: application/vnd.github+json" \
