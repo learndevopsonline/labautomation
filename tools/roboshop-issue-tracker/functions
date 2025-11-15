@@ -79,7 +79,10 @@ CASE() {
 
 
 remote_command() {
-  echo "$2" | ssh -T $1 1>/tmp/tout 2>/tmp/terr
+  #echo "$2" | ssh -T $1 1>/tmp/tout 2>/tmp/terr
+  ssh -T "$1" "bash -s" > /tmp/tout 2> /tmp/terr <<EOF
+$2
+EOF
   STAT=$?
   sed -i -e '/Warning:\ Permanently\ added/ d' /tmp/tout
   grep Customized /tmp/tout &>/dev/null
