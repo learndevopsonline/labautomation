@@ -81,8 +81,8 @@ remote_command $CAT_IP "nc -w 5 -z $MONGO_IP 27017"
 Stat $? "Catalogue server able to connect to MongoDB server"
 
 chatgpt_print "MONGODB: Checking if catalogue schema is loaded in mongodb"
-command_print "echo 'show dbs' | mongo"
-remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+command_print "echo 'show dbs' | mongosh"
+remote_command $MONGO_IP "echo 'show dbs' | mongosh 2>&1" >/tmp/out
 cat /tmp/out | grep --color -E 'catalogue|$'
 
 grep catalogue /tmp/out &>/dev/null
@@ -143,8 +143,8 @@ remote_command $USE_IP "nc -w 5 -z $MONGO_IP 27017"
 Stat $? "User server able to connect to MongoDB server"
 
 chatgpt_print "MONGODB: Checking if user schema is loaded in mongodb"
-command_print "echo 'show dbs' | mongo"
-remote_command $MONGO_IP "echo 'show dbs' | mongo 2>&1" >/tmp/out
+command_print "echo 'show dbs' | mongosh"
+remote_command $MONGO_IP "echo 'show dbs' | mongosh 2>&1" >/tmp/out
 cat /tmp/out | grep --color -E 'users|$'
 
 grep users  /tmp/out &>/dev/null
