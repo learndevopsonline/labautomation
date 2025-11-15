@@ -18,9 +18,9 @@ StatP $? "Nginx is installed"
 
 chatgpt_print FRONTEND: Checking for Roboshop nginx configuration.
 
-command_print "cat /etc/nginx/default.d/roboshop.conf"
+command_print "cat /etc/nginx/nginx.conf"
 
-cat /etc/nginx/default.d/roboshop.conf
+cat /etc/nginx/nginx.conf
 EXIT=1 StatP $? "Found RoboShop Configuration"
 
 chatgpt_print FRONTEND: Checking Nginx Service is running or not.
@@ -32,9 +32,9 @@ EXIT=0 StatP $? "Nginx Service Running.."
 CASE 100
 
 # Finding Catalogue Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+command_print "cat /etc/nginx/nginx.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
-CAT_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+CAT_IP=$(cat /etc/nginx/nginx.conf  | grep catalogue  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Catalogue IP : $CAT_IP"
 
@@ -103,9 +103,9 @@ remote_command $CAT_IP "systemctl restart catalogue"
 
 
 # Finding User Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+command_print "cat /etc/nginx/nginx.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
 
-USE_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+USE_IP=$(cat /etc/nginx/nginx.conf  | grep user  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "User IP : $USE_IP"
 
@@ -199,8 +199,8 @@ remote_command $USE_IP "systemctl restart user"
 
 
 ## Finding Cart Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-CAR_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+command_print "cat /etc/nginx/nginx.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+CAR_IP=$(cat /etc/nginx/nginx.conf  | grep cart  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Cart IP : $CAR_IP"
 
@@ -248,8 +248,8 @@ chatgpt_print "CART: Redis needs to be installed"
 
 
 ## Finding Shipping Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-SHI_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+command_print "cat /etc/nginx/nginx.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+SHI_IP=$(cat /etc/nginx/nginx.conf  | grep shipping  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Shipping IP : $SHI_IP"
 command_print "nc -w 5 -z $SHI_IP 22"
@@ -268,8 +268,8 @@ remote_command $SHI_IP "ps -ef | grep java | grep -v grep"
 Stat $? "Check Shipping is running or not"
 
 ## Finding Payment Server
-command_print "cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
-PAY_IP=$(cat /etc/nginx/default.d/roboshop.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
+command_print "cat /etc/nginx/nginx.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print \$1}'"
+PAY_IP=$(cat /etc/nginx/nginx.conf  | grep payment  | xargs -n1 | grep ^http | sed -e 's|http://||' | awk -F : '{print $1}')
 
 chatgpt_print "Payment IP : $PAY_IP"
 command_print "nc -w 5 -z $PAY_IP 22"
