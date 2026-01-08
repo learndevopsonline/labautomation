@@ -3,11 +3,12 @@ echo -e "\e[1;33m Reference Document\e[0m : https://docs.aws.amazon.com/autoscal
 ## Get the KMS ID
 LIST=$(/usr/local/bin/aws kms list-aliases | grep -E 'AliasName|AliasArn' | sed -e '/\/aws\// d' | grep AliasArn  | sed -e 's/"/ /g' | xargs -n1 | grep ^arn)
 for arn in $LIST ; do
-  state=(aws kms describe-key --key-id $arn --query 'KeyMetadata.KeyState')
-  if [ "state" == "Enabled" ]; then
+  state=$(aws kms describe-key --key-id $arn --query 'KeyMetadata.KeyState'|xargs)
+  if [ "${state}" == "Enabled" ]; then
     keys="$keys $arn"
   fi
 done
+
 if [ "$(echo $keys | xargs -n1 |wc -l)" -gt 1 ]; then
   echo "Multiple KMS Keys found, Exiting..."
   echo "Manually run the command from the above given URL"
