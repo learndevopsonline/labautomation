@@ -3,7 +3,7 @@ echo -e "\e[1;33m Reference Document\e[0m : https://docs.aws.amazon.com/autoscal
 ## Get the KMS ID
 LIST=$(/usr/local/bin/aws kms list-aliases | grep -E 'AliasName|AliasArn' | sed -e '/\/aws\// d' | grep AliasArn  | sed -e 's/"/ /g' | xargs -n1 | grep ^arn)
 for arn in $LIST ; do
-  state=(aws kms describe-key --key-id $i --query 'KeyMetadata.KeyState')
+  state=(aws kms describe-key --key-id $arn --query 'KeyMetadata.KeyState')
   if [ "state" == "Enabled" ]; then
     keys="$keys $arn"
   fi
