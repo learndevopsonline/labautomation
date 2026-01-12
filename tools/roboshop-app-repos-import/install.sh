@@ -8,6 +8,10 @@ if [ $? -ne 0 ]; then
 fi
 
 read -p 'Enter GitHub Username/OrganizationName: ' gusername
+read -p 'Enter repo version(v1): ' gver
+if [ -n "$gver" ]; then
+  gver="-${gver}"
+fi
 
 SOURCE_REPO=https://github.com/roboshop-devops-project-v3
 
@@ -22,5 +26,5 @@ for component in cart catalogue user shipping payment dispatch frontend ; do
   git branch -m main
   git add -A
   git commit -m INIT
-  gh repo create $gusername/roboshop-$component --public --source=. --push
+  gh repo create $gusername/roboshop-$component$gver --public --source=. --push
 done
