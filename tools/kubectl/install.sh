@@ -7,6 +7,5 @@ if [ $(id -u) -ne 0 ]; then
   exit 1
 fi
 
-curl -L https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl -o /bin/kubectl
-#curl -L https://dl.k8s.io/release/v1.23.6/bin/linux/amd64/kubectl -o /bin/kubectl
+curl -L -o /bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x /bin/kubectl
