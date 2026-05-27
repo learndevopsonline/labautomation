@@ -13,9 +13,9 @@ if [ -n "$gver" ]; then
   gver="-${gver}"
 fi
 
-SOURCE_REPO=https://github.com/roboshop-devops-project-v3
+SOURCE_REPO=https://github.com/roboshop-devops-project-v4
 
-for component in cart catalogue user shipping payment dispatch frontend ; do
+for component in cart catalogue frontend orders user shipping payment ratings  ; do
   cd /tmp
   rm -rf $component
   git clone $SOURCE_REPO/$component
